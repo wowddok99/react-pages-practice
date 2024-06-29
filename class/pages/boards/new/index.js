@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react' 
+import { useMutation, gql } from "@apollo/client"
 
 import {
     Title,
@@ -25,6 +26,14 @@ import {
     Error
 } from "../../../styles/boardsNew"
 
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput: CreateBoardInput!){
+        createBoard(createBoardInput: $createBoardInput){
+            _id
+        }
+    }
+`
+
 export default function BoardsNewPage() {
     const [writer, setWriter] = useState("");
     const [password, setPassword] = useState("");
@@ -36,42 +45,43 @@ export default function BoardsNewPage() {
     const [titleError, setTitleError] = useState("");
     const [contentsError, setContentsError] = useState("");
 
+    const [createBoard] = useMutation(CREATE_BOARD)
+
     // writer input의 입력 감지 -> state에 저장
     const onChangeWriter = (event) => {
         setWriter(event.target.value);
         // console.log(writer)
         // 값 입력시 error창 초기화
         if(event.target.value !== ""){
-          setWriterError("")
+          setWriterError("");
         }
       };
     
       const onChangePassword = (event) => {
         setPassword(event.target.value);
         if(event.target.value !== ""){
-          setPasswordError("")
+          setPasswordError("");
         }
       };
     
       const onChangeTitle = (event) => {
         setTitle(event.target.value);
         if(event.target.value !== ""){
-          setTitleError("")
+          setTitleError("");
         }
       };
     
       const onChangeContents = (event) => {
         setContents(event.target.value);
         if(event.target.value !== ""){
-          setContentsError("")
+          setContentsError("");
         }
       };
 
-
-    const onClickSubmit = () => {
+    const onClickSubmit = async () => {
         // writer에 값이 없으면 WriterError에 에러원인 저장
         if(!writer){
-            setWriterError("작성자를 입력해주세요.")
+            setWriterError("작성자를 입력해주세요.");
         }
         if (!password) {
             setPasswordError("비밀번호를 입력해주세요.");
@@ -82,16 +92,25 @@ export default function BoardsNewPage() {
         if (!contents) {
             setContentsError("내용을 입력해주세요.");
         }
-        console.log(writer)
-        console.log(password)
-        console.log(title)
-        console.log(contents)
-        console.log(writerError)
 
         // 전부 값이 들어있으면 게시글 등록 alert 
         if (writer && password && title && contents) {
-            alert("게시글이 등록되었습니다.");
+            // alert("게시글이 등록되었습니다.");
+            const result = await createBoard({
+                variables: {
+                    createBoardInput: {
+                        writer: writer,
+                        password: password,
+                        title: title,
+                        contents : contents
+                    }
+                }
+            });
+
+            console.log(result);
+            alert("게시글이 등록되었습니다.\n등록된 게시글 ID는 " + result.data.createBoard._id + " 입니다.");
         }
+
     };
 
     return (
