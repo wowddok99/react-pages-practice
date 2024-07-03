@@ -1,8 +1,15 @@
-import {} from "../../../styles/boardsDetail"
+import {
+    Wrraper,
+    Avatar,
+    line
+} from "../../../styles/boardsDetail"
 
 export default function BoardsDetailPage(){
 
     return (
-        <div>detailPage 입니다.</div>
+        <Wrraper>
+            <Avatar src="/images/profile.png" />
+            <div>detailPage 입니다.</div>
+        </Wrraper>
     )
 }
