@@ -72,3 +72,5 @@ export const Image = styled.div`
   width: 996px;
   height: 480px;
 `
+export const Contents = styled.div`
+`
