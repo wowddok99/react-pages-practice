@@ -10,13 +10,47 @@ export const Wrraper = styled.div`
     padding-bottom: 100px;
     padding-left: 100px;
     padding-right: 100px;
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    align-items: center; */
     border: none;
     box-shadow: 0px 0px 10px gray;
 `
 
-export const Avatar = styled.img`
-  margin-right: 10px;
+export const ProfileWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
 `
+
+export const Profile = styled.img`
+  margin-right: 10px;
+  width: 46.67px;
+  height: 46.67px;
+  cursor: pointer;
+`
+
+export const Line = styled.div`
+  border-top: 1px solid #BDBDBD;
+  margin-top: 10px;
+`
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-right: 990px;
+`
+
+export const InfoImage = styled.img`
+  width: 32px;
+  height: 32px;
+`
+
+
+export const Writer = styled.div`
+  font-size: 24px;
+`
+
+export const CreateAt = styled.div`
+  font-size: 16px;
+`
+

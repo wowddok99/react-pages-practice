@@ -1,15 +1,28 @@
 import {
     Wrraper,
-    Avatar,
-    line
+    Profile,
+    ProfileWrapper,
+    Line,
+    InfoWrapper,
+    InfoImage,
+    Writer,
+    CreateAt
 } from "../../../styles/boardsDetail"
 
 export default function BoardsDetailPage(){
 
     return (
         <Wrraper>
-            <Avatar src="/images/profile.png" />
-            <div>detailPage 입니다.</div>
+            <ProfileWrapper>
+                <Profile src="/images/profile.png" />
+                <InfoWrapper>
+                    <Writer>전상은</Writer>
+                    <CreateAt>2024.07.04</CreateAt>
+                </InfoWrapper>
+                <InfoImage src="/images/ic_link.png" />
+                <InfoImage src="/images/ic_location.png" />
+            </ProfileWrapper>
+            <Line></Line>
         </Wrraper>
     )
 }
