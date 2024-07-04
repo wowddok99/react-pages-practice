@@ -1,12 +1,15 @@
 import {
     Wrraper,
-    Profile,
+    InfoImageProfile,
     ProfileWrapper,
     Line,
     InfoWrapper,
     InfoImage,
     Writer,
-    CreateAt
+    CreateAt,
+    PostWrapper,
+    Title,
+    Image
 } from "../../../styles/boardsDetail"
 
 export default function BoardsDetailPage(){
@@ -14,7 +17,7 @@ export default function BoardsDetailPage(){
     return (
         <Wrraper>
             <ProfileWrapper>
-                <Profile src="/images/profile.png" />
+                <InfoImageProfile src="/images/profile.png" />
                 <InfoWrapper>
                     <Writer>전상은</Writer>
                     <CreateAt>2024.07.04</CreateAt>
@@ -23,6 +26,10 @@ export default function BoardsDetailPage(){
                 <InfoImage src="/images/ic_location.png" />
             </ProfileWrapper>
             <Line></Line>
+            <PostWrapper>
+                <Title>게시글 제목입니다.</Title>
+                <Image></Image>
+            </PostWrapper>
         </Wrraper>
     )
 }
