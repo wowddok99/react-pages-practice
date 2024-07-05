@@ -1,6 +1,6 @@
 import {
     Wrraper,
-    InfoImageProfile,
+    ProfileImage,
     ProfileWrapper,
     Line,
     InfoWrapper,
@@ -19,19 +19,19 @@ import {
     HateButton
 } from "../../../styles/boardsDetail"
 
-export default function BoardsDetailPage(){
+export default function BoardsDetailMarginPage(){
 
     return (
         <Wrraper>
-            <ProfileWrapper>
-                <InfoImageProfile src="/images/profile.png" />
-                <InfoWrapper>
+            <InfoWrapper>
+                <ProfileImage src="/images/profile.png" />
+                <ProfileWrapper>
                     <Writer>TEN</Writer>
                     <CreateAt>2024.07.04</CreateAt>
-                </InfoWrapper>
+                </ProfileWrapper>
                 <InfoImage src="/images/ic_link.png" />
                 <InfoImage src="/images/ic_location.png" />
-            </ProfileWrapper>
+            </InfoWrapper>
             <Line></Line>
             <PostWrapper>
                 <Title>게시글 제목입니다.</Title>
