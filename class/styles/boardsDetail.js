@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
+import { execOnce } from "next/dist/shared/lib/utils";
 
 export const Wrraper = styled.div`
     font-family: "NotoSansKR-Regular";
-    width: 1200px;
-    height: 1600px;
+    width: 1100px;
+    height: 1400px;
     border: 1px solid black;
     margin: 100px;
     padding-top: 90px;
@@ -43,7 +44,7 @@ export const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 5px;
-  margin-right: 990px;
+  margin-right: 890px;
 `
 
 export const Writer = styled.div`
@@ -55,22 +56,59 @@ export const CreateAt = styled.div`
 `
 
 export const PostWrapper = styled.div`
+  word-break: break-all;
   display: flex;
   flex-direction: column;
+  margin-top: 70px;
+  margin-bottom: 100px;
   /* 게시글 중앙정렬 */
   /* align-self: center; */
 `
 
 export const Title = styled.div`
   font-size: 36px;
-  margin-top: 50px;
   margin-bottom: 25px;
 `
 
 export const Image = styled.div`
   background-color: #F2F2F2;
-  width: 996px;
-  height: 480px;
+  width: 1100px;
+  height: 600px;
+  margin-bottom: 25px;
 `
 export const Contents = styled.div`
+  margin-bottom: 100px;
+`
+
+export const Youtube = styled.div`
+  background-color: #F2F2F2;
+  width: 486px;
+  height: 240px;
+  align-self: center;
+`
+
+export const LikeFunctionWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+`
+export const LikeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+`
+
+export const HateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const LikeButton = styled.img`
+  width: 24px;
+  height: 24px;
+`
+
+export const HateButton = styled.img`
+  width: 24px;
+  height: 24px;
 `

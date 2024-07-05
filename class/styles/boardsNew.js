@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 export const Wrraper = styled.div`
     font-family: "NotoSansKR-Regular";
-    width: 1200px;
+    width: 1100px;
     border: 1px solid black;
     margin: 100px;
     padding-top: 90px;

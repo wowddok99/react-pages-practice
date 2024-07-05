@@ -9,7 +9,14 @@ import {
     CreateAt,
     PostWrapper,
     Title,
-    Image
+    Image,
+    Contents,
+    Youtube,
+    LikeFunctionWrapper,
+    LikeWrapper,
+    HateWrapper,
+    LikeButton,
+    HateButton
 } from "../../../styles/boardsDetail"
 
 export default function BoardsDetailPage(){
@@ -29,7 +36,19 @@ export default function BoardsDetailPage(){
             <PostWrapper>
                 <Title>게시글 제목입니다.</Title>
                 <Image></Image>
+                <Contents>12321321321321312312321312312312312312312312312312321312312312</Contents>
+                <Youtube></Youtube>
             </PostWrapper>
+            <LikeFunctionWrapper>
+                <LikeWrapper>
+                    <LikeButton src="/images/ic_thumb_up.png"></LikeButton>
+                    144
+                </LikeWrapper>
+                <HateWrapper>
+                    <HateButton src="/images/ic_thumb_down.png"></HateButton>
+                    100
+                </HateWrapper>
+            </LikeFunctionWrapper>
         </Wrraper>
     )
 }
