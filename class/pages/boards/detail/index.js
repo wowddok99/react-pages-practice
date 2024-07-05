@@ -16,7 +16,7 @@ export default function BoardsDetailPage(){
             <ProfileWrapper>
                 <Profile src="/images/profile.png" />
                 <InfoWrapper>
-                    <Writer>전상은</Writer>
+                    <Writer>TEN</Writer>
                     <CreateAt>2024.07.04</CreateAt>
                 </InfoWrapper>
                 <InfoImage src="/images/ic_link.png" />
