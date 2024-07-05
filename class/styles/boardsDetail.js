@@ -21,10 +21,16 @@ export const ProfileWrapper = styled.div`
   flex-direction: row;
 `
 
-export const Profile = styled.img`
+export const InfoImageProfile = styled.img`
   margin-right: 10px;
   width: 46.67px;
   height: 46.67px;
+  cursor: pointer;
+`
+
+export const InfoImage = styled.img`
+  width: 32px;
+  height: 32px;
   cursor: pointer;
 `
 
@@ -40,12 +46,6 @@ export const InfoWrapper = styled.div`
   margin-right: 990px;
 `
 
-export const InfoImage = styled.img`
-  width: 32px;
-  height: 32px;
-`
-
-
 export const Writer = styled.div`
   font-size: 24px;
 `
@@ -54,3 +54,23 @@ export const CreateAt = styled.div`
   font-size: 16px;
 `
 
+export const PostWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* 게시글 중앙정렬 */
+  /* align-self: center; */
+`
+
+export const Title = styled.div`
+  font-size: 36px;
+  margin-top: 50px;
+  margin-bottom: 25px;
+`
+
+export const Image = styled.div`
+  background-color: #F2F2F2;
+  width: 996px;
+  height: 480px;
+`
+export const Contents = styled.div`
+`
