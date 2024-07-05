@@ -60,7 +60,7 @@ export const PostWrapper = styled.div`
   flex-direction: column;
   margin-top: 70px;
   margin-bottom: 100px;
-  /* 게시글 중앙정렬 */
+  /*  게시글 중앙정렬  */
   /* align-self: center; */
 `
 

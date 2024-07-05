@@ -46,7 +46,7 @@ export default function BoardsDetailMarginPage(){
                 </LikeWrapper>
                 <HateWrapper>
                     <HateButton src="/images/ic_thumb_down.png"></HateButton>
-                    100
+                    102
                 </HateWrapper>
             </LikeFunctionWrapper>
         </Wrraper>
