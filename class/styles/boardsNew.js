@@ -1,24 +1,24 @@
 import styled from "@emotion/styled";
 export const Wrraper = styled.div`
     font-family: "NotoSansKR-Regular";
-    width: 1100px;
-    border: 1px solid black;
-    margin: 100px;
+    width: 68.75rem;
+    border: 0.0625rem solid black;
+    margin: 6.25rem;
     padding-top: 90px;
-    padding-bottom: 100px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-bottom: 6.25rem;
+    padding-left: 6.25rem;
+    padding-right: 6.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: none;
-    box-shadow: 0px 0px 10px gray;
+    box-shadow: 0rem 0rem 0.625rem gray;
 `
 
 export const Title = styled.div`
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
     font-family: "NotoSansKR-Regular";
-    font-size: 34px;
+    font-size: 2.125rem;
     font-weight: bold;
 
     ::placeholder{
@@ -32,20 +32,20 @@ export const WriterPasswordWrapper = styled.div`
 `
 
 export const InputWrapper = styled.div`
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
     display: flex;
     flex-direction: column;
 `
 
 export const Label = styled.div`
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 `
 
 export const Writer = styled.input`
-    width: 486px;
-    height: 52px;
-    border: 1px solid #bdbdbd;
-    margin-right: 10px;
+    width: 30.375rem;
+    height: 3.25rem;
+    border: 0.0625rem solid #bdbdbd;
+    margin-right: 0.625rem;
 
     ::placeholder{
         font-family: "NotoSansKR-Regular";
@@ -53,9 +53,9 @@ export const Writer = styled.input`
 `
 
 export const Password = styled.input`
-    width : 486px;
-    height: 52px;
-    border: 1px solid #bdbdbd;
+    width : 30.375rem;
+    height: 3.25rem;
+    border: 0.0625rem solid #bdbdbd;
 
     ::placeholder{
         font-family: "NotoSansKR-Regular";
@@ -63,15 +63,15 @@ export const Password = styled.input`
 `
 
 export const Subject = styled.input`
-    width : 985px;
-    height: 52px;
-    border: 1px solid #bdbdbd;
+    width : 61.5625rem;
+    height: 3.25rem;
+    border: 0.0625rem solid #bdbdbd;
 `
 
 export const Content = styled.input`
-    width : 985px;
-    height: 520px;
-    border: 1px solid #bdbdbd;
+    width : 61.5625rem;
+    height: 32.5rem;
+    border: 0.0625rem solid #bdbdbd;
 
     ::placeholder{
         font-family: "NotoSansKR-Regular";
@@ -79,85 +79,85 @@ export const Content = styled.input`
 `
 
 export const HouseCodeWrapper = styled.div`
-    width: 985px;
+    width: 61.5625rem;
     display: flex;
     flex-direction: row;
 `
 
 export const HouseCode = styled.input`
-    border: 1px solid #bdbdbd;
-    height: 52px;
-    width: 77px;
-    padding-left: 16px;
-    margin-right: 10px;
+    border: 0.0625rem solid #bdbdbd;
+    height: 3.25rem;
+    width: 4.8125rem;
+    padding-left: 1rem;
+    margin-right: 0.625rem;
 `
 
 export const SearchButton = styled.button`
     font-family: "NotoSansKR-Regular";
     background-color: black;
-    border: 1px solid #bdbdbd;
-    width: 124px;
-    height: 56px;
+    border: 0.0625rem solid #bdbdbd;
+    width: 7.75rem;
+    height: 3.5rem;
     cursor: pointer;
     color: white;
 `
 
 export const Address = styled.input`
-    border: 1px solid #bdbdbd ;
-    height: 52px;
-    width: 985px;
-    margin-top: 20px;
+    border: 0.0625rem solid #bdbdbd ;
+    height: 3.25rem;
+    width: 61.5625rem;
+    margin-top: 1.25rem;
 `
 
 export const Youtube  = styled.input`
-    border: 1px solid #bdbdbd ;
-    height: 45.78px;
-    width: 985px;
+    border: 0.0625rem solid #bdbdbd ;
+    height: 2.8613rem;
+    width: 61.5625rem;
 `
 
 export const ImageWrapper = styled.div`
     white-space: pre-wrap;
-    width: 985px;
-    margin-bottom: 40px;
+    width: 61.5625rem;
+    margin-bottom: 2.5rem;
 `
 
 export const ImageUploadButton = styled.button`
     font-family: "NotoSansKR-Regular";
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #4F4F4F;
-    height: 78px;
-    width: 78px;
-    margin-right: 24px;
+    height: 4.875rem;
+    width: 4.875rem;
+    margin-right: 1.5rem;
     border: none;
     cursor: pointer;
 `
 
 export const MainOptionWrapper = styled.div`
-    width: 985px;
+    width: 61.5625rem;
 `
 
 export const MainOption = styled.input`
-    margin-right: 8px;
+    margin-right: 0.5rem;
     background-color: #FFD600;
 `
 export const MainOptionLabel = styled.label`
-    margin-right: 15px;
+    margin-right: 0.9375rem;
 `
 
 export const ButtonWrapper = styled.div`
-    margin-top: 30px;
+    margin-top: 1.875rem;
 `
 
 export const SubmitButton = styled.button`
     font-family: "NotoSansKR-Regular";
     background-color: #FFD600;
-    width: 179px;
-    height: 52px;
+    width: 11.1875rem;
+    height: 3.25rem;
     border: none;
     cursor: pointer;
 `
 
 export const Error = styled.div`
     color: red;
-    font-size: 14px;
+    font-size: 0.875rem;
 `

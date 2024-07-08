@@ -2,18 +2,18 @@ import styled from "@emotion/styled";
 
 export const Wrraper = styled.div`
     font-family: "NotoSansKR-Regular";
-    width: 1100px;
-    height: 1400px;
-    border: 1px solid black;
-    margin: 100px;
-    padding-top: 90px;
-    padding-bottom: 100px;
-    padding-left: 100px;
-    padding-right: 100px;
+    width: 68.75rem;
+    height: 87.5rem;
+    border: 0.0625rem solid black;
+    margin: 6.25rem;
+    padding-top: 5.625rem;
+    padding-bottom: 6.25rem;
+    padding-left: 6.25rem;
+    padding-right: 6.25rem;
     display: flex;
     flex-direction: column;
     border: none;
-    box-shadow: 0px 0px 10px gray;
+    box-shadow: 0rem 0rem 0.625rem gray;
 `
 
 export const InfoWrapper = styled.div`
@@ -22,67 +22,67 @@ export const InfoWrapper = styled.div`
 `
 
 export const ProfileImage = styled.img`
-  margin-right: 10px;
-  width: 46.67px;
-  height: 46.67px;
+  margin-right: 0.625rem;
+  width: 2.9169rem;
+  height: 2.9169rem;
   cursor: pointer;
 `
 
 export const InfoImage = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
 `
 
 export const Line = styled.div`
-  border-top: 1px solid #BDBDBD;
-  margin-top: 10px;
+  border-top: 0.0625rem solid #BDBDBD;
+  margin-top: 0.625rem;
 `
 
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 5px;
-  margin-right: 890px;
+  margin-left: 0.3125rem;
+  margin-right: 55.625rem;
 `
 
 export const Writer = styled.div`
-  font-size: 24px;
+  font-size: 1.5rem;
 `
 
 export const CreateAt = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
 `
 
 export const PostWrapper = styled.div`
   word-break: break-all;
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
-  margin-bottom: 100px;
+  margin-top: 4.375rem;
+  margin-bottom: 6.25rem;
   /*  게시글 중앙정렬  */
   /* align-self: center; */
 `
 
 export const Title = styled.div`
-  font-size: 36px;
-  margin-bottom: 25px;
+  font-size: 2.25rem;
+  margin-bottom: 1.5625rem;
 `
 
 export const Image = styled.div`
   background-color: #F2F2F2;
-  width: 1100px;
-  height: 600px;
-  margin-bottom: 25px;
+  width: 68.75rem;
+  height: 37.5rem;
+  margin-bottom: 1.5625rem;
 `
 export const Contents = styled.div`
-  margin-bottom: 100px;
+  margin-bottom: 6.25rem;
 `
 
 export const Youtube = styled.div`
   background-color: #F2F2F2;
-  width: 486px;
-  height: 240px;
+  width: 30.375rem;
+  height: 15rem;
   align-self: center;
 `
 
@@ -94,7 +94,7 @@ export const LikeFunctionWrapper = styled.div`
 export const LikeWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
+  margin-right: 1.25rem;
 `
 
 export const HateWrapper = styled.div`
@@ -103,11 +103,11 @@ export const HateWrapper = styled.div`
 `
 
 export const LikeButton = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 `
 
 export const HateButton = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 `
