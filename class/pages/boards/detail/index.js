@@ -1,25 +1,4 @@
-import {
-    Wrraper,
-    ProfileImage,
-    ProfileWrapper,
-    Line,
-    InfoWrapper,
-    InfoImage,
-    Writer,
-    CreateAt,
-    PostWrapper,
-    Title,
-    Image,
-    Contents,
-    Youtube,
-    LikeFunctionWrapper,
-    LikeWrapper,
-    HateWrapper,
-    LikeButton,
-    HateButton
-} from "../../../styles/boardsDetail"
-
-export default function BoardsDetailMarginPage(){
+export default function BoardsDetailPage(){
 
     return (
         <Wrraper>
