@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react' 
+import { useState } from 'react' 
+import { useRouter } from 'next/router'
 import { useMutation, gql } from "@apollo/client"
 
 import {
@@ -45,6 +46,7 @@ export default function BoardsNewPage() {
     const [titleError, setTitleError] = useState("");
     const [contentsError, setContentsError] = useState("");
 
+    const router = useRouter();
     const [createBoard] = useMutation(CREATE_BOARD)
 
     // writer input의 입력 감지 -> state에 저장
@@ -95,20 +97,24 @@ export default function BoardsNewPage() {
 
         // 전부 값이 들어있으면 게시글 등록 alert 
         if (writer && password && title && contents) {
-            // alert("게시글이 등록되었습니다.");
-            const result = await createBoard({
-                variables: {
-                    createBoardInput: {
-                        writer: writer,
-                        password: password,
-                        title: title,
-                        contents : contents
+            try {
+                const result = await createBoard({
+                    variables: {
+                        createBoardInput: {
+                            writer: writer,
+                            password: password,
+                            title: title,
+                            contents : contents
+                        }
                     }
-                }
-            });
+                });
 
-            console.log(result);
-            alert("게시글이 등록되었습니다.\n등록된 게시글 ID는 " + result.data.createBoard._id + " 입니다.");
+                console.log(result);
+                // alert("게시글이 등록되었습니다.\n등록된 게시글 ID는 " + result.data.createBoard._id + " 입니다.");
+                router.push(`/boards/detail/${result.data.createBoard._id}`);    
+            } catch (error) {
+                alert(error);
+            }
         }
 
     };

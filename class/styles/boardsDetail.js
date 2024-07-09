@@ -40,10 +40,12 @@ export const Line = styled.div`
 `
 
 export const ProfileWrapper = styled.div`
+  /* width: 976px; */
   display: flex;
   flex-direction: column;
   margin-left: 0.3125rem;
-  margin-right: 55.625rem;
+  margin-right: auto;
+  /* margin-right: 55.625rem; */
 `
 
 export const Writer = styled.div`
@@ -58,7 +60,7 @@ export const PostWrapper = styled.div`
   word-break: break-all;
   display: flex;
   flex-direction: column;
-  margin-top: 4.375rem;
+  margin-top: 1.0rem;
   margin-bottom: 6.25rem;
   /*  게시글 중앙정렬  */
   /* align-self: center; */
