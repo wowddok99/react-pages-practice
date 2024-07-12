@@ -21,7 +21,7 @@ import {
     ButtonWrapper,
     SubmitButton,
     Error
-} from "../../../../../styles/boardsNew"
+} from "./BoardWrite.styles"
 
 export default function BoardWirteUI(props) {
     return (
