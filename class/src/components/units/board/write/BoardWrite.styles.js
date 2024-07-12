@@ -150,7 +150,7 @@ export const ButtonWrapper = styled.div`
 
 export const SubmitButton = styled.button`
     font-family: "NotoSansKR-Regular";
-    background-color: #FFD600;
+    background-color: ${(props) => props.isActive === true ? "#FFD600" : ""};
     width: 11.1875rem;
     height: 3.25rem;
     border: none;

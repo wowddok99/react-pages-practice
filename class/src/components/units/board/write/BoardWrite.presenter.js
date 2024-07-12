@@ -76,7 +76,7 @@ export default function BoardWirteUI(props) {
                     <MainOptionLabel>사진</MainOptionLabel>
                 </MainOptionWrapper>
                 <ButtonWrapper>
-                    <SubmitButton onClick={props.onClickSubmit}>등록하기</SubmitButton>
+                    <SubmitButton onClick={props.onClickSubmit} isActive = {props.isActive}>등록하기</SubmitButton>
                 </ButtonWrapper>
             </Wrraper>
     )

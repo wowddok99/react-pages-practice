@@ -5,7 +5,9 @@ import { useMutation } from "@apollo/client"
 import { CREATE_BOARD } from './BoardWrite.queries'
 
 export default function BoardWirte() {
-    const [writer, setWriter] = useState("");
+  const [isActive, setIsActive] = useState(false);
+
+  const [writer, setWriter] = useState("");
     const [password, setPassword] = useState("");
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
@@ -26,28 +28,50 @@ export default function BoardWirte() {
         if(event.target.value !== ""){
           setWriterError("");
         }
-      };
+
+        if (event.target.value && password && title && contents) {
+          setIsActive(true);
+        } else {
+          setIsActive(false);
+        }
+      }
     
       const onChangePassword = (event) => {
         setPassword(event.target.value);
+
         if(event.target.value !== ""){
           setPasswordError("");
         }
-      };
+
+        if (writer && event.target.value && title && contents) {
+          setIsActive(true);
+        } else {
+          setIsActive(false);
+        }
+      }
     
       const onChangeTitle = (event) => {
         setTitle(event.target.value);
-        if(event.target.value !== ""){
-          setTitleError("");
+
+        if (writer && password && event.target.value && contents) {
+          setIsActive(true);
+        } else {
+          setIsActive(false);
         }
-      };
+      }
     
       const onChangeContents = (event) => {
         setContents(event.target.value);
         if(event.target.value !== ""){
           setContentsError("");
         }
-      };
+
+        if (writer && password && title && event.target.value) {
+          setIsActive(true);
+        } else {
+          setIsActive(false);
+        }
+      }
 
     const onClickSubmit = async () => {
         // writer에 값이 없으면 WriterError에 에러원인 저장
@@ -86,7 +110,7 @@ export default function BoardWirte() {
             }
         }
 
-    };
+    }
     
     return (
         <div>
@@ -100,6 +124,7 @@ export default function BoardWirte() {
             onChangeTitle={onChangeTitle}
             onChangeContents={onChangeContents}
             onClickSubmit={onClickSubmit}
+            isActive={isActive}
             />
         </div>
     )
