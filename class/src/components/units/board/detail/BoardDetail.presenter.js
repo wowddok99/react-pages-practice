@@ -17,7 +17,7 @@ import {
     HateWrapper,
     LikeButton,
     HateButton
-} from "./BoardDetail.container"
+} from "./BoardDetail.styles"
 
 export default function BoardDetailUI(props){
     return (
