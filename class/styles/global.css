@@ -19,7 +19,11 @@
     box-sizing : border-box;
 }
 
-/* body {
+::placeholder {
+    font-family: "NotoSansKR-Regular";
+}
+ 
+body {
     font-family: 'NotoSansKR-Regular', sans-serif;
     font-weight: 500;
-} */
+} 
