@@ -20,10 +20,10 @@ export const CardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 4rem;
-    padding-right: 4rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
     gap: 3rem;
     border: none;
     box-shadow: 0rem 0rem 0.625rem gray;

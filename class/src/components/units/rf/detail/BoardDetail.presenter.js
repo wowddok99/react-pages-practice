@@ -1,53 +1,38 @@
 import {
-    Wrraper,
-    ProfileImage,
-    ProfileWrapper,
-    Line,
+    PageLayout,
+    MainWrapper,
+    CardWrapper,
+    CardHeaderWrapper,
+    CardMainWrapper,
     InfoWrapper,
-    InfoImage,
+    WriterCreatedAtWrapper,
     Writer,
     CreateAt,
-    PostWrapper,
-    Title,
-    Image,
-    Contents,
-    Youtube,
-    LikeFunctionWrapper,
-    LikeWrapper,
-    HateWrapper,
-    LikeButton,
-    HateButton
+    CardHeaderLogoWrapper,
+    ProfileImage,
+    InfoImages
 } from "./BoardDetail.styles"
 
 export default function BoardDetailUI(props){
     return (
-        <Wrraper>
-            <InfoWrapper>
-                <ProfileImage src="/images/profile.png" />
-                <ProfileWrapper>
-                    <Writer>{props.data?.fetchBoard?.writer}</Writer>
-                    <CreateAt>{props.data?.fetchBoard?.createdAt}</CreateAt>
-                </ProfileWrapper>
-                <InfoImage src="/images/ic_link.png" />
-                <InfoImage src="/images/ic_location.png" />
-            </InfoWrapper>
-            <Line></Line>
-            <PostWrapper>
-                <Title>{props.data?.fetchBoard?.title}</Title>
-                <Image></Image>
-                <Contents>{props.data?.fetchBoard?.contents}</Contents>
-                <Youtube></Youtube>
-            </PostWrapper>
-            <LikeFunctionWrapper>
-                <LikeWrapper>
-                    <LikeButton src="/images/ic_thumb_up.png"></LikeButton>
-                    144
-                </LikeWrapper>
-                <HateWrapper>
-                    <HateButton src="/images/ic_thumb_down.png"></HateButton>
-                    102
-                </HateWrapper>
-            </LikeFunctionWrapper>
-        </Wrraper>
+        <PageLayout>
+            <MainWrapper>
+                <CardWrapper>
+                    <CardHeaderWrapper>
+                        <InfoWrapper>
+                            <ProfileImage src="/images/profile.png" />
+                            <WriterCreatedAtWrapper>
+                                <Writer>Ten</Writer>
+                                <CreateAt>2024-07-14T13:54:37.780Z</CreateAt>                                    
+                            </WriterCreatedAtWrapper>
+                        </InfoWrapper>
+                        <CardHeaderLogoWrapper>
+                            <InfoImages src="/images/ic_link.png" />
+                            <InfoImages src="/images/ic_location.png" />
+                        </CardHeaderLogoWrapper>
+                    </CardHeaderWrapper>
+                </CardWrapper>
+            </MainWrapper>
+        </PageLayout>
     )
 }

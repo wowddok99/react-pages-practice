@@ -109,7 +109,7 @@ export default function BoardWirte() {
 
                 console.log(result);
                 // alert("게시글이 등록되었습니다.\n등록된 게시글 ID는 " + result.data.createBoard._id + " 입니다.");
-                router.push(`/boards/detail/${result.data.createBoard._id}`);    
+                router.push(`/rf/detail/${result.data.createBoard._id}`);    
             } catch (error) {
                 alert(error);
             }
