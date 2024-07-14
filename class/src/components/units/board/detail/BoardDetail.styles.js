@@ -40,12 +40,10 @@ export const Line = styled.div`
 `
 
 export const ProfileWrapper = styled.div`
-  /* width: 976px; */
   display: flex;
   flex-direction: column;
   margin-left: 0.3125rem;
   margin-right: auto;
-  /* margin-right: 55.625rem; */
 `
 
 export const Writer = styled.div`
@@ -73,7 +71,7 @@ export const Title = styled.div`
 
 export const Image = styled.div`
   background-color: #F2F2F2;
-  width: 68.75rem;
+  width: 55rem;
   height: 37.5rem;
   margin-bottom: 1.5625rem;
 `

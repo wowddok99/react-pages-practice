@@ -35,7 +35,7 @@ export const CardHeaderWrapper = styled.div`
 export const CardMainWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1.7rem;
+    gap: 2rem;
 `
 
 export const CardFooterWrapper = styled.div`
@@ -99,17 +99,17 @@ export const Content = styled.input`
 export const AddressWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 1rem;
 `
 
 export const ZipcodeWrapper = styled.div`
     display: flex;
-
+    gap: 0.4rem;
 `
 
 export const ZipCode = styled.input`
-    width: 20rem;
-    height: 3.25rem;
+    width: 7rem;
+    height: 3rem;
     border: 0.0625rem solid #bdbdbd;
 `
 
@@ -118,7 +118,78 @@ export const SearchButton = styled.button`
     background-color: black;
     border: 0.0625rem solid #bdbdbd;
     width: 7.75rem;
-    height: 3.5rem;
+    height: 3rem;
     cursor: pointer;
     color: white;
+`
+
+export const Address = styled.input`
+    width: 60.5rem;
+    height: 3rem;
+    border: 0.0625rem solid #bdbdbd;
+`
+
+export const YoutubeWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+`
+
+export const Youtube = styled.input`
+    width: 60.5rem;
+    height: 3rem;
+    border: 0.0625rem solid #bdbdbd;
+`
+
+export const ImageUploadWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+`
+
+export const ImageUploadButtonWrapper = styled.div`
+    display: flex;
+    gap: 0.4rem;
+`
+
+export const ImageUploadButton = styled.button`
+    font-size: 0.875rem;
+    color: #4F4F4F;
+    height: 4.875rem;
+    width: 4.875rem;
+    margin-right: 1.5rem;
+    border: none;
+    cursor: pointer;
+`
+
+export const MainOptionWrapper = styled.div`
+    display: flex;
+    gap: 1rem;
+`
+
+export const MainOptionRadioWrapper = styled.div`
+    display: flex;
+    gap: 0.4rem;
+`
+
+export const MainOptionRadioButton = styled.input`
+`
+
+export const SubmitButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+export const SubmitButton = styled.button`
+    background-color: ${(props) => props.isActive === true ? "#FFD600" : ""};
+    width: 11.1875rem;
+    height: 3.25rem;
+    border: none;
+    cursor: pointer;
+`
+
+export const Error = styled.div`
+    color: red;
+    font-size: 0.875rem;
+    margin-top: -0.4rem;
 `
