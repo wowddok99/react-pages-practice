@@ -74,6 +74,7 @@ export const TableTop = styled.div`
 export const TableBottom = styled.div`
     border-bottom: 0.125rem solid gray;
 `
+
 export const Row = styled.div`
     display: flex;
     align-items: center;
@@ -107,25 +108,21 @@ export const ColumnHeaderDate = styled.div`
 `
 
 export const ColumnId = styled.div`
-    font-weight: bold;
     width: 10%;
     text-align: center;
 `
 
 export const ColumnTitle = styled.div`
-    font-weight: bold;
     width: 70%;
     text-align: center;
 `
 
 export const ColumnWriter = styled.div`
-    font-weight: bold;
     width: 20%;
     text-align: center;
 `
 
 export const ColumnDate = styled.div`
-    font-weight: bold;
     width: 10%;
     text-align: center;
 `
