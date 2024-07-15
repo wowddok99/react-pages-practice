@@ -1,7 +1,60 @@
-import {} from "./BoardList.styles"
+import { 
+    PageLayout,
+    MainWrapper,
+    BestBoardWrapper,
+    SearchWrapper,
+    SearchInputWrapper,
+    SearchIcon,
+    SearchInput,
+    DateInput,
+    SearchButton,
+    TableWrapper,
+    TableTop,
+    TableBottom,
+    Row,
+    RowLine,
+    ColumnHeaderId,
+    ColumnHeaderTitle,
+    ColumnHeaderWriter,
+    ColumnHeaderDate,
+    ColumnId,
+    ColumnTitle,
+    ColumnWriter,
+    ColumnDate,
+
+} from "./BoardList.styles"
 
 export default function BoardListUI(){
     return (
-        <div>ss</div>
+        <PageLayout>
+            <MainWrapper>
+                <SearchWrapper>
+                    <SearchInputWrapper>
+                        <SearchIcon></SearchIcon>
+                        <SearchInput type="text" placeholder="제목을 검색해주세요."></SearchInput>
+                    </SearchInputWrapper>
+                    <DateInput type="text" placeholder="YYYY. MM.DD ~ YYYY. MM.DD"></DateInput>
+                    <SearchButton>검색하기</SearchButton>
+                </SearchWrapper>
+                <TableWrapper>
+                    <TableTop/>
+                    <Row>
+                        <ColumnHeaderId>번호</ColumnHeaderId>
+                        <ColumnHeaderTitle>제목</ColumnHeaderTitle>
+                        <ColumnHeaderWriter>작성자</ColumnHeaderWriter>
+                        <ColumnHeaderDate>날짜</ColumnHeaderDate>
+                    </Row>
+                    {[...Array(8)].map((_, index) => (
+                        <Row>
+                            <ColumnId>{index}</ColumnId>
+                            <ColumnTitle>test입니다.</ColumnTitle>
+                            <ColumnWriter>ten</ColumnWriter>
+                            <ColumnDate>2024.07.15</ColumnDate>
+                        </Row>    
+                    ))}
+                    <TableBottom/>
+                </TableWrapper>
+            </MainWrapper>
+        </PageLayout>
     )
 }
