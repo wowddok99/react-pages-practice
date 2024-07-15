@@ -1,51 +1,60 @@
 import styled from "@emotion/styled";
 
-export const Wrraper = styled.div`
-    font-family: "NotoSansKR-Regular";
-    width: 68.75rem;
-    height: 87.5rem;
-    border: 0.0625rem solid black;
-    margin: 6.25rem;
-    padding-top: 5.625rem;
-    padding-bottom: 6.25rem;
-    padding-left: 6.25rem;
-    padding-right: 6.25rem;
+export const PageLayout = styled.div`
+    word-break: break-all;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+`
+
+export const MainWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    width: 78.5rem; // 필요시 %로 width 비율 조절
+    /* width: 90%; */
+`
+
+export const CardWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    padding-left: 7rem;
+    padding-right: 7rem;
+    gap: 1.5rem;
     border: none;
     box-shadow: 0rem 0rem 0.625rem gray;
+`
+export const CardHeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.4rem;
+  border-bottom: 0.0625rem solid #bdbdbd;
+`
+
+export const CardMainWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 `
 
 export const InfoWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 `
 
-export const ProfileImage = styled.img`
-  margin-right: 0.625rem;
-  width: 2.9169rem;
-  height: 2.9169rem;
-  cursor: pointer;
+export const CardHeaderLogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `
 
-export const InfoImage = styled.img`
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-`
-
-export const Line = styled.div`
-  border-top: 0.0625rem solid #BDBDBD;
-  margin-top: 0.625rem;
-`
-
-export const ProfileWrapper = styled.div`
+export const WriterCreatedAtWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 0.3125rem;
-  margin-right: auto;
 `
-
 export const Writer = styled.div`
   font-size: 1.5rem;
 `
@@ -54,50 +63,56 @@ export const CreateAt = styled.div`
   font-size: 1rem;
 `
 
-export const PostWrapper = styled.div`
-  word-break: break-all;
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.0rem;
-  margin-bottom: 6.25rem;
-  /*  게시글 중앙정렬  */
-  /* align-self: center; */
+export const ProfileImage = styled.img`
+  width: 2.9169rem;
+  height: 2.9169rem;
+  cursor: pointer;
+`
+export const InfoImages = styled.img`
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
 `
 
-export const Title = styled.div`
-  font-size: 2.25rem;
-  margin-bottom: 1.5625rem;
+export const Subject = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
 `
 
 export const Image = styled.div`
-  background-color: #F2F2F2;
-  width: 55rem;
-  height: 37.5rem;
-  margin-bottom: 1.5625rem;
+  width: 100%;
+  height: 40rem;
+  background-color: whitesmoke;
 `
+
 export const Contents = styled.div`
-  margin-bottom: 6.25rem;
+`
+
+export const YoutubeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 `
 
 export const Youtube = styled.div`
-  background-color: #F2F2F2;
-  width: 30.375rem;
-  height: 15rem;
-  align-self: center;
+  width: 40%;
+  height: 20rem;
+  background-color: whitesmoke;
 `
 
-export const LikeFunctionWrapper = styled.div`
+export const LikeHateButtonWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-self: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 5rem;
 `
-export const LikeWrapper = styled.div`
+
+export const LikeButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 1.25rem;
 `
 
-export const HateWrapper = styled.div`
+export const HateButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `

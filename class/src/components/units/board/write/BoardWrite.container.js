@@ -14,7 +14,7 @@ export default function BoardWirte() {
 
     const [writerError, setWriterError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [titleError, setTitleError] = useState("");
+    const [subjectError, setSubjectError] = useState("");
     const [contentsError, setContentsError] = useState("");
 
     const router = useRouter();
@@ -50,8 +50,13 @@ export default function BoardWirte() {
         }
       }
     
-      const onChangeTitle = (event) => {
+      const onChangeSubject = (event) => {
+        console.log(event.target.value);
         setTitle(event.target.value);
+
+        if(event.target.value !== ""){
+          setSubjectError("");
+        }
 
         if (writer && password && event.target.value && contents) {
           setIsActive(true);
@@ -82,7 +87,7 @@ export default function BoardWirte() {
             setPasswordError("비밀번호를 입력해주세요.");
         }
         if (!title) {
-            setTitleError("제목을 입력해주세요.");
+            setSubjectError("제목을 입력해주세요.");
         }
         if (!contents) {
             setContentsError("내용을 입력해주세요.");
@@ -117,11 +122,11 @@ export default function BoardWirte() {
             <BoardWirteUI
             writerError={writerError}
             passwordError={passwordError}
-            titleError={titleError}
+            titleError={subjectError}
             contentsError={contentsError}
             onChangeWriter={onChangeWriter}
             onChangePassword={onChangePassword}
-            onChangeTitle={onChangeTitle}
+            onChangeTitle={onChangeSubject}
             onChangeContents={onChangeContents}
             onClickSubmit={onClickSubmit}
             isActive={isActive}

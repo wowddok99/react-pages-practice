@@ -1,96 +1,116 @@
 import styled from "@emotion/styled";
 
-export const Wrraper = styled.div`
-    font-family: "NotoSansKR-Regular";
-    width: 68.75rem;
-    border: 0.0625rem solid black;
-    margin: 6.25rem;
-    padding-top: 90px;
-    padding-bottom: 6.25rem;
-    padding-left: 6.25rem;
-    padding-right: 6.25rem;
+export const PageLayout = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+`
+export const HeaderWrapper = styled.div`
+
+`
+
+export const MainWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+`
+
+export const CardWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    gap: 3rem;
     border: none;
     box-shadow: 0rem 0rem 0.625rem gray;
 `
 
-export const Title = styled.div`
-    margin-bottom: 3.125rem;
-    font-family: "NotoSansKR-Regular";
-    font-size: 2.125rem;
-    font-weight: bold;
+export const CardHeaderWrapper = styled.div`
+`
 
-    ::placeholder{
-        font-family: "NotoSansKR-Regular";
-    }
+export const CardMainWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+`
+
+export const CardFooterWrapper = styled.div`
+`
+
+export const Title = styled.div`
+    font-weight: 700;
+    font-size: 2rem;
 `
 
 export const WriterPasswordWrapper = styled.div`
     display: flex;
     flex-direction: row;
+    gap: 0.5rem;
 `
 
 export const InputWrapper = styled.div`
-    margin-bottom: 1.875rem;
     display: flex;
     flex-direction: column;
+    gap: 0.4rem;
 `
-
 export const Label = styled.div`
-    margin-bottom: 0.625rem;
+    font-size: 1rem;
 `
 
 export const Writer = styled.input`
-    width: 30.375rem;
-    height: 3.25rem;
+    width: 30rem;
+    height: 3rem;
     border: 0.0625rem solid #bdbdbd;
-    margin-right: 0.625rem;
-
-    ::placeholder{
-        font-family: "NotoSansKR-Regular";
-    }
 `
 
 export const Password = styled.input`
-    width : 30.375rem;
-    height: 3.25rem;
+    width: 30rem;
+    height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+`
 
-    ::placeholder{
-        font-family: "NotoSansKR-Regular";
-    }
+export const SubjectWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
 `
 
 export const Subject = styled.input`
-    width : 61.5625rem;
-    height: 3.25rem;
+    width: 60.5rem;
+    height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+`
+
+export const ContentWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
 `
 
 export const Content = styled.input`
-    width : 61.5625rem;
+    width: 60.5rem;
     height: 32.5rem;
     border: 0.0625rem solid #bdbdbd;
-
-    ::placeholder{
-        font-family: "NotoSansKR-Regular";
-    }
 `
-
-export const HouseCodeWrapper = styled.div`
-    width: 61.5625rem;
+export const AddressWrapper = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 1rem;
 `
 
-export const HouseCode = styled.input`
+export const ZipcodeWrapper = styled.div`
+    display: flex;
+    gap: 0.4rem;
+`
+
+export const ZipCode = styled.input`
+    width: 7rem;
+    height: 3rem;
     border: 0.0625rem solid #bdbdbd;
-    height: 3.25rem;
-    width: 4.8125rem;
-    padding-left: 1rem;
-    margin-right: 0.625rem;
 `
 
 export const SearchButton = styled.button`
@@ -98,32 +118,41 @@ export const SearchButton = styled.button`
     background-color: black;
     border: 0.0625rem solid #bdbdbd;
     width: 7.75rem;
-    height: 3.5rem;
+    height: 3rem;
     cursor: pointer;
     color: white;
 `
 
 export const Address = styled.input`
-    border: 0.0625rem solid #bdbdbd ;
-    height: 3.25rem;
-    width: 61.5625rem;
-    margin-top: 1.25rem;
+    width: 60.5rem;
+    height: 3rem;
+    border: 0.0625rem solid #bdbdbd;
 `
 
-export const Youtube  = styled.input`
-    border: 0.0625rem solid #bdbdbd ;
-    height: 2.8613rem;
-    width: 61.5625rem;
+export const YoutubeWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
 `
 
-export const ImageWrapper = styled.div`
-    white-space: pre-wrap;
-    width: 61.5625rem;
-    margin-bottom: 2.5rem;
+export const Youtube = styled.input`
+    width: 60.5rem;
+    height: 3rem;
+    border: 0.0625rem solid #bdbdbd;
+`
+
+export const ImageUploadWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+`
+
+export const ImageUploadButtonWrapper = styled.div`
+    display: flex;
+    gap: 0.4rem;
 `
 
 export const ImageUploadButton = styled.button`
-    font-family: "NotoSansKR-Regular";
     font-size: 0.875rem;
     color: #4F4F4F;
     height: 4.875rem;
@@ -134,23 +163,24 @@ export const ImageUploadButton = styled.button`
 `
 
 export const MainOptionWrapper = styled.div`
-    width: 61.5625rem;
+    display: flex;
+    gap: 1rem;
 `
 
-export const MainOption = styled.input`
-    margin-right: 0.5rem;
-    background-color: #FFD600;
-`
-export const MainOptionLabel = styled.label`
-    margin-right: 0.9375rem;
+export const MainOptionRadioWrapper = styled.div`
+    display: flex;
+    gap: 0.4rem;
 `
 
-export const ButtonWrapper = styled.div`
-    margin-top: 1.875rem;
+export const MainOptionRadioButton = styled.input`
+`
+
+export const SubmitButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
 `
 
 export const SubmitButton = styled.button`
-    font-family: "NotoSansKR-Regular";
     background-color: ${(props) => props.isActive === true ? "#FFD600" : ""};
     width: 11.1875rem;
     height: 3.25rem;
@@ -161,4 +191,5 @@ export const SubmitButton = styled.button`
 export const Error = styled.div`
     color: red;
     font-size: 0.875rem;
+    margin-top: -0.4rem;
 `
