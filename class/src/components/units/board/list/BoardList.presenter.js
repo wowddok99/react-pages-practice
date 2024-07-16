@@ -48,7 +48,7 @@ export default function BoardListUI(){
                         <Row>
                             <ColumnId>{index}</ColumnId>
                             <ColumnTitle>test입니다.</ColumnTitle>
-                            <ColumnWriter>전상은</ColumnWriter>
+                            <ColumnWriter>ten</ColumnWriter>
                             <ColumnDate>2024.07.15</ColumnDate>
                         </Row>    
                     ))}
