@@ -12,7 +12,6 @@ import {
     TableTop,
     TableBottom,
     Row,
-    RowLine,
     ColumnHeaderId,
     ColumnHeaderTitle,
     ColumnHeaderWriter,
@@ -21,6 +20,14 @@ import {
     ColumnTitle,
     ColumnWriter,
     ColumnDate,
+    FooterWrapper,
+    NavigateWrapper,
+    NavigateBeforeIcon,
+    NavigateNextIcon,
+    SubmitButtonWrapper,
+    SubmitButton,
+    PencilIcon,
+    TestWrapper
 
 } from "./BoardList.styles"
 
@@ -54,6 +61,20 @@ export default function BoardListUI(){
                     ))}
                     <TableBottom/>
                 </TableWrapper>
+                <FooterWrapper>
+                    <NavigateWrapper>
+                        <NavigateBeforeIcon/>
+                            <div>1</div>
+                            <div>2</div>
+                        <NavigateNextIcon/>
+                    </NavigateWrapper>
+                    <SubmitButtonWrapper>
+                        <PencilIcon/>
+                        <SubmitButton>
+                            등록하기
+                        </SubmitButton>
+                    </SubmitButtonWrapper>
+                </FooterWrapper>
             </MainWrapper>
         </PageLayout>
     )

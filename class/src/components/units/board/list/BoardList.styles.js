@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { IoIosSearch } from "react-icons/io";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { RiPencilFill } from "react-icons/ri";
 
 export const PageLayout = styled.div`
     display: flex;
@@ -125,4 +127,48 @@ export const ColumnWriter = styled.div`
 export const ColumnDate = styled.div`
     width: 10%;
     text-align: center;
+`
+
+export const FooterWrapper = styled.div`
+    width: 65rem;
+    display: flex;
+    justify-content: center;
+    /* gap: 366px; */
+    `
+export const NavigateWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+`
+
+export const NavigateNextIcon = styled(MdNavigateNext)`
+    cursor: pointer;
+`
+
+export const NavigateBeforeIcon = styled(MdNavigateBefore)`
+    cursor: pointer;
+`
+
+export const SubmitButtonWrapper = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+`
+
+export const SubmitButton = styled.button`
+    cursor: pointer;
+    font-weight: bold;
+    background-color: white;
+    border: 0.0625rem solid #F2F2F2;
+    width: 6.6875rem;
+    padding-left: 1rem;
+    height: 2rem;
+`
+
+export const PencilIcon = styled(RiPencilFill)`
+    position: absolute;
+    margin-left: 1rem;
+`
+
+export const TestWrapper = styled.div`
 `
