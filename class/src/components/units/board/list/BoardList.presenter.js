@@ -30,7 +30,7 @@ import {
     DummyWrapper
 } from "./BoardList.styles"
 
-export default function BoardListUI(){
+export default function BoardListUI(props){
     return (
         <PageLayout>
             <MainWrapper>
@@ -50,13 +50,13 @@ export default function BoardListUI(){
                         <ColumnHeaderWriter>작성자</ColumnHeaderWriter>
                         <ColumnHeaderDate>날짜</ColumnHeaderDate>
                     </Row>
-                    {[...Array(8)].map((_, index) => (
-                        <Row>
-                            <ColumnId>{index}</ColumnId>
-                            <ColumnTitle>test입니다.</ColumnTitle>
-                            <ColumnWriter>ten</ColumnWriter>
-                            <ColumnDate>2024.07.15</ColumnDate>
-                        </Row>    
+                    {props.data?.fetchBoards.map(el => (
+                        <Row key={el._id}>
+                            <ColumnId>{el._id}</ColumnId>
+                            <ColumnTitle>{el.title}</ColumnTitle>
+                            <ColumnWriter>{el.writer}</ColumnWriter>
+                            <ColumnDate>{(el.createdAt).substring(0,10)}</ColumnDate>
+                        </Row> 
                     ))}
                     <TableBottom/>
                 </TableWrapper>
@@ -64,8 +64,7 @@ export default function BoardListUI(){
                     <DummyWrapper/>
                     <NavigateWrapper>
                         <NavigateBeforeIcon/>
-                            <div>1</div>
-                            <div>2</div>
+                            <div>{props.pageNumber}</div>
                         <NavigateNextIcon/>
                     </NavigateWrapper>
                     <SubmitButtonWrapper>
