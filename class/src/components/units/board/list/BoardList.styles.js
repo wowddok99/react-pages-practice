@@ -130,9 +130,11 @@ export const ColumnDate = styled.div`
 `
 
 export const FooterWrapper = styled.div`
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
     width: 65rem;
     display: flex;
-    justify-content: center;
     /* gap: 366px; */
     `
 export const NavigateWrapper = styled.div`
@@ -147,6 +149,13 @@ export const NavigateNextIcon = styled(MdNavigateNext)`
 
 export const NavigateBeforeIcon = styled(MdNavigateBefore)`
     cursor: pointer;
+`
+
+export const DummyWrapper = styled.div`
+    border: none;
+    width: 6.6875rem;
+    padding-left: 1rem;
+    height: 2rem;
 `
 
 export const SubmitButtonWrapper = styled.div`
@@ -168,7 +177,4 @@ export const SubmitButton = styled.button`
 export const PencilIcon = styled(RiPencilFill)`
     position: absolute;
     margin-left: 1rem;
-`
-
-export const TestWrapper = styled.div`
 `

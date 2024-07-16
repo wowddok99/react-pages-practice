@@ -27,8 +27,7 @@ import {
     SubmitButtonWrapper,
     SubmitButton,
     PencilIcon,
-    TestWrapper
-
+    DummyWrapper
 } from "./BoardList.styles"
 
 export default function BoardListUI(){
@@ -62,6 +61,7 @@ export default function BoardListUI(){
                     <TableBottom/>
                 </TableWrapper>
                 <FooterWrapper>
+                    <DummyWrapper/>
                     <NavigateWrapper>
                         <NavigateBeforeIcon/>
                             <div>1</div>
@@ -70,9 +70,7 @@ export default function BoardListUI(){
                     </NavigateWrapper>
                     <SubmitButtonWrapper>
                         <PencilIcon/>
-                        <SubmitButton>
-                            등록하기
-                        </SubmitButton>
+                        <SubmitButton>등록하기</SubmitButton>
                     </SubmitButtonWrapper>
                 </FooterWrapper>
             </MainWrapper>
