@@ -63,12 +63,12 @@ export const CreateAt = styled.div`
   font-size: 1rem;
 `
 
-export const ProfileImage = styled.img`
+export const ProfileIcon = styled.img`
   width: 2.9169rem;
   height: 2.9169rem;
   cursor: pointer;
 `
-export const InfoImages = styled.img`
+export const InfoIcon = styled.img`
   width: 2rem;
   height: 2rem;
   cursor: pointer;
@@ -117,12 +117,12 @@ export const HateButtonWrapper = styled.div`
   flex-direction: column;
 `
 
-export const LikeButton = styled.img`
+export const LikeIcon = styled.img`
   width: 1.5rem;
   height: 1.5rem;
 `
 
-export const HateButton = styled.img`
+export const HateIcon = styled.img`
   width: 1.5rem;
   height: 1.5rem;
 `

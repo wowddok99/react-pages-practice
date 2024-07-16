@@ -9,8 +9,8 @@ import {
     Writer,
     CreateAt,
     CardHeaderLogoWrapper,
-    ProfileImage,
-    InfoImages,
+    ProfileIcon,
+    InfoIcon,
     Subject,
     Image,
     Contents,
@@ -19,8 +19,8 @@ import {
     LikeHateButtonWrapper,
     LikeButtonWrapper,
     HateButtonWrapper,
-    LikeButton,
-    HateButton
+    LikeIcon,
+    HateIcon
 
 } from "./BoardDetail.styles"
 
@@ -31,15 +31,15 @@ export default function BoardDetailUI(props){
                 <CardWrapper>
                     <CardHeaderWrapper>
                         <InfoWrapper>
-                            <ProfileImage src="/images/profile.png" />
+                            <ProfileIcon src="/images/profile.png" />
                             <WriterCreatedAtWrapper>
                                 <Writer>{props.data?.fetchBoard?.writer}</Writer>
                                 <CreateAt>{props.data?.fetchBoard?.createdAt}</CreateAt>                                    
                             </WriterCreatedAtWrapper>
                         </InfoWrapper>
                         <CardHeaderLogoWrapper>
-                            <InfoImages src="/images/ic_link.png" />
-                            <InfoImages src="/images/ic_location.png" />
+                            <InfoIcon src="/images/ic_link.png" />
+                            <InfoIcon src="/images/ic_location.png" />
                         </CardHeaderLogoWrapper>
                     </CardHeaderWrapper>
                     <CardMainWrapper>
@@ -51,11 +51,11 @@ export default function BoardDetailUI(props){
                         </YoutubeWrapper>
                         <LikeHateButtonWrapper>
                             <LikeButtonWrapper>
-                                <LikeButton src="/images/ic_thumb_up.png"></LikeButton>
+                                <LikeIcon src="/images/ic_thumb_up.png"></LikeIcon>
                                 144
                             </LikeButtonWrapper>
                             <HateButtonWrapper>
-                                <HateButton src="/images/ic_thumb_down.png"></HateButton>
+                                <HateIcon src="/images/ic_thumb_down.png"></HateIcon>
                                 155
                             </HateButtonWrapper>
                         </LikeHateButtonWrapper>
