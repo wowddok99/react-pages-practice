@@ -26,12 +26,17 @@ export default function BoardList(){
         // console.log(event.currentTarget);
     }
 
+    const onClickSubmit = () => {
+        router.push(`/boards/write`);    
+    }
+    
     return (
         <div>
             <BoardListUI
             data={data}
             pageNumber={pageNumber}
             onClickRow={onClickRow}
+            onClickSubmit={onClickSubmit}
             />
         </div>
     )

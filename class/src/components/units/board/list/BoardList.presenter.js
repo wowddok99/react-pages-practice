@@ -69,7 +69,7 @@ export default function BoardListUI(props){
                     </NavigateWrapper>
                     <SubmitButtonWrapper>
                         <PencilIcon/>
-                        <SubmitButton>등록하기</SubmitButton>
+                        <SubmitButton onClick={props.onClickSubmit}>등록하기</SubmitButton>
                     </SubmitButtonWrapper>
                 </FooterWrapper>
             </MainWrapper>
