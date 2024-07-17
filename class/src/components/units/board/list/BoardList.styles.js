@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { IoIosSearch } from "react-icons/io";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
-import { RiPencilFill } from "react-icons/ri";
+import { IoIosSearch } from "@react-icons/all-files/io/IoIosSearch";
+import { MdNavigateBefore } from "@react-icons/all-files/md/MdNavigateBefore";
+import { MdNavigateNext } from "@react-icons/all-files/md/MdNavigateNext";
+import { RiPencilFill } from "@react-icons/all-files/ri/RiPencilFill";
 
 export const PageLayout = styled.div`
     display: flex;
