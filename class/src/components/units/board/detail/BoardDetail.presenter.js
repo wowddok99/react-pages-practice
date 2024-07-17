@@ -65,7 +65,7 @@ export default function BoardDetailUI(props){
                     </CardMainWrapper>
                 </CardWrapper>
                 <CrudButtonGroupWrapper>
-                    <ListButton onClick={props.onClickMoveList}>목록</ListButton>
+                    <ListButton onClick={props.onClickMoveToListPage}>목록</ListButton>
                     {/* <EditButton>수정</EditButton> */}
                     <DeleteButton onClick={props.onClickDelete}>삭제</DeleteButton>
                 </CrudButtonGroupWrapper>

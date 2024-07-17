@@ -51,7 +51,7 @@ export default function BoardListUI(props){
                         <ColumnHeaderDate>날짜</ColumnHeaderDate>
                     </Row>
                     {props.data?.fetchBoards.map(el => (
-                        <Row key={el._id} onClick={props.onClickRow(el)}>
+                        <Row key={el._id} onClick={props.onClickMoveToDetailPage(el)}>
                             <ColumnId>{el._id}</ColumnId>
                             <ColumnTitle>{el.title}</ColumnTitle>
                             <ColumnWriter>{el.writer}</ColumnWriter>
@@ -69,7 +69,7 @@ export default function BoardListUI(props){
                     </NavigateWrapper>
                     <SubmitButtonWrapper>
                         <PencilIcon/>
-                        <SubmitButton onClick={props.onClickSubmit}>등록하기</SubmitButton>
+                        <SubmitButton onClick={props.onClickMoveToWritePage}>등록하기</SubmitButton>
                     </SubmitButtonWrapper>
                 </FooterWrapper>
             </MainWrapper>

@@ -14,7 +14,7 @@ export default function BoardDetail(){
         }
     })
 
-    const onClickMoveList = () => {
+    const onClickMoveToListPage = () => {
         console.log("test")
         router.push(`/boards/list/1`);    
     }
@@ -37,7 +37,7 @@ export default function BoardDetail(){
         <div>
             <BoardDetailUI
             data={data}
-            onClickMoveList={onClickMoveList}
+            onClickMoveToListPage={onClickMoveToListPage}
             onClickDelete={onClickDelete}
             />
         </div>

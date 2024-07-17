@@ -21,11 +21,11 @@ export default function BoardList(){
         }
     });
 
-    const onClickRow = (el) => (event) => {
+    const onClickMoveToDetailPage = (el) => (event) => {
         router.push(`/boards/detail/${el._id}`);    
     }
 
-    const onClickSubmit = () => {
+    const onClickMoveToWritePage = () => {
         console.log("test");
         router.push(`/boards/write`);    
     }
@@ -35,8 +35,8 @@ export default function BoardList(){
             <BoardListUI
             data={data}
             pageNumber={pageNumber}
-            onClickRow={onClickRow}
-            onClickSubmit={onClickSubmit}
+            onClickMoveToDetailPage={onClickMoveToDetailPage}
+            onClickMoveToWritePage={onClickMoveToWritePage}
             />
         </div>
     )
