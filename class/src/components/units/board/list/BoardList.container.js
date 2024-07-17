@@ -5,22 +5,24 @@ import { useQuery } from "@apollo/client"
 
 export default function BoardList(){
     const router = useRouter();
+
     // FETCH_BOARDS_1 -> 1페이지만 조회
     // const {data} = useQuery(FETCH_BOARDS_1);
 
-    const {data} = useQuery(FETCH_BOARDS, {
-        variables: {
-            page: Number(router.query.pageNumber)
-        }
-    });
-
     let pageNumber = router.query.pageNumber;
 
-    if (pageNumber === null) {
+    if (pageNumber === undefined) {
         pageNumber = 1;
     }
 
-    // console.log(data?.fetchBoards[0]);
+    const {data} = useQuery(FETCH_BOARDS, {
+        variables: {
+            page: Number(pageNumber)
+        }
+    });
+
+    console.log(pageNumber);
+
     return (
         <div>
             <BoardListUI
