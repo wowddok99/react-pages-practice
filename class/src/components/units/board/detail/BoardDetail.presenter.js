@@ -20,8 +20,11 @@ import {
     LikeButtonWrapper,
     HateButtonWrapper,
     LikeIcon,
-    HateIcon
-
+    HateIcon,
+    CrudButtonGroupWrapper,
+    ListButton,
+    EditButton,
+    DeleteButton
 } from "./BoardDetail.styles"
 
 export default function BoardDetailUI(props){
@@ -61,6 +64,11 @@ export default function BoardDetailUI(props){
                         </LikeHateButtonWrapper>
                     </CardMainWrapper>
                 </CardWrapper>
+                <CrudButtonGroupWrapper>
+                    <ListButton onClick={props.onClickMoveList}>목록</ListButton>
+                    {/* <EditButton>수정</EditButton> */}
+                    <DeleteButton onClick={props.onClickDelete}>삭제</DeleteButton>
+                </CrudButtonGroupWrapper>
             </MainWrapper>
         </PageLayout>
     )

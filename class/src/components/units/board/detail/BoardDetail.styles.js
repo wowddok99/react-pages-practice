@@ -126,3 +126,34 @@ export const HateIcon = styled.img`
   width: 1.5rem;
   height: 1.5rem;
 `
+
+export const CrudButtonGroupWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+`
+
+export const ListButton = styled.button`
+  cursor: pointer;
+  background-color: white;
+  width: 11.1875rem;
+  height: 3.25rem;
+  border: 1px solid #bdbdbd;
+`
+
+export const EditButton = styled.button`
+  cursor: pointer;
+  background-color: white;
+  width: 11.1875rem;
+  height: 3.25rem;
+  border: 1px solid #bdbdbd;
+`
+export const DeleteButton = styled.button`
+  cursor: pointer;
+  background-color: white;
+  width: 11.1875rem;
+  height: 3.25rem;
+  border: 1px solid #bdbdbd;
+`
