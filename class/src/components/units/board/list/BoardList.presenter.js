@@ -51,7 +51,7 @@ export default function BoardListUI(props){
                         <ColumnHeaderDate>날짜</ColumnHeaderDate>
                     </Row>
                     {props.data?.fetchBoards.map(el => (
-                        <Row key={el._id}>
+                        <Row key={el._id} onClick={props.onClickRow(el)}>
                             <ColumnId>{el._id}</ColumnId>
                             <ColumnTitle>{el.title}</ColumnTitle>
                             <ColumnWriter>{el.writer}</ColumnWriter>

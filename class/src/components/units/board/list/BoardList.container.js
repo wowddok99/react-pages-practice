@@ -21,13 +21,17 @@ export default function BoardList(){
         }
     });
 
-    console.log(pageNumber);
+    const onClickRow = (el) => (event) => {
+        router.push(`/boards/detail/${el._id}`);    
+        // console.log(event.currentTarget);
+    }
 
     return (
         <div>
             <BoardListUI
             data={data}
             pageNumber={pageNumber}
+            onClickRow={onClickRow}
             />
         </div>
     )
