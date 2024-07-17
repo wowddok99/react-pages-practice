@@ -35,7 +35,7 @@ import {
     
 } from "./BoardWrite.styles"
 
-export default function BoardWirteUI(props) {
+export default function BoardWriterUI(props) {
     return (
         <PageLayout>
             <MainWrapper>

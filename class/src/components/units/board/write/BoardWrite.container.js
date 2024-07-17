@@ -1,4 +1,4 @@
-import BoardWirteUI from './BoardWrite.presenter'
+import BoardWriterUI from './BoardWrite.presenter'
 import { useState } from 'react' 
 import { useRouter } from 'next/router'
 import { useMutation } from "@apollo/client"
@@ -119,7 +119,7 @@ export default function BoardWirte() {
     
     return (
         <div>
-            <BoardWirteUI
+            <BoardWriterUI
             writerError={writerError}
             passwordError={passwordError}
             titleError={subjectError}
