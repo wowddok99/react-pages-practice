@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useMutation } from "@apollo/client"
 import { CREATE_BOARD } from './BoardWrite.queries'
 
-export default function BoardWirte() {
+export default function BoardWriter() {
   const [isActive, setIsActive] = useState(false);
 
   const [writer, setWriter] = useState("");
