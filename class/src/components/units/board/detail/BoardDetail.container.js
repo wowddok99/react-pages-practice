@@ -29,7 +29,7 @@ export default function BoardDetail(){
             alert("게시물이 삭제되었습니다.");
             router.push("/boards/list/1");
         } catch (error) {
-            console.log(error.message);
+            alert(error.message);
         }
     }
 

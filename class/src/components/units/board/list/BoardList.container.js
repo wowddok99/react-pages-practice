@@ -23,10 +23,10 @@ export default function BoardList(){
 
     const onClickRow = (el) => (event) => {
         router.push(`/boards/detail/${el._id}`);    
-        // console.log(event.currentTarget);
     }
 
     const onClickSubmit = () => {
+        console.log("test");
         router.push(`/boards/write`);    
     }
     
