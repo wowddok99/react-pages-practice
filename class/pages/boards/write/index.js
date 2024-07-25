@@ -2,7 +2,7 @@ import BoardWriter from "../../../src/components/units/board/write/BoardWrite.co
 export default function BoardsNewPage() {
     return (
         <div>
-            <BoardWriter></BoardWriter>
+            <BoardWriter isEdit={false}></BoardWriter>
         </div>
     )
 }

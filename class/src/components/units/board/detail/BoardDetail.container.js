@@ -15,8 +15,12 @@ export default function BoardDetail(){
     })
 
     const onClickMoveToListPage = () => {
-        console.log("test")
         router.push(`/boards/list/1`);    
+    }
+
+    const onClickMoveToEditPage = () => {
+        console.log("test")
+        router.push(`/boards/edit/${router.query.boardId}`);    
     }
 
     const onClickDelete = async() => {
@@ -38,6 +42,7 @@ export default function BoardDetail(){
             <BoardDetailUI
             data={data}
             onClickMoveToListPage={onClickMoveToListPage}
+            onClickMoveToEditPage={onClickMoveToEditPage}
             onClickDelete={onClickDelete}
             />
         </div>

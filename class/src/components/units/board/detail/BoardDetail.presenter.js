@@ -48,7 +48,7 @@ export default function BoardDetailUI(props){
                     <CardMainWrapper>
                         <Subject>{props.data?.fetchBoard?.title}</Subject>
                         <Image></Image>
-                        <Contents>"{props.data?.fetchBoard?.contents}"</Contents>
+                        <Contents>{props.data?.fetchBoard?.contents}</Contents>
                         <YoutubeWrapper>
                             <Youtube></Youtube>
                         </YoutubeWrapper>
@@ -66,7 +66,7 @@ export default function BoardDetailUI(props){
                 </CardWrapper>
                 <CrudButtonGroupWrapper>
                     <ListButton onClick={props.onClickMoveToListPage}>목록</ListButton>
-                    {/* <EditButton>수정</EditButton> */}
+                    <EditButton onClick={props.onClickMoveToEditPage}>수정</EditButton>
                     <DeleteButton onClick={props.onClickDelete}>삭제</DeleteButton>
                 </CrudButtonGroupWrapper>
             </MainWrapper>

@@ -41,29 +41,29 @@ export default function BoardWriterUI(props) {
             <MainWrapper>
                 <CardWrapper>
                     <CardHeaderWrapper>
-                        <Title>게시글 등록</Title>
+                        <Title>{props.isEdit ? "게시글 수정" : "게시글 등록"}</Title>
                     </CardHeaderWrapper>
                     <CardMainWrapper>
                         <WriterPasswordWrapper>
                             <InputWrapper>
                                 <Label>작성자</Label>
-                                <Writer type ="text" placeholder="이름을 입력해주세요." onChange={props.onChangeWriter}></Writer>
+                                <Writer type ="text" placeholder="이름을 입력해주세요." onInput={props.onInputWriter} defaultValue={props.data?.fetchBoard?.writer}></Writer>
                                 <Error>{props.writerError}</Error>
                             </InputWrapper>
                             <InputWrapper>
                                 <Label>패스워드</Label>
-                                <Password type="Password" placeholder ="패스워드를 입력해주세요." onChange={props.onChangePassword}></Password>
+                                <Password type="Password" placeholder ="패스워드를 입력해주세요." onInput={props.onInputPassword}></Password>
                                 <Error>{props.passwordError}</Error>
                             </InputWrapper>
                         </WriterPasswordWrapper>
                         <SubjectWrapper>
                             <Label>제목</Label>
-                            <Subject type="text" placeholder="제목을 입력해주세요." onChange={props.onChangeTitle}></Subject>
+                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputSubject} defaultValue={props.data?.fetchBoard?.title}></Subject>
                             <Error>{props.titleError}</Error>
                         </SubjectWrapper>
                         <ContentWrapper>
                             <Label>내용</Label>
-                            <Content type="text" placeholder="내용을 입력해주세요." onChange={props.onChangeContents}></Content>
+                            <Content type="text" placeholder="내용을 입력해주세요." onInput={props.onInputContents} defaultValue={props.data?.fetchBoard?.contents}></Content>
                             <Error>{props.contentsError}</Error>
                         </ContentWrapper>
                         <AddressWrapper>
@@ -97,7 +97,11 @@ export default function BoardWriterUI(props) {
                             </MainOptionRadioWrapper>
                         </MainOptionWrapper>
                         <SubmitButtonWrapper>
-                                <SubmitButton onClick={props.onClickSubmit} isActive = {props.isActive}>등록하기</SubmitButton>
+                            <SubmitButton 
+                            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit} 
+                            isActive = {props.isEdit ? true : props.isActive}>
+                                {props.isEdit ? "수정하기" : "등록하기"}
+                            </SubmitButton>
                         </SubmitButtonWrapper>
                     </CardMainWrapper>
                 </CardWrapper>
