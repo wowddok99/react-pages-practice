@@ -11,6 +11,7 @@ export default function BoardList(){
 
     let pageNumber = router.query.pageNumber;
 
+    // pageNumber가 비어있는 경우 1페이지로 고정
     if (pageNumber === undefined) {
         pageNumber = 1;
     }
@@ -26,7 +27,6 @@ export default function BoardList(){
     }
 
     const onClickMoveToWritePage = () => {
-        console.log("test");
         router.push(`/boards/write`);    
     }
     
