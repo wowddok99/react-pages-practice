@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { MdOutlineRateReview } from "react-icons/md";
 
 export const PageLayout = styled.div`
     word-break: break-all;
@@ -132,7 +133,10 @@ export const CrudButtonGroupWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #bdbdbd;
 `
 
 export const ListButton = styled.button`
@@ -156,4 +160,33 @@ export const DeleteButton = styled.button`
   width: 11.1875rem;
   height: 3.25rem;
   border: 1px solid #bdbdbd;
+`
+
+export const CommentFormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`
+
+export const CommentInsertWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`
+
+export const CommentWrapper = styled.div`
+  display: flex;
+  gap: 0.8rem;
+`
+
+export const MdOutlineRateReviewIcon = styled(MdOutlineRateReview)`
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #FFD600;
+`
+
+export const Comment = styled.div`
+  width: 34px;
+  height: 27px;
+  font-size: 18px;
 `

@@ -24,7 +24,12 @@ import {
     CrudButtonGroupWrapper,
     ListButton,
     EditButton,
-    DeleteButton
+    DeleteButton,
+    CommentFormWrapper,
+    CommentInsertWrapper,
+    CommentWrapper,
+    MdOutlineRateReviewIcon,
+    Comment
 } from "./BoardDetail.styles"
 
 export default function BoardDetailUI(props){
@@ -69,6 +74,14 @@ export default function BoardDetailUI(props){
                     <EditButton onClick={props.onClickMoveToEditPage}>수정</EditButton>
                     <DeleteButton onClick={props.onClickDelete}>삭제</DeleteButton>
                 </CrudButtonGroupWrapper>
+                <CommentFormWrapper>
+                    <CommentInsertWrapper>
+                        <CommentWrapper>
+                            <MdOutlineRateReviewIcon></MdOutlineRateReviewIcon>
+                            <Comment>댓글</Comment>
+                        </CommentWrapper>
+                    </CommentInsertWrapper>    
+                </CommentFormWrapper>
             </MainWrapper>
         </PageLayout>
     )
