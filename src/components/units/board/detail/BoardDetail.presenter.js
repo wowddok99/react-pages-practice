@@ -26,10 +26,17 @@ import {
     EditButton,
     DeleteButton,
     CommentFormWrapper,
+    CommentSectionTitleWrapper,
     CommentInsertWrapper,
-    CommentWrapper,
-    MdOutlineRateReviewIcon,
-    Comment
+    CommentListWrapper,
+    FaRegCommentDotsIcon,
+    CommentLabel,
+    StarWrapper,
+    IoMdStarOutlineIcon,
+    IoMdStarIcon,
+    CommentInputWrapper,
+    CommentInputHeader,
+    CommentInputFooter
 } from "./BoardDetail.styles"
 
 export default function BoardDetailUI(props){
@@ -75,12 +82,23 @@ export default function BoardDetailUI(props){
                     <DeleteButton onClick={props.onClickDelete}>삭제</DeleteButton>
                 </CrudButtonGroupWrapper>
                 <CommentFormWrapper>
+                    <CommentSectionTitleWrapper>
+                        <FaRegCommentDotsIcon></FaRegCommentDotsIcon>
+                        <CommentLabel>댓글</CommentLabel>
+                    </CommentSectionTitleWrapper>
                     <CommentInsertWrapper>
-                        <CommentWrapper>
-                            <MdOutlineRateReviewIcon></MdOutlineRateReviewIcon>
-                            <Comment>댓글</Comment>
-                        </CommentWrapper>
-                    </CommentInsertWrapper>    
+                        <StarWrapper>
+                            <IoMdStarIcon></IoMdStarIcon>
+                            <IoMdStarIcon></IoMdStarIcon>
+                            <IoMdStarIcon></IoMdStarIcon>
+                            <IoMdStarIcon></IoMdStarIcon>
+                            <IoMdStarIcon></IoMdStarIcon>
+                        </StarWrapper>
+                        <CommentInputWrapper>
+                            <CommentInputHeader placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentInputHeader>
+                            <CommentInputFooter>0/100</CommentInputFooter>
+                        </CommentInputWrapper>
+                    </CommentInsertWrapper>
                 </CommentFormWrapper>
             </MainWrapper>
         </PageLayout>

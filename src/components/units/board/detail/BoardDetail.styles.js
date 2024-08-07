@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { MdOutlineRateReview } from "react-icons/md";
+import { FaRegCommentDots } from "@react-icons/all-files/fa/FaRegCommentDots";
+import { IoMdStarOutline } from "@react-icons/all-files/io/IoMdStarOutline";
+import { IoMdStar } from "@react-icons/all-files/io/IoMdStar";
 
 export const PageLayout = styled.div`
     word-break: break-all;
@@ -165,28 +167,80 @@ export const DeleteButton = styled.button`
 export const CommentFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+`
+
+export const CommentSectionTitleWrapper = styled.div`
+  display: flex;
+  gap: 0.6rem;
 `
 
 export const CommentInsertWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+`
+export const CommentListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 `
 
-export const CommentWrapper = styled.div`
-  display: flex;
-  gap: 0.8rem;
-`
-
-export const MdOutlineRateReviewIcon = styled(MdOutlineRateReview)`
+export const FaRegCommentDotsIcon = styled(FaRegCommentDots)`
+  margin-top: 0.2rem;
   width: 1.5rem;
   height: 1.5rem;
   color: #FFD600;
 `
 
-export const Comment = styled.div`
-  width: 34px;
-  height: 27px;
-  font-size: 18px;
+export const CommentLabel = styled.label`
+  width: 2.125rem;
+  height: 1.6875rem;
+  font-size: 1.125rem;
 `
+
+export const StarWrapper = styled.div`
+  display: flex;
+`
+export const IoMdStarOutlineIcon = styled(IoMdStarOutline)`
+  cursor: pointer;
+  color: gray;
+  width: 1.2rem;
+  height: 1.2rem;
+`
+
+export const IoMdStarIcon = styled(IoMdStar)`
+  cursor: pointer;
+  color: gray;
+  width: 1.2rem;
+  height: 1.2rem;
+`
+
+export const CommentInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const CommentInputHeader = styled.input`
+  padding-left: 20px;
+  width: 100%;
+  height: 6.8125rem;
+  border: 0.0625rem solid #000;
+  border-top-left-radius: 0.1875rem;
+  border-top-right-radius: 0.1875rem;
+`
+
+export const CommentInputFooter = styled.div`
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  padding-left: 1.25rem;
+  width: 100%;
+  height: 2.5rem;
+  border-bottom: 0.0625rem solid #000;
+  border-left: 0.0625rem solid #000;
+  border-right: 0.0625rem solid #000;
+  border-bottom-left-radius: 0.1875rem;
+  border-bottom-right-radius: 0.1875rem;
+` 
