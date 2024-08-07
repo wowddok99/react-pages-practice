@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { FaRegCommentDots } from "@react-icons/all-files/fa/FaRegCommentDots";
-import { IoMdStarOutline } from "@react-icons/all-files/io/IoMdStarOutline";
 import { IoMdStar } from "@react-icons/all-files/io/IoMdStar";
 
 export const PageLayout = styled.div`
@@ -26,9 +25,9 @@ export const CardWrapper = styled.div`
     padding-bottom: 7rem;
     padding-left: 7rem;
     padding-right: 7rem;
-    gap: 1.5rem;
     border: none;
     box-shadow: 0rem 0rem 0.625rem gray;
+    gap: 1.5rem;
 `
 export const CardHeaderWrapper = styled.div`
   display: flex;
@@ -105,9 +104,9 @@ export const Youtube = styled.div`
 
 export const LikeHateButtonWrapper = styled.div`
   display: flex;
+  margin-top: 5rem;
   justify-content: center;
   gap: 0.7rem;
-  margin-top: 5rem;
 `
 
 export const LikeButtonWrapper = styled.div`
@@ -131,37 +130,37 @@ export const HateIcon = styled.img`
 `
 
 export const CrudButtonGroupWrapper = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  width: 100%;
   margin-bottom: 2rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid #bdbdbd;
+  justify-content: center;
+  gap: 2rem;
 `
 
 export const ListButton = styled.button`
-  cursor: pointer;
-  background-color: white;
   width: 11.1875rem;
   height: 3.25rem;
   border: 1px solid #bdbdbd;
+  cursor: pointer;
+  background-color: white;
 `
 
 export const EditButton = styled.button`
-  cursor: pointer;
-  background-color: white;
   width: 11.1875rem;
   height: 3.25rem;
   border: 1px solid #bdbdbd;
+  cursor: pointer;
+  background-color: white;
 `
 export const DeleteButton = styled.button`
-  cursor: pointer;
-  background-color: white;
   width: 11.1875rem;
   height: 3.25rem;
   border: 1px solid #bdbdbd;
+  background-color: white;
+  cursor: pointer;
 `
 
 export const CommentFormWrapper = styled.div`
@@ -179,11 +178,13 @@ export const CommentInsertWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin-bottom: 1.5rem;
 `
-export const CommentListWrapper = styled.div`
+export const CommentDetailWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  border-bottom: 0.0625rem solid #BDBDBD;
+  padding-bottom: 0.9375rem;
+  gap: 1rem;
 `
 
 export const FaRegCommentDotsIcon = styled(FaRegCommentDots)`
@@ -202,18 +203,19 @@ export const CommentLabel = styled.label`
 export const StarWrapper = styled.div`
   display: flex;
 `
-export const IoMdStarOutlineIcon = styled(IoMdStarOutline)`
-  cursor: pointer;
-  color: gray;
+
+export const IoMdStarIconActive = styled(IoMdStar)`
   width: 1.2rem;
   height: 1.2rem;
+  color: #FFD600;
+  cursor: pointer;
 `
 
-export const IoMdStarIcon = styled(IoMdStar)`
-  cursor: pointer;
-  color: gray;
+export const IoMdStarIconDisabled = styled(IoMdStar)`
   width: 1.2rem;
   height: 1.2rem;
+  color: #BDBDBD;
+  cursor: pointer;
 `
 
 export const CommentInputWrapper = styled.div`
@@ -222,20 +224,16 @@ export const CommentInputWrapper = styled.div`
 `
 
 export const CommentInputHeader = styled.input`
-  padding-left: 20px;
   width: 100%;
   height: 6.8125rem;
   border: 0.0625rem solid #000;
   border-top-left-radius: 0.1875rem;
   border-top-right-radius: 0.1875rem;
+  padding-left: 20px;
 `
 
 export const CommentInputFooter = styled.div`
-  font-size: 12px;
-  color: #888;
   display: flex;
-  align-items: center;
-  padding-left: 1.25rem;
   width: 100%;
   height: 2.5rem;
   border-bottom: 0.0625rem solid #000;
@@ -243,4 +241,51 @@ export const CommentInputFooter = styled.div`
   border-right: 0.0625rem solid #000;
   border-bottom-left-radius: 0.1875rem;
   border-bottom-right-radius: 0.1875rem;
+  padding-left: 1.25rem;
+  font-size: 12px;
+  color: #888;
+  align-items: center;
 ` 
+
+export const CommentSubmitButton = styled.button`
+  position: absolute;
+  width: 5.6875rem;
+  height: 2.5rem;
+  margin-top: 6.8125rem;
+  margin-left: 62.7563rem;
+  border: none;
+  border-bottom-right-radius: 3px;
+  font-size: 0.8125rem;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+`
+
+export const CommentProfileIcon = styled.img`
+  width: 42px;
+  height: 42px;
+`
+
+export const CommentInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`
+
+export const CommentWriterWithStarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`
+
+export const CommentWriter = styled.div`
+  font-weight: bold;
+`
+
+export const CommentContent = styled.div`
+`
+
+export const CommentCreatedAt = styled.div`
+  font-size: 12px;
+  color: #BDBDBDBD;
+`
