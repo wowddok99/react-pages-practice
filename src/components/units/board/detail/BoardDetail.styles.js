@@ -223,7 +223,7 @@ export const CommentInputWrapper = styled.div`
   flex-direction: column;
 `
 
-export const CommentInputHeader = styled.input`
+export const CommentInputContent = styled.input`
   width: 100%;
   height: 6.8125rem;
   border: 0.0625rem solid #000;
