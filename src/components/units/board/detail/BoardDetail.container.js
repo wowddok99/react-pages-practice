@@ -11,6 +11,8 @@ export default function BoardDetail(){
     const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT)
 
     const [commentContent, setCommentContent] = useState("");
+    const [commentContentLength, setCommentContentLength] = useState(0);
+    const [starRating , setStarRating ] = useState(0);
 
     const {data: boardData} = useQuery(FETCH_BOARD, {
         variables: {
@@ -25,14 +27,11 @@ export default function BoardDetail(){
         }
     })
 
-    console.log(boardCommentData?.fetchBoardComments);
-
     const onClickMoveToListPage = () => {
         router.push(`/boards/list/1`);    
     }
 
     const onClickMoveToEditPage = () => {
-        console.log("test")
         router.push(`/boards/edit/${router.query.boardId}`);    
     }
 
@@ -51,15 +50,15 @@ export default function BoardDetail(){
     }
 
     const onInputCommentContent = (event) => {
-        // console.log(event.target.value);
-        commentContent = setCommentContent(event.target.value);
+        setCommentContent(event.target.value);
+        setCommentContentLength(event.target.value.length)
     }
 
     const onClickSubmitComment = async() => {
         const createBoardCommentInput = {};
 
         createBoardCommentInput.contents = commentContent;
-        createBoardCommentInput.rating = 5;
+        createBoardCommentInput.rating = starRating;
 
         try {
             const result = await createBoardComment({
@@ -85,6 +84,9 @@ export default function BoardDetail(){
             onClickDelete={onClickDelete}
             onInputCommentContent={onInputCommentContent}
             onClickSubmitComment={onClickSubmitComment}
+            commentContentLength={commentContentLength}
+            starRating={starRating}
+            setStarRating={setStarRating}
             />
         </div>
     )
