@@ -1,3 +1,4 @@
+import React, { ChangeEvent, MouseEvent } from "react"
 import {
     PageLayout,
     MainWrapper,
@@ -47,7 +48,27 @@ import {
     
 } from "./BoardDetail.styles"
 
-export default function BoardDetailUI(props){
+interface BoardDetailProps{
+    boardData?: any;
+    boardCommentData?: any;
+    commentContentLength?: number;
+    starRating?: number;
+    onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickSubmitComment: (event: MouseEvent<HTMLButtonElement>) => void;
+    onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
+    setStarRating: React.Dispatch<React.SetStateAction<number>>;
+}
+
+interface fetchBoardComment{
+    _id: number;
+    contents: string;
+    rating: number;
+    createdAt: string;
+}
+
+export default function BoardDetailUI(props: BoardDetailProps){
     return (
         <PageLayout>
             <MainWrapper>
@@ -97,19 +118,19 @@ export default function BoardDetailUI(props){
                     <CommentInsertWrapper>
                         <StarWrapper>
                             {[...Array(props.starRating)].map((_, index) => (
-                                <IoMdStarIconActive key={index} onClick={() => props.setStarRating(props.starRating-1)}></IoMdStarIconActive>
+                                <IoMdStarIconActive key={index} onClick={() => props.setStarRating((props.starRating ?? 0)-1)}></IoMdStarIconActive>
                             ))}
-                            {[...Array(5-props.starRating)].map((_, index) => (
-                                <IoMdStarIconDisabled key={index} onClick={() => props.setStarRating(props.starRating+1)}></IoMdStarIconDisabled>
+                            {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
+                                <IoMdStarIconDisabled key={index} onClick={() => props.setStarRating((props.starRating ?? 0)+1)}></IoMdStarIconDisabled>
                             ))}
                         </StarWrapper>
                         <CommentInputWrapper>
-                            <CommentInputContent type="text" maxLength="100" onInput={props.onInputCommentContent} placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentInputContent>
+                            <CommentInputContent type="text" maxLength={100} onInput={props.onInputCommentContent} placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentInputContent>
                             <CommentInputFooter>{props.commentContentLength}/{100}</CommentInputFooter>
                             <CommentSubmitButton onClick={props.onClickSubmitComment}>등록하기</CommentSubmitButton>
                         </CommentInputWrapper>
                     </CommentInsertWrapper>
-                    {props.boardCommentData?.fetchBoardComments.map(el => (
+                    {props.boardCommentData?.fetchBoardComments.map((el: fetchBoardComment) => (
                         <CommentDetailWrapper key={el._id}>
                             <CommentProfileIcon src="/images/profile.png" />
                             <CommentInfoWrapper>

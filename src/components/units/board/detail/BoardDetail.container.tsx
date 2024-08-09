@@ -1,8 +1,12 @@
 import BoardDetailUI from "./BoardDetail.presenter"
+import GraphQLRequestError from "../../../../commons/errors/GraphQLRequestError";
+
 import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@apollo/client"
 import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "./BoardDetail.queries";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
+import { createBoardCommentInput } from "./BoardDetail.types";
+
 
 export default function BoardDetail(){
     const router = useRouter();
@@ -45,20 +49,22 @@ export default function BoardDetail(){
             alert("게시물이 삭제되었습니다.");
             router.push("/boards/list/1");
         } catch (error) {
-            alert(error.message);
+            if (error instanceof GraphQLRequestError) {
+                alert(error.message);
+            }
         }
     }
 
-    const onInputCommentContent = (event) => {
+    const onInputCommentContent = (event: ChangeEvent<HTMLInputElement>) => {
         setCommentContent(event.target.value);
         setCommentContentLength(event.target.value.length)
     }
 
     const onClickSubmitComment = async() => {
-        const createBoardCommentInput = {};
-
-        createBoardCommentInput.contents = commentContent;
-        createBoardCommentInput.rating = starRating;
+        const createBoardCommentInput: createBoardCommentInput = {
+            contents: commentContent,
+            rating: starRating
+        };
 
         try {
             const result = await createBoardComment({
@@ -69,7 +75,9 @@ export default function BoardDetail(){
             })
             router.reload();
         } catch(error){
-            console.log(error.message);
+            if (error instanceof GraphQLRequestError) {
+                console.log(error.message);
+            }
         }
 
     }
@@ -79,13 +87,13 @@ export default function BoardDetail(){
             <BoardDetailUI
             boardData={boardData}
             boardCommentData={boardCommentData}
+            commentContentLength={commentContentLength}
+            starRating={starRating}
             onClickMoveToListPage={onClickMoveToListPage}
             onClickMoveToEditPage={onClickMoveToEditPage}
             onClickDelete={onClickDelete}
-            onInputCommentContent={onInputCommentContent}
             onClickSubmitComment={onClickSubmitComment}
-            commentContentLength={commentContentLength}
-            starRating={starRating}
+            onInputCommentContent={onInputCommentContent}
             setStarRating={setStarRating}
             />
         </div>
