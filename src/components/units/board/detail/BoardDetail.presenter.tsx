@@ -1,4 +1,3 @@
-import React, { ChangeEvent, MouseEvent } from "react"
 import {
     PageLayout,
     MainWrapper,
@@ -45,28 +44,9 @@ import {
     CommentWriter,
     CommentContent,
     CommentCreatedAt
-    
 } from "./BoardDetail.styles"
 
-interface BoardDetailProps{
-    boardData?: any;
-    boardCommentData?: any;
-    commentContentLength?: number;
-    starRating?: number;
-    onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
-    onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
-    onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
-    onClickSubmitComment: (event: MouseEvent<HTMLButtonElement>) => void;
-    onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
-    setStarRating: React.Dispatch<React.SetStateAction<number>>;
-}
-
-interface fetchBoardComment{
-    _id: number;
-    contents: string;
-    rating: number;
-    createdAt: string;
-}
+import { BoardDetailProps, fetchBoardComment } from "./BoardDetail.types";
 
 export default function BoardDetailUI(props: BoardDetailProps){
     return (
