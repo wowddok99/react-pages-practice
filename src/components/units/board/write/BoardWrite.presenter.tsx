@@ -1,4 +1,4 @@
-import { Main } from "next/document"
+import { BoardWriterUIProps } from "./BoardWrite.type"
 import {
     PageLayout,
     MainWrapper,
@@ -34,30 +34,6 @@ import {
     Error
     
 } from "./BoardWrite.styles"
-import { ChangeEvent, MouseEvent } from "react"
-
-interface BoardWriterUIProps{
-    fetchBoardData?: {
-        fetchBoard: {
-          writer: string;
-          title: string
-          contents: string;
-          createdAt: string
-      }
-    }
-    writerError: string;
-    passwordError: string;
-    titleError: string;
-    contentsError: string;
-    isActive: boolean;
-    isEdit: boolean;
-    onInputWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-    onInputPassword: (event: ChangeEvent<HTMLInputElement>) => void;
-    onInputSubject: (event: ChangeEvent<HTMLInputElement>) => void;
-    onInputContents: (event: ChangeEvent<HTMLInputElement>) => void;
-    onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
-    onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
-  }
 
 export default function BoardWriterUI(props: BoardWriterUIProps) {
     return (

@@ -4,25 +4,7 @@ import { useRouter } from 'next/router'
 import { useMutation } from "@apollo/client"
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import GraphQLRequestError from '../../../../commons/errors/GraphQLRequestError'
-
-interface BoardWriterProps{
-  isEdit: boolean
-  fetchBoardData?: {
-      fetchBoard: {
-        writer: string;
-        title: string
-        contents: string;
-        createdAt: string
-    }
-  }
-}
-
-interface updateBoardInput{
-  writer?: string;
-  password?: string;
-  title?: string;
-  contents? : string;
-}
+import { BoardWriterProps, updateBoardInput } from './BoardWrite.type'
 
 export default function BoardWriter(props:BoardWriterProps) {
   const [isActive, setIsActive] = useState(false);
@@ -185,13 +167,13 @@ export default function BoardWriter(props:BoardWriterProps) {
   return (
     <div>
       <BoardWriterUI
+      fetchBoardData={props.fetchBoardData}
       writerError={writerError}
       passwordError={passwordError}
       titleError={subjectError}
       contentsError={contentsError}
       isActive={isActive}
       isEdit={props.isEdit}
-      fetchBoardData={props.fetchBoardData}
       onInputWriter={onInputWriter}
       onInputPassword={onInputPassword}
       onInputSubject={onInputSubject}
