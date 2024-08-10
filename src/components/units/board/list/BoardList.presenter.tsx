@@ -30,7 +30,8 @@ import {
     DummyWrapper
 } from "./BoardList.styles"
 
-export default function BoardListUI(props){
+import { BoardListUIProps, fetchBoard } from "./BoardList.type"
+export default function BoardListUI(props: BoardListUIProps){
     return (
         <PageLayout>
             <MainWrapper>
@@ -50,8 +51,8 @@ export default function BoardListUI(props){
                         <ColumnHeaderWriter>작성자</ColumnHeaderWriter>
                         <ColumnHeaderDate>날짜</ColumnHeaderDate>
                     </Row>
-                    {props.data?.fetchBoards.map(el => (
-                        <Row key={el._id} onClick={props.onClickMoveToDetailPage(el)}>
+                    {props.boardsData?.fetchBoards.map((el: fetchBoard) => (
+                        <Row key={el._id} onClick={(event) => props.onClickMoveToDetailPage(el)}>
                             <ColumnId>{el._id}</ColumnId>
                             <ColumnTitle>{el.title}</ColumnTitle>
                             <ColumnWriter>{el.writer}</ColumnWriter>

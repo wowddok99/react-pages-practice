@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import BoardListUI from "./BoardList.presenter"
 import { FETCH_BOARDS, FETCH_BOARDS_1 } from "./BoardList.queries"
 import { useQuery } from "@apollo/client"
+import { fetchBoard } from "./BoardList.type";
 
 export default function BoardList(){
     const router = useRouter();
@@ -13,16 +14,16 @@ export default function BoardList(){
 
     // pageNumber가 비어있는 경우 1페이지로 고정
     if (pageNumber === undefined) {
-        pageNumber = 1;
+        pageNumber = "1";
     }
 
-    const {data} = useQuery(FETCH_BOARDS, {
+    const {data: boardsData} = useQuery(FETCH_BOARDS, {
         variables: {
             page: Number(pageNumber)
         }
     });
 
-    const onClickMoveToDetailPage = (el) => (event) => {
+    const onClickMoveToDetailPage = (el: fetchBoard) => {
         router.push(`/boards/detail/${el._id}`);    
     }
 
@@ -33,7 +34,7 @@ export default function BoardList(){
     return (
         <div>
             <BoardListUI
-            data={data}
+            boardsData={boardsData}
             pageNumber={pageNumber}
             onClickMoveToDetailPage={onClickMoveToDetailPage}
             onClickMoveToWritePage={onClickMoveToWritePage}

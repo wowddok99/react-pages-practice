@@ -12,7 +12,7 @@ export interface fetchBoardComment{
     createdAt: string;
 }
 
-export interface BoardDetailProps {
+export interface BoardDetailUIProps {
     boardData?: {
         fetchBoard: {
             writer: string;
@@ -23,7 +23,7 @@ export interface BoardDetailProps {
         }
     };
 
-    boardCommentData?: {
+    boardCommentsData?: {
         fetchBoardComments: Array<fetchBoardComment>
     };
 
