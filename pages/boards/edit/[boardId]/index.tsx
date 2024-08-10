@@ -16,7 +16,7 @@ const FETCH_BOARD = gql`
 export default function BoardsEditPage() {
     const router = useRouter();
 
-    const { data } = useQuery(FETCH_BOARD, {
+    const { data: fetchBoardData } = useQuery(FETCH_BOARD, {
         variables: {
             boardId: router.query.boardId
         }
@@ -24,7 +24,10 @@ export default function BoardsEditPage() {
 
     return (
         <div>
-            <BoardWriter isEdit={true} data={data}></BoardWriter>
+            <BoardWriter 
+            isEdit={true} 
+            fetchBoardData={fetchBoardData}>
+            </BoardWriter>
         </div>
     )
 }

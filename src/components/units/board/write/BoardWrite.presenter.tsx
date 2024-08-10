@@ -34,8 +34,32 @@ import {
     Error
     
 } from "./BoardWrite.styles"
+import { ChangeEvent, MouseEvent } from "react"
 
-export default function BoardWriterUI(props) {
+interface BoardWriterUIProps{
+    fetchBoardData?: {
+        fetchBoard: {
+          writer: string;
+          title: string
+          contents: string;
+          createdAt: string
+      }
+    }
+    writerError: string;
+    passwordError: string;
+    titleError: string;
+    contentsError: string;
+    isActive: boolean;
+    isEdit: boolean;
+    onInputWriter: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputSubject: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputContents: (event: ChangeEvent<HTMLInputElement>) => void;
+    onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
+  }
+
+export default function BoardWriterUI(props: BoardWriterUIProps) {
     return (
         <PageLayout>
             <MainWrapper>
@@ -47,7 +71,7 @@ export default function BoardWriterUI(props) {
                         <WriterPasswordWrapper>
                             <InputWrapper>
                                 <Label>작성자</Label>
-                                <Writer type ="text" placeholder="이름을 입력해주세요." onInput={props.onInputWriter} defaultValue={props.data?.fetchBoard?.writer} disabled={props.isEdit ? true : false}></Writer>
+                                <Writer type ="text" placeholder="이름을 입력해주세요." onInput={props.onInputWriter} defaultValue={props.fetchBoardData?.fetchBoard?.writer} disabled={props.isEdit ? true : false}></Writer>
                                 <Error>{props.writerError}</Error>
                             </InputWrapper>
                             <InputWrapper>
@@ -58,12 +82,12 @@ export default function BoardWriterUI(props) {
                         </WriterPasswordWrapper>
                         <SubjectWrapper>
                             <Label>제목</Label>
-                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputSubject} defaultValue={props.data?.fetchBoard?.title}></Subject>
+                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputSubject} defaultValue={props.fetchBoardData?.fetchBoard?.title}></Subject>
                             <Error>{props.titleError}</Error>
                         </SubjectWrapper>
                         <ContentWrapper>
                             <Label>내용</Label>
-                            <Content type="text" placeholder="내용을 입력해주세요." onInput={props.onInputContents} defaultValue={props.data?.fetchBoard?.contents}></Content>
+                            <Content type="text" placeholder="내용을 입력해주세요." onInput={props.onInputContents} defaultValue={props.fetchBoardData?.fetchBoard?.contents}></Content>
                             <Error>{props.contentsError}</Error>
                         </ContentWrapper>
                         <AddressWrapper>
@@ -97,7 +121,7 @@ export default function BoardWriterUI(props) {
                             </MainOptionRadioWrapper>
                         </MainOptionWrapper>
                         <SubmitButtonWrapper>
-                            <SubmitButton 
+                            <SubmitButton
                             onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit} 
                             isActive = {props.isEdit ? true : props.isActive}>
                                 {props.isEdit ? "수정하기" : "등록하기"}

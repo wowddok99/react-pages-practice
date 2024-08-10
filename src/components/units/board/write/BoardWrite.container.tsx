@@ -1,16 +1,36 @@
 import BoardWriterUI from './BoardWrite.presenter'
-import { useState } from 'react' 
+import { ChangeEvent, useState } from 'react' 
 import { useRouter } from 'next/router'
 import { useMutation } from "@apollo/client"
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
+import GraphQLRequestError from '../../../../commons/errors/GraphQLRequestError'
 
-export default function BoardWriter(props) {
+interface BoardWriterProps{
+  isEdit: boolean
+  fetchBoardData?: {
+      fetchBoard: {
+        writer: string;
+        title: string
+        contents: string;
+        createdAt: string
+    }
+  }
+}
+
+interface updateBoardInput{
+  writer?: string;
+  password?: string;
+  title?: string;
+  contents? : string;
+}
+
+export default function BoardWriter(props:BoardWriterProps) {
   const [isActive, setIsActive] = useState(false);
 
-  const [writer, setWriter] = useState();
-  const [password, setPassword] = useState();
-  const [title, setTitle] = useState();
-  const [contents, setContents] = useState();
+  const [writer, setWriter] = useState<undefined|string>();
+  const [password, setPassword] = useState<undefined|string>();
+  const [title, setTitle] = useState<undefined|string>();
+  const [contents, setContents] = useState<undefined|string>();
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -23,7 +43,7 @@ export default function BoardWriter(props) {
 
 
   // writer input의 입력 감지 -> state에 저장
-  const onInputWriter = (event) => {
+  const onInputWriter = (event: ChangeEvent<HTMLInputElement>) => {
       setWriter(event.target.value);
       // console.log(writer)
       // 값 입력시 error창 초기화
@@ -38,7 +58,7 @@ export default function BoardWriter(props) {
       }
     }
   
-  const onInputPassword = (event) => {
+  const onInputPassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
 
     if(event.target.value !== ""){
@@ -52,7 +72,7 @@ export default function BoardWriter(props) {
     }
   }
   
-  const onInputSubject = (event) => {
+  const onInputSubject = (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value);
     setTitle(event.target.value);
 
@@ -67,7 +87,7 @@ export default function BoardWriter(props) {
     }
   }
   
-  const onInputContents = (event) => {
+  const onInputContents = (event: ChangeEvent<HTMLInputElement>) => {
     setContents(event.target.value);
     if(event.target.value !== ""){
       setContentsError("");
@@ -125,12 +145,13 @@ export default function BoardWriter(props) {
       return;
     }
 
-    const updateBoardInput = {};
+    const updateBoardInput: updateBoardInput = {
+    };
 
     // undefined : 사용자가 데이터를 안건드린 경우
     // "" : 사용자가 데이터를 지운 경우
     if (title === undefined){
-      updateBoardInput.title = props.data?.fetchBoard.title;
+      updateBoardInput.title = props.fetchBoardData?.fetchBoard.title;
     } else if (title === "") {
       updateBoardInput.title = "";
     } else if (title) {
@@ -138,7 +159,7 @@ export default function BoardWriter(props) {
     }
 
     if (contents === undefined){
-      updateBoardInput.contents = props.data?.fetchBoard.contents;
+      updateBoardInput.contents = props.fetchBoardData?.fetchBoard.contents;
     } else if (contents === "") {
       updateBoardInput.contents = "";
     } else if (contents) {
@@ -155,7 +176,9 @@ export default function BoardWriter(props) {
       })
       router.push(`/boards/detail/${result.data.updateBoard._id}`)
     } catch(error) {
-      alert(error.message)
+        if (error instanceof GraphQLRequestError) {
+          alert(error.message);
+        }
     }
   };
 
@@ -166,15 +189,15 @@ export default function BoardWriter(props) {
       passwordError={passwordError}
       titleError={subjectError}
       contentsError={contentsError}
+      isActive={isActive}
+      isEdit={props.isEdit}
+      fetchBoardData={props.fetchBoardData}
       onInputWriter={onInputWriter}
       onInputPassword={onInputPassword}
       onInputSubject={onInputSubject}
       onInputContents={onInputContents}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
-      isActive={isActive}
-      isEdit={props.isEdit}
-      data={props.data}
       />
     </div>
     )
