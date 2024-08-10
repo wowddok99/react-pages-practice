@@ -16,4 +16,6 @@ export interface BoardListUIProps {
         el: fetchBoard
     ) => void;
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickMoveToPreviousPage: (event: MouseEvent<SVGElement>) => void;
+    onClickMoveToNextPage: (event: MouseEvent<SVGElement>) => void;
 }

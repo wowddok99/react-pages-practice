@@ -3,6 +3,7 @@ import BoardListUI from "./BoardList.presenter"
 import { FETCH_BOARDS, FETCH_BOARDS_1 } from "./BoardList.queries"
 import { useQuery } from "@apollo/client"
 import { fetchBoard } from "./BoardList.type";
+import { MouseEvent } from "react";
 
 export default function BoardList(){
     const router = useRouter();
@@ -31,6 +32,17 @@ export default function BoardList(){
         router.push(`/boards/write`);    
     }
     
+    const onClickMoveToPreviousPage = () => {
+        if (pageNumber === "1" || pageNumber === "0") {
+            return;
+        }
+        router.push(`/boards/list/${Number(pageNumber)-1}`);    
+    }
+
+    const onClickMoveToNextPage = () => {
+        router.push(`/boards/list/${Number(pageNumber)+1}`);    
+    }
+
     return (
         <div>
             <BoardListUI
@@ -38,6 +50,8 @@ export default function BoardList(){
             pageNumber={pageNumber}
             onClickMoveToDetailPage={onClickMoveToDetailPage}
             onClickMoveToWritePage={onClickMoveToWritePage}
+            onClickMoveToPreviousPage={onClickMoveToPreviousPage}
+            onClickMoveToNextPage={onClickMoveToNextPage}
             />
         </div>
     )

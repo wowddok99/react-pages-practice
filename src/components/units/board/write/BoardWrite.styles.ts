@@ -180,7 +180,7 @@ export const SubmitButtonWrapper = styled.div`
     justify-content: center;
 `
 
-export const SubmitButton = styled.button<{isActive: Boolean}>`
+export const SubmitButton = styled.button<{isActive: boolean}>`
     background-color: ${(props) => props.isActive === true ? "#FFD600" : ""};
     width: 11.1875rem;
     height: 3.25rem;

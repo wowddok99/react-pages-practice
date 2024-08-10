@@ -64,9 +64,9 @@ export default function BoardListUI(props: BoardListUIProps){
                 <FooterWrapper>
                     <DummyWrapper/>
                     <NavigateWrapper>
-                        <NavigateBeforeIcon/>
+                        <NavigateBeforeIcon onClick={props.onClickMoveToPreviousPage} />
                             <div>{props.pageNumber}</div>
-                        <NavigateNextIcon/>
+                        <NavigateNextIcon onClick={props.onClickMoveToNextPage}/>
                     </NavigateWrapper>
                     <SubmitButtonWrapper>
                         <PencilIcon/>
