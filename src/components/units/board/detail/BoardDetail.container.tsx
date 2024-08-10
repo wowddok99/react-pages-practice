@@ -7,7 +7,6 @@ import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS }
 import { useState, ChangeEvent } from "react";
 import { createBoardCommentInput } from "./BoardDetail.types";
 
-
 export default function BoardDetail(){
     const router = useRouter();
 
@@ -22,14 +21,14 @@ export default function BoardDetail(){
         variables: {
             boardId: router.query.boardId
         }
-    })
+    });
     
     const {data: fetchBoardCommentsData} = useQuery(FETCH_BOARD_COMMENTS, {
         variables:{
             page: 1,
             boardId: router.query.boardId
         }
-    })
+    });
 
     const onClickMoveToListPage = () => {
         router.push(`/boards/list/1`);    
@@ -97,5 +96,5 @@ export default function BoardDetail(){
             setStarRating={setStarRating}
             />
         </div>
-    )
+        )
 }
