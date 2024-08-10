@@ -17,7 +17,7 @@ export default function BoardList(){
         pageNumber = "1";
     }
 
-    const {data: boardsData} = useQuery(FETCH_BOARDS, {
+    const {data: fetchBoardsData} = useQuery(FETCH_BOARDS, {
         variables: {
             page: Number(pageNumber)
         }
@@ -34,7 +34,7 @@ export default function BoardList(){
     return (
         <div>
             <BoardListUI
-            boardsData={boardsData}
+            fetchBoardsData={fetchBoardsData}
             pageNumber={pageNumber}
             onClickMoveToDetailPage={onClickMoveToDetailPage}
             onClickMoveToWritePage={onClickMoveToWritePage}

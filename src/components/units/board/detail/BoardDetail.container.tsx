@@ -18,13 +18,13 @@ export default function BoardDetail(){
     const [commentContentLength, setCommentContentLength] = useState(0);
     const [starRating , setStarRating ] = useState(0);
 
-    const {data: boardData} = useQuery(FETCH_BOARD, {
+    const {data: fetchBoardData} = useQuery(FETCH_BOARD, {
         variables: {
             boardId: router.query.boardId
         }
     })
     
-    const {data: boardCommentsData} = useQuery(FETCH_BOARD_COMMENTS, {
+    const {data: fetchBoardCommentsData} = useQuery(FETCH_BOARD_COMMENTS, {
         variables:{
             page: 1,
             boardId: router.query.boardId
@@ -85,8 +85,8 @@ export default function BoardDetail(){
     return (
         <div>
             <BoardDetailUI
-            boardData={boardData}
-            boardCommentsData={boardCommentsData}
+            fetchBoardData={fetchBoardData}
+            fetchBoardCommentsData={fetchBoardCommentsData}
             commentContentLength={commentContentLength}
             starRating={starRating}
             onClickMoveToListPage={onClickMoveToListPage}

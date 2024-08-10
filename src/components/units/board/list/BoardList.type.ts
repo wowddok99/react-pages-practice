@@ -8,7 +8,7 @@ export interface fetchBoard{
 }
 
 export interface BoardListUIProps {
-    boardsData?: {
+    fetchBoardsData?: {
         fetchBoards: Array<fetchBoard>
     }
     pageNumber: string | string[]

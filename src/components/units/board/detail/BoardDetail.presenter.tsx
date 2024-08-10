@@ -57,8 +57,8 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         <InfoWrapper>
                             <ProfileIcon src="/images/profile.png" />
                             <WriterCreatedAtWrapper>
-                                <Writer>{props.boardData?.fetchBoard?.writer}</Writer>
-                                <CreateAt>{props.boardData?.fetchBoard?.createdAt}</CreateAt>                                    
+                                <Writer>{props.fetchBoardData?.fetchBoard?.writer}</Writer>
+                                <CreateAt>{props.fetchBoardData?.fetchBoard?.createdAt}</CreateAt>                                    
                             </WriterCreatedAtWrapper>
                         </InfoWrapper>
                         <CardHeaderLogoWrapper>
@@ -67,9 +67,9 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         </CardHeaderLogoWrapper>
                     </CardHeaderWrapper>
                     <CardMainWrapper>
-                        <Subject>{props.boardData?.fetchBoard?.title}</Subject>
+                        <Subject>{props.fetchBoardData?.fetchBoard?.title}</Subject>
                         <Image></Image>
-                        <Contents>{props.boardData?.fetchBoard?.contents}</Contents>
+                        <Contents>{props.fetchBoardData?.fetchBoard?.contents}</Contents>
                         <YoutubeWrapper>
                             <Youtube></Youtube>
                         </YoutubeWrapper>
@@ -110,7 +110,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                             <CommentSubmitButton onClick={props.onClickSubmitComment}>등록하기</CommentSubmitButton>
                         </CommentInputWrapper>
                     </CommentInsertWrapper>
-                    {props.boardCommentsData?.fetchBoardComments.map((el: fetchBoardComment) => (
+                    {props.fetchBoardCommentsData?.fetchBoardComments.map((el: fetchBoardComment) => (
                         <CommentDetailWrapper key={el._id}>
                             <CommentProfileIcon src="/images/profile.png" />
                             <CommentInfoWrapper>
