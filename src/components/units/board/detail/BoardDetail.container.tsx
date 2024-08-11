@@ -1,8 +1,6 @@
 import BoardDetailUI from "./BoardDetail.presenter"
-import GraphQLRequestError from "../../../../commons/errors/GraphQLRequestError";
-
 import { useRouter } from "next/router"
-import { useQuery, useMutation } from "@apollo/client"
+import { useQuery, useMutation, ApolloError } from "@apollo/client"
 import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "./BoardDetail.queries";
 import { useState, ChangeEvent } from "react";
 import { createBoardCommentInput } from "./BoardDetail.types";
@@ -48,7 +46,7 @@ export default function BoardDetail(){
             alert("게시물이 삭제되었습니다.");
             router.push("/boards/list/1");
         } catch (error) {
-            if (error instanceof GraphQLRequestError) {
+            if (error instanceof ApolloError) {
                 alert(error.message);
             }
         }
@@ -74,7 +72,7 @@ export default function BoardDetail(){
             })
             router.reload();
         } catch(error){
-            if (error instanceof GraphQLRequestError) {
+            if (error instanceof ApolloError) {
                 console.log(error.message);
             }
         }

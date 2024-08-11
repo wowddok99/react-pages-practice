@@ -1,9 +1,8 @@
 import BoardWriterUI from './BoardWrite.presenter'
 import { ChangeEvent, useState } from 'react' 
 import { useRouter } from 'next/router'
-import { useMutation } from "@apollo/client"
+import { ApolloError, useMutation } from "@apollo/client"
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
-import GraphQLRequestError from '../../../../commons/errors/GraphQLRequestError'
 import { BoardWriterProps, updateBoardInput } from './BoardWrite.type'
 
 export default function BoardWriter(props:BoardWriterProps){
@@ -113,7 +112,7 @@ export default function BoardWriter(props:BoardWriterProps){
                 });
                 router.push(`/boards/detail/${result.data.createBoard._id}`);    
             } catch (error) {
-                if (error instanceof GraphQLRequestError) {
+                if (error instanceof ApolloError) {
                     console.log(error.message);
                 }
             }
@@ -156,7 +155,7 @@ export default function BoardWriter(props:BoardWriterProps){
             })
             router.push(`/boards/detail/${result.data.updateBoard._id}`)
         } catch(error) {
-            if (error instanceof GraphQLRequestError) {
+            if (error instanceof ApolloError) {
                 alert(error.message);
             }
         }

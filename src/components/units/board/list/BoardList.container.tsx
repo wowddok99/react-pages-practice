@@ -4,7 +4,6 @@ import { FETCH_BOARDS } from "./BoardList.queries"
 import { useQuery } from "@apollo/client"
 import { fetchBoard } from "./BoardList.type";
 import { ChangeEvent, useState } from "react";
-import { start } from "repl";
 
 export default function BoardList(){
     const router = useRouter();
