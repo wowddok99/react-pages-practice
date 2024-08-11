@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 
 export interface fetchBoard{
     _id: string;
@@ -18,4 +18,8 @@ export interface BoardListUIProps {
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToPreviousPage: (event: MouseEvent<SVGElement>) => void;
     onClickMoveToNextPage: (event: MouseEvent<SVGElement>) => void;
+    onInputSearchTitle: (event: ChangeEvent<HTMLInputElement>) => void;
+    onClickSearchTitle: (event: MouseEvent<HTMLButtonElement>) => void;
+    onInputStartDate:(event: ChangeEvent<HTMLInputElement>) => void;
+    onInputEndDate: (event: ChangeEvent<HTMLInputElement>) => void;
 }

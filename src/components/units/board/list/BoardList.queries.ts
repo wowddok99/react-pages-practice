@@ -1,19 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_BOARDS_1 = gql`
-    query {
-        fetchBoards(page: 1) {
-            _id
-            writer
-            title
-            contents
-            createdAt
-        }
-    }
-`
 export const FETCH_BOARDS = gql`
-    query fetchBoards($page: Int){
-        fetchBoards(page: $page) {
+    query fetchBoards($page: Int, $search: String, $startDate: DateTime, $endDate: DateTime){
+        fetchBoards(page: $page, search: $search, startDate: $startDate, endDate: $endDate) {
             _id
             writer
             title

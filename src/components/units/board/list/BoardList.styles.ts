@@ -26,6 +26,7 @@ export const BestBoardWrapper = styled.div`
 
 export const SearchWrapper = styled.div`
     display: flex;
+    align-items: center;
     column-gap: 1rem;
 `
 export const SearchInputWrapper = styled.div`
@@ -49,13 +50,14 @@ export const SearchInput = styled.input`
 `
 
 export const DateInput = styled.input`
-    padding-left: 1.875rem;
-    width: 15.25rem;
+    text-align: center;
+    width: 7.0rem;
     height: 3.25rem;
     border: 0.0625rem solid #bdbdbd ;
 `
 
 export const SearchButton = styled.button`
+    cursor: pointer;
     background-color: black;
     color: white;
     width: 5.875rem;
