@@ -104,7 +104,7 @@ export const Youtube = styled.div`
 
 export const LikeHateButtonWrapper = styled.div`
   display: flex;
-  margin-top: 5rem;
+  margin-top: 2rem;
   justify-content: center;
   gap: 0.7rem;
 `
