@@ -40,9 +40,9 @@ export default function BoardListUI(props: BoardListUIProps){
                         <SearchIcon></SearchIcon>
                         <SearchInput type="text" onInput={props.onInputSearchTitle} placeholder="제목을 검색해주세요."></SearchInput>
                     </SearchInputWrapper>
-                    <DateInput type="text" onInput={props.onInputStartDate} placeholder="YYYY. MM.DD"></DateInput>
+                    <DateInput type="text" onInput={props.onInputStartDate} placeholder="YYYY-MM-DD"></DateInput>
                     ~
-                    <DateInput type="text" onInput={props.onInputEndDate} placeholder="YYYY. MM.DD"></DateInput>
+                    <DateInput type="text" onInput={props.onInputEndDate} placeholder="YYYY-MM-DD"></DateInput>
                     <SearchButton onClick={props.onClickSearchTitle}>검색하기</SearchButton>
                 </SearchWrapper>
                 <TableWrapper>

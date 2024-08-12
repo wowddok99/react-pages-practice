@@ -24,8 +24,8 @@ export default function BoardList(){
             page: Number(pageNumber),
             search: router.query.search as string,
             // router의 query에서 가져온 startDate와 endDate가 빈 문자열일 경우 undefined로 처리
-            startDate: router.query.startDate === "" ? undefined : router.query.startDate,
-            endDate: router.query.endDate === "" ? undefined : router.query.endDate
+            startDate: router.query.startDate === "" || router.query.startDate === undefined ? undefined : (router.query.startDate +"T00:00:00Z"),
+            endDate: router.query.endDate === "" || router.query.endDate === undefined ? undefined : (router.query.endDate + "T23:59:59Z")
         }
     });
 
@@ -65,11 +65,25 @@ export default function BoardList(){
         if (pageNumber === "1" || pageNumber === "0") {
             return;
         }
-        router.push(`/boards/list/${Number(pageNumber)-1}`);
+        router.push({
+            pathname: `/boards/list/${Number(pageNumber)-1}`,
+            query: {
+                search: searchTitle,
+                startDate: startDate,
+                endDate: endDate
+            }
+        });
     }
 
     const onClickMoveToNextPage = () => {
-        router.push(`/boards/list/${Number(pageNumber)+1}`);
+        router.push({
+            pathname: `/boards/list/${Number(pageNumber)+1}`,
+            query: {
+                search: searchTitle,
+                startDate: startDate,
+                endDate: endDate
+            }
+        });
     }
 
     return (
