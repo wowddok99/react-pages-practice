@@ -1,7 +1,7 @@
 import { MouseEvent, ChangeEvent } from 'react';
 
 export interface createBoardCommentInput {
-    contents?: string
+    contents: string
     rating: number
 }
 
@@ -13,35 +13,32 @@ export interface fetchBoardComment{
 }
 
 export interface BoardDetailUIProps {
-    fetchBoardData?: {
+    fetchBoardData: {
         fetchBoard: {
             writer: string;
             title: string
             contents: string;
             createdAt: string
-
+            // likeCount: number;
+            // dislikeCount: number;
         }
     };
 
-    fetchBoardCommentsData?: {
+    fetchBoardCommentsData: {
         fetchBoardComments: Array<fetchBoardComment>
     };
 
-    // boardCommentData?: {
-    //     fetchBoardComments: Array<{
-    //         _id: number;
-    //         contents: string;
-    //         rating: number;
-    //         createdAt: string;
-    //     }>
-    // };
-    
-    commentContentLength?: number;
-    starRating?: number;
+    commentContentLength: number;
+    starRating: number;
+    likeCount: number;
+    dislikeCount: number;
+
     onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickSubmitComment: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickLike: (event: MouseEvent<HTMLImageElement>) => void;
+    onClickDislike: (event: MouseEvent<HTMLImageElement>) => void;
     onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
     setStarRating: React.Dispatch<React.SetStateAction<number>>;
 }

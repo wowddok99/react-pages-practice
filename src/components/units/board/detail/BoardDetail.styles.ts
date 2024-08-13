@@ -111,20 +111,24 @@ export const LikeHateButtonWrapper = styled.div`
 
 export const LikeButtonWrapper = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
 `
 
 export const HateButtonWrapper = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
 `
 
 export const LikeIcon = styled.img`
+  cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
 `
 
 export const HateIcon = styled.img`
+  cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
 `
