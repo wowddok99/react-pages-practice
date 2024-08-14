@@ -23,7 +23,8 @@ export default function BoardList(){
         variables: {
             page: Number(pageNumber),
             search: router.query.search as string,
-            // router의 query에서 가져온 startDate와 endDate가 빈 문자열일 경우 undefined로 처리
+            // router의 query에서 가져온 startDate와 endDate가 빈 문자열이거나 undefined 이면
+            // 변수(startDate 및 endData)에 undefined를 저장
             startDate: router.query.startDate === "" || router.query.startDate === undefined ? undefined : (router.query.startDate +"T00:00:00Z"),
             endDate: router.query.endDate === "" || router.query.endDate === undefined ? undefined : (router.query.endDate + "T23:59:59Z")
         }
@@ -49,7 +50,7 @@ export default function BoardList(){
         router.push(`/boards/write`);    
     }
     
-    const onClickSearchTitle = () => {
+    const onClickSearchByTitleAndDate = () => {
         router.push({
             pathname: `/boards/list/1`,
             query: { 
@@ -95,7 +96,7 @@ export default function BoardList(){
             onClickMoveToWritePage={onClickMoveToWritePage}
             onClickMoveToPreviousPage={onClickMoveToPreviousPage}
             onClickMoveToNextPage={onClickMoveToNextPage}
-            onClickSearchTitle={onClickSearchTitle}
+            onClickSearchByTitleAndDate={onClickSearchByTitleAndDate}
             onInputSearchTitle={onInputSearchTitle}
             onInputStartDate={onInputStartDate}
             onInputEndDate={onInputEndDate}

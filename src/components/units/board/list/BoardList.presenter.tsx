@@ -43,7 +43,7 @@ export default function BoardListUI(props: BoardListUIProps){
                     <DateInput type="text" onInput={props.onInputStartDate} placeholder="YYYY-MM-DD"></DateInput>
                     ~
                     <DateInput type="text" onInput={props.onInputEndDate} placeholder="YYYY-MM-DD"></DateInput>
-                    <SearchButton onClick={props.onClickSearchTitle}>검색하기</SearchButton>
+                    <SearchButton onClick={props.onClickSearchByTitleAndDate}>검색하기</SearchButton>
                 </SearchWrapper>
                 <TableWrapper>
                     <TableTop/>
