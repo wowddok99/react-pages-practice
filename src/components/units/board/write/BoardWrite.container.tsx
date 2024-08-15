@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ApolloError, useMutation } from "@apollo/client"
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
-import { BoardWriterProps, updateBoardInput } from './BoardWrite.type'
+import { BoardWriterProps, UpdateBoardInput } from './BoardWrite.type'
 
 export default function BoardWriter(props:BoardWriterProps){
     
@@ -125,7 +125,7 @@ export default function BoardWriter(props:BoardWriterProps){
             return;
         }
 
-        const updateBoardInput: updateBoardInput = {};
+        const updateBoardInput: UpdateBoardInput = {};
 
         // undefined : 사용자가 데이터를 안건드린 경우
         // "" : 사용자가 데이터를 지운 경우

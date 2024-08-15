@@ -12,7 +12,7 @@ export interface BoardWriterProps{
     }
   }
   
-export interface updateBoardInput{
+export interface UpdateBoardInput{
     writer?: string;
     password?: string;
     title?: string;

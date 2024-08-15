@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import BoardListUI from "./BoardList.presenter"
 import { FETCH_BOARDS } from "./BoardList.queries"
 import { useQuery } from "@apollo/client"
-import { fetchBoard } from "./BoardList.type";
+import { FetchBoard } from "./BoardList.type";
 import { ChangeEvent, useState } from "react";
 
 export default function BoardList(){
@@ -42,7 +42,7 @@ export default function BoardList(){
         setEndDate(event.target.value);
     }
 
-    const onClickMoveToDetailPage = (el: fetchBoard) => {
+    const onClickMoveToDetailPage = (el: FetchBoard) => {
         router.push(`/boards/detail/${el._id}`);
     }
 

@@ -46,7 +46,7 @@ import {
     CommentCreatedAt
 } from "./BoardDetail.styles"
 
-import { BoardDetailUIProps, fetchBoardComment } from "./BoardDetail.types";
+import { BoardDetailUIProps, FetchBoardComment } from "./BoardDetail.types";
 
 export default function BoardDetailUI(props: BoardDetailUIProps){
     return (
@@ -110,7 +110,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                             <CommentSubmitButton onClick={props.onClickSubmitComment}>등록하기</CommentSubmitButton>
                         </CommentInputWrapper>
                     </CommentInsertWrapper>
-                    {props.fetchBoardCommentsData?.fetchBoardComments.map((el: fetchBoardComment) => (
+                    {props.fetchBoardCommentsData?.fetchBoardComments.map((el: FetchBoardComment) => (
                         <CommentDetailWrapper key={el._id}>
                             <CommentProfileIcon src="/images/profile.png" />
                             <CommentInfoWrapper>

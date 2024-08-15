@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { useQuery, useMutation, ApolloError } from "@apollo/client"
 import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
 import { useState, ChangeEvent } from "react";
-import { createBoardCommentInput } from "./BoardDetail.types";
+import { CreateBoardCommentInput } from "./BoardDetail.types";
 
 export default function BoardDetail(){
     const router = useRouter();
@@ -67,7 +67,7 @@ export default function BoardDetail(){
     }
 
     const onClickSubmitComment = async() => {
-        const createBoardCommentInput: createBoardCommentInput = {
+        const createBoardCommentInput: CreateBoardCommentInput = {
             contents: commentContent,
             rating: starRating
         };

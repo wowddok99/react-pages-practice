@@ -1,6 +1,6 @@
 import { ChangeEvent, MouseEvent } from "react";
 
-export interface fetchBoard{
+export interface FetchBoard{
     _id: string;
     title: string;
     writer: string;
@@ -9,11 +9,11 @@ export interface fetchBoard{
 
 export interface BoardListUIProps {
     fetchBoardsData?: {
-        fetchBoards: Array<fetchBoard>
+        fetchBoards: Array<FetchBoard>
     }
     pageNumber: string | string[]
     onClickMoveToDetailPage: (
-        el: fetchBoard
+        el: FetchBoard
     ) => void;
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToPreviousPage: (event: MouseEvent<SVGElement>) => void;

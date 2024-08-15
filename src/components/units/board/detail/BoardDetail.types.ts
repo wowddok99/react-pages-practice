@@ -1,11 +1,11 @@
 import { MouseEvent, ChangeEvent } from 'react';
 
-export interface createBoardCommentInput {
+export interface CreateBoardCommentInput {
     contents: string
     rating: number
 }
 
-export interface fetchBoardComment{
+export interface FetchBoardComment{
     _id: number;
     contents: string;
     rating: number;
@@ -25,7 +25,7 @@ export interface BoardDetailUIProps {
     };
 
     fetchBoardCommentsData: {
-        fetchBoardComments: Array<fetchBoardComment>
+        fetchBoardComments: Array<FetchBoardComment>
     };
 
     commentContentLength: number;
