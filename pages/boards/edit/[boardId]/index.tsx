@@ -26,8 +26,8 @@ export default function BoardsEditPage() {
         <div>
             <BoardWriter 
             isEdit={true} 
-            fetchBoardData={fetchBoardData}>
-            </BoardWriter>
+            fetchBoardData={fetchBoardData}
+            />
         </div>
     )
 }
