@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { useQuery, useMutation, ApolloError } from "@apollo/client"
 import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
 import { useState, ChangeEvent } from "react";
-import { CreateBoardCommentInput } from "./BoardDetail.types";
+import { CreateBoardCommentInput, FetchBoardCommentsData, FetchBoardData } from "./BoardDetail.types";
 
 export default function BoardDetail(){
     const router = useRouter();
@@ -20,32 +20,32 @@ export default function BoardDetail(){
     const [dislikeCount, setDislikeCount] = useState(0);
 
 
-    const {data: fetchBoardData} = useQuery(FETCH_BOARD, {
+    const {data: fetchBoardData} = useQuery<FetchBoardData>(FETCH_BOARD, {
         variables: {
             boardId: router.query.boardId
         },
         onCompleted: (fetchBoardData) => {
-            setLikeCount(fetchBoardData.fetchBoard?.likeCount);
-            setDislikeCount(fetchBoardData.fetchBoard?.dislikeCount);
+            setLikeCount(fetchBoardData.fetchBoard.likeCount);
+            setDislikeCount(fetchBoardData.fetchBoard.dislikeCount);
         }
     });
     
-    const {data: fetchBoardCommentsData} = useQuery(FETCH_BOARD_COMMENTS, {
+    const {data: fetchBoardCommentsData} = useQuery<FetchBoardCommentsData>(FETCH_BOARD_COMMENTS, {
         variables:{
             page: 1,
             boardId: router.query.boardId
         }
     });
 
-    const onClickMoveToListPage = () => {
+    const onClickMoveToListPage = (): void => {
         router.push(`/boards/list/1`);    
     }
 
-    const onClickMoveToEditPage = () => {
+    const onClickMoveToEditPage = (): void => {
         router.push(`/boards/edit/${router.query.boardId}`);    
     }
 
-    const onClickDelete = async() => {
+    const onClickDelete = async(): Promise<void> => {
         try {
             await deleteBoard({
                 variables: {
@@ -66,7 +66,7 @@ export default function BoardDetail(){
         setCommentContentLength(event.target.value.length)
     }
 
-    const onClickSubmitComment = async() => {
+    const onClickSubmitComment = async(): Promise<void> => {
         const createBoardCommentInput: CreateBoardCommentInput = {
             contents: commentContent,
             rating: starRating
@@ -88,7 +88,7 @@ export default function BoardDetail(){
 
     }
 
-    const onClickLike = async() => {
+    const onClickLike = async(): Promise<void> => {
         try {
             const result = await likeBoard({
                 variables: {
@@ -103,7 +103,7 @@ export default function BoardDetail(){
         }
     }
 
-    const onClickDislike = async() => {
+    const onClickDislike = async(): Promise<void> => {
         try {
             const result = await dislikeBoard({
                 variables: {

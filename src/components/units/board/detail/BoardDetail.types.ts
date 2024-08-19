@@ -1,8 +1,20 @@
 import { MouseEvent, ChangeEvent } from 'react';
 
+// types - BoardDetail.container
 export interface CreateBoardCommentInput {
     contents: string
     rating: number
+}
+
+export interface FetchBoardData {
+    fetchBoard: {
+        writer: string;
+        title: string
+        contents: string;
+        createdAt: string
+        likeCount: number;
+        dislikeCount: number;
+    }
 }
 
 export interface FetchBoardComment{
@@ -12,21 +24,16 @@ export interface FetchBoardComment{
     createdAt: string;
 }
 
-export interface BoardDetailUIProps {
-    fetchBoardData: {
-        fetchBoard: {
-            writer: string;
-            title: string
-            contents: string;
-            createdAt: string
-            // likeCount: number;
-            // dislikeCount: number;
-        }
-    };
+export interface FetchBoardCommentsData {
+    fetchBoardComments: Array<FetchBoardComment>;
+}
 
-    fetchBoardCommentsData: {
-        fetchBoardComments: Array<FetchBoardComment>
-    };
+
+// types - BoardDetail.presenter
+export interface BoardDetailUIProps {
+    fetchBoardData?: FetchBoardData;
+
+    fetchBoardCommentsData?: FetchBoardCommentsData
 
     commentContentLength: number;
     starRating: number;
