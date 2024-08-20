@@ -1,17 +1,17 @@
 import { ChangeEvent, MouseEvent } from "react";
 
-export interface BoardWriterProps{
-    isEdit: boolean
-    fetchBoardData?: {
-        fetchBoard: {
-          writer: string;
-          title: string
-          contents: string;
-          createdAt: string
-      }
-    }
-  }
-  
+// types - BoardWrite.container
+export interface FetchBoard{
+    writer: string;
+    title: string
+    contents: string;
+    createdAt: string;
+}
+
+export interface FetchBoardData{
+    fetchBoard: FetchBoard;
+}
+
 export interface UpdateBoardInput{
     writer?: string;
     password?: string;
@@ -19,21 +19,21 @@ export interface UpdateBoardInput{
     contents? : string;
 }
 
+// types - BoardWrite.presenter
+export interface BoardWriterProps{
+  isEdit: boolean;
+  fetchBoardData?: FetchBoardData;
+}
+
 export interface BoardWriterUIProps{
-    fetchBoardData?: {
-        fetchBoard: {
-          writer: string;
-          title: string
-          contents: string;
-          createdAt: string
-      }
-    }
+    fetchBoardData?: FetchBoardData;
     writerError: string;
     passwordError: string;
     titleError: string;
     contentsError: string;
     isActive: boolean;
     isEdit: boolean;
+    
     onInputWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputPassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputSubject: (event: ChangeEvent<HTMLInputElement>) => void;

@@ -13,11 +13,11 @@ export default function BoardDetail(){
     const [likeBoard] = useMutation(LIKE_BOARD);
     const [dislikeBoard] = useMutation(DISLIKE_BOARD);
 
-    const [commentContent, setCommentContent] = useState("");
-    const [commentContentLength, setCommentContentLength] = useState(0);
-    const [starRating , setStarRating ] = useState(0);
-    const [likeCount, setLikeCount] = useState(0);
-    const [dislikeCount, setDislikeCount] = useState(0);
+    const [commentContent, setCommentContent] = useState<string>("");
+    const [commentContentLength, setCommentContentLength] = useState<number>(0);
+    const [starRating , setStarRating ] = useState<number>(0);
+    const [likeCount, setLikeCount] = useState<number>(0);
+    const [dislikeCount, setDislikeCount] = useState<number>(0);
 
 
     const {data: fetchBoardData} = useQuery<FetchBoardData>(FETCH_BOARD, {
@@ -61,7 +61,7 @@ export default function BoardDetail(){
         }
     }
 
-    const onInputCommentContent = (event: ChangeEvent<HTMLInputElement>) => {
+    const onInputCommentContent = (event: ChangeEvent<HTMLInputElement>): void => {
         setCommentContent(event.target.value);
         setCommentContentLength(event.target.value.length)
     }

@@ -1,5 +1,7 @@
+import exp from "constants";
 import { ChangeEvent, MouseEvent } from "react";
 
+// types - BoardList.container
 export interface FetchBoard{
     _id: string;
     title: string;
@@ -7,14 +9,16 @@ export interface FetchBoard{
     createdAt: string;
 }
 
+export interface FetchBoardsData{
+    fetchBoards: Array<FetchBoard>;
+}
+
+// types - BoardList.presenter
 export interface BoardListUIProps {
-    fetchBoardsData?: {
-        fetchBoards: Array<FetchBoard>
-    }
-    pageNumber: string | string[]
-    onClickMoveToDetailPage: (
-        el: FetchBoard
-    ) => void;
+    fetchBoardsData?: FetchBoardsData;
+    pageNumber: string | string[];
+
+    onClickMoveToDetailPage: (el: FetchBoard) => void;
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToPreviousPage: (event: MouseEvent<SVGElement>) => void;
     onClickMoveToNextPage: (event: MouseEvent<SVGElement>) => void;

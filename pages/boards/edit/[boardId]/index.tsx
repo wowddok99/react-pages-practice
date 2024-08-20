@@ -1,6 +1,7 @@
 import BoardWriter from "../../../../src/components/units/board/write/BoardWrite.container"
 import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
+import { FetchBoardData } from "../../../../src/components/units/board/write/BoardWrite.type";
 
 const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
@@ -16,11 +17,13 @@ const FETCH_BOARD = gql`
 export default function BoardsEditPage() {
     const router = useRouter();
 
-    const { data: fetchBoardData } = useQuery(FETCH_BOARD, {
+    const { data: fetchBoardData } = useQuery<FetchBoardData>(FETCH_BOARD, {
         variables: {
             boardId: router.query.boardId
         }
     });
+
+    console.log(fetchBoardData);
 
     return (
         <div>

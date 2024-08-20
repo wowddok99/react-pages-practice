@@ -2,11 +2,12 @@ import { useRouter } from "next/router"
 import BoardListUI from "./BoardList.presenter"
 import { FETCH_BOARDS } from "./BoardList.queries"
 import { useQuery } from "@apollo/client"
-import { FetchBoard } from "./BoardList.type";
+import { FetchBoard, FetchBoardsData } from "./BoardList.type";
 import { ChangeEvent, useState } from "react";
 
 export default function BoardList(){
     const router = useRouter();
+    
     const [searchTitle, setSearchTitle] = useState("");
     const [startDate, setStartDate] = useState<undefined | string>(undefined);
     const [endDate, setEndDate] = useState<undefined | string>(undefined);
@@ -19,7 +20,7 @@ export default function BoardList(){
         pageNumber = "1";
     }
 
-    const {data: fetchBoardsData} = useQuery(FETCH_BOARDS, {
+    const {data: fetchBoardsData} = useQuery<FetchBoardsData>(FETCH_BOARDS, {
         variables: {
             page: Number(pageNumber),
             search: router.query.search as string,
@@ -30,27 +31,27 @@ export default function BoardList(){
         }
     });
 
-    const onInputSearchTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    const onInputSearchTitle = (event: ChangeEvent<HTMLInputElement>): void => {
         setSearchTitle(event.target.value);
     }
 
-    const onInputStartDate = (event: ChangeEvent<HTMLInputElement>) => {
+    const onInputStartDate = (event: ChangeEvent<HTMLInputElement>): void => {
         setStartDate(event.target.value);
     }
 
-    const onInputEndDate = (event: ChangeEvent<HTMLInputElement>) => {
+    const onInputEndDate = (event: ChangeEvent<HTMLInputElement>): void => {
         setEndDate(event.target.value);
     }
 
-    const onClickMoveToDetailPage = (el: FetchBoard) => {
+    const onClickMoveToDetailPage = (el: FetchBoard): void => {
         router.push(`/boards/detail/${el._id}`);
     }
 
-    const onClickMoveToWritePage = () => {
+    const onClickMoveToWritePage = (): void => {
         router.push(`/boards/write`);    
     }
     
-    const onClickSearchByTitleAndDate = () => {
+    const onClickSearchByTitleAndDate = (): void => {
         router.push({
             pathname: `/boards/list/1`,
             query: { 
@@ -62,7 +63,7 @@ export default function BoardList(){
     }
 
 
-    const onClickMoveToPreviousPage = () => {
+    const onClickMoveToPreviousPage = (): void => {
         if (pageNumber === "1" || pageNumber === "0") {
             return;
         }
@@ -76,7 +77,7 @@ export default function BoardList(){
         });
     }
 
-    const onClickMoveToNextPage = () => {
+    const onClickMoveToNextPage = (): void => {
         router.push({
             pathname: `/boards/list/${Number(pageNumber)+1}`,
             query: {

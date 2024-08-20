@@ -14,10 +14,10 @@ export default function BoardWriter(props:BoardWriterProps){
     const [title, setTitle] = useState<undefined|string>();
     const [contents, setContents] = useState<undefined|string>();
 
-    const [writerError, setWriterError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [subjectError, setSubjectError] = useState("");
-    const [contentsError, setContentsError] = useState("");
+    const [writerError, setWriterError] = useState<string>("");
+    const [passwordError, setPasswordError] = useState<string>("");
+    const [subjectError, setSubjectError] = useState<string>("");
+    const [contentsError, setContentsError] = useState<string>("");
 
     const router = useRouter();
     const [createBoard] = useMutation(CREATE_BOARD);

@@ -1,20 +1,17 @@
 import { MouseEvent, ChangeEvent } from 'react';
 
 // types - BoardDetail.container
-export interface CreateBoardCommentInput {
-    contents: string
-    rating: number
+export interface FetchBoard {
+    writer: string;
+    title: string
+    contents: string;
+    createdAt: string
+    likeCount: number;
+    dislikeCount: number;
 }
 
 export interface FetchBoardData {
-    fetchBoard: {
-        writer: string;
-        title: string
-        contents: string;
-        createdAt: string
-        likeCount: number;
-        dislikeCount: number;
-    }
+    fetchBoard: FetchBoard
 }
 
 export interface FetchBoardComment{
@@ -28,11 +25,14 @@ export interface FetchBoardCommentsData {
     fetchBoardComments: Array<FetchBoardComment>;
 }
 
+export interface CreateBoardCommentInput {
+    contents: string
+    rating: number
+}
 
 // types - BoardDetail.presenter
 export interface BoardDetailUIProps {
     fetchBoardData?: FetchBoardData;
-
     fetchBoardCommentsData?: FetchBoardCommentsData
 
     commentContentLength: number;
