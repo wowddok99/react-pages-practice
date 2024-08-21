@@ -2,7 +2,7 @@ import BoardDetailUI from "./BoardDetail.presenter"
 import { useRouter } from "next/router"
 import { useQuery, useMutation, ApolloError } from "@apollo/client"
 import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, MouseEvent } from "react";
 import { CreateBoardCommentInput, FetchBoardCommentsData, FetchBoardData } from "./BoardDetail.types";
 
 export default function BoardDetail(){
@@ -13,9 +13,13 @@ export default function BoardDetail(){
     const [likeBoard] = useMutation(LIKE_BOARD);
     const [dislikeBoard] = useMutation(DISLIKE_BOARD);
 
+    const [commentWriter, setCommentWriter] = useState<string>("");
+    const [commentPassword, setCommentPassword] = useState<string>("");
     const [commentContent, setCommentContent] = useState<string>("");
     const [commentContentLength, setCommentContentLength] = useState<number>(0);
+    
     const [starRating , setStarRating ] = useState<number>(0);
+
     const [likeCount, setLikeCount] = useState<number>(0);
     const [dislikeCount, setDislikeCount] = useState<number>(0);
 
@@ -61,6 +65,14 @@ export default function BoardDetail(){
         }
     }
 
+    const onInputCommentWriter = (event: ChangeEvent<HTMLInputElement>): void => {
+        setCommentWriter(event.target.value);
+    }
+
+    const onInputCommentPassword = (event: ChangeEvent<HTMLInputElement>): void => {
+        setCommentPassword(event.target.value);
+    }
+
     const onInputCommentContent = (event: ChangeEvent<HTMLInputElement>): void => {
         setCommentContent(event.target.value);
         setCommentContentLength(event.target.value.length)
@@ -68,8 +80,11 @@ export default function BoardDetail(){
 
     const onClickSubmitComment = async(): Promise<void> => {
         const createBoardCommentInput: CreateBoardCommentInput = {
+            writer: commentWriter,
+            password: commentPassword,
             contents: commentContent,
             rating: starRating
+
         };
 
         try {
@@ -118,6 +133,14 @@ export default function BoardDetail(){
         }
     }
 
+    const onClickStarRatingIncrease = (event: MouseEvent<SVGElement>): void => {
+        setStarRating((starRating ?? 0)+1)
+    }
+
+    const onClickStarRatingDecrease = (event: MouseEvent<SVGElement>): void  => {
+        setStarRating((starRating ?? 0)-1)
+    }
+
     return (
         <div>
             <BoardDetailUI
@@ -131,6 +154,10 @@ export default function BoardDetail(){
             onClickSubmitComment={onClickSubmitComment}
             onClickLike={onClickLike}
             onClickDislike={onClickDislike}
+            onClickStarRatingIncrease={onClickStarRatingIncrease}
+            onClickStarRatingDecrease={onClickStarRatingDecrease}
+            onInputCommentWriter={onInputCommentWriter}
+            onInputCommentPassword={onInputCommentPassword}
             onInputCommentContent={onInputCommentContent}
             setStarRating={setStarRating}
             likeCount={likeCount}

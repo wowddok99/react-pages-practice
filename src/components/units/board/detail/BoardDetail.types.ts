@@ -16,6 +16,7 @@ export interface FetchBoardData {
 
 export interface FetchBoardComment{
     _id: number;
+    writer: string;
     contents: string;
     rating: number;
     createdAt: string;
@@ -26,8 +27,10 @@ export interface FetchBoardCommentsData {
 }
 
 export interface CreateBoardCommentInput {
-    contents: string
-    rating: number
+    writer: string;
+    password: string
+    contents: string;
+    rating: number;
 }
 
 // types - BoardDetail.presenter
@@ -46,6 +49,10 @@ export interface BoardDetailUIProps {
     onClickSubmitComment: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickLike: (event: MouseEvent<HTMLImageElement>) => void;
     onClickDislike: (event: MouseEvent<HTMLImageElement>) => void;
+    onClickStarRatingIncrease: (event: MouseEvent<SVGElement>) => void;
+    onClickStarRatingDecrease: (event: MouseEvent<SVGElement>) => void;
+    onInputCommentWriter: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputCommentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
     setStarRating: React.Dispatch<React.SetStateAction<number>>;
 }

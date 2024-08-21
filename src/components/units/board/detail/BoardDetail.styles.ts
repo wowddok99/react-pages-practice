@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { FaRegCommentDots } from "@react-icons/all-files/fa/FaRegCommentDots";
 import { IoMdStar } from "@react-icons/all-files/io/IoMdStar";
+import { MdClear } from "@react-icons/all-files/md/MdClear";
+import { MdModeEdit } from "@react-icons/all-files/md/MdModeEdit";
 
 export const PageLayout = styled.div`
     word-break: break-all;
@@ -139,7 +141,7 @@ export const CrudButtonGroupWrapper = styled.div`
   margin-bottom: 2rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #bdbdbd;
+  border-bottom: 0.0625rem solid #bdbdbd;
   justify-content: center;
   gap: 2rem;
 `
@@ -147,7 +149,7 @@ export const CrudButtonGroupWrapper = styled.div`
 export const ListButton = styled.button`
   width: 11.1875rem;
   height: 3.25rem;
-  border: 1px solid #bdbdbd;
+  border: 0.0625rem solid #bdbdbd;
   cursor: pointer;
   background-color: white;
 `
@@ -155,7 +157,7 @@ export const ListButton = styled.button`
 export const EditButton = styled.button`
   width: 11.1875rem;
   height: 3.25rem;
-  border: 1px solid #bdbdbd;
+  border: 0.0625rem solid #bdbdbd;
   cursor: pointer;
   background-color: white;
 `
@@ -233,7 +235,7 @@ export const CommentInputContent = styled.input`
   border: 0.0625rem solid #000;
   border-top-left-radius: 0.1875rem;
   border-top-right-radius: 0.1875rem;
-  padding-left: 20px;
+  padding-left: 1.25rem;
 `
 
 export const CommentInputFooter = styled.div`
@@ -246,7 +248,7 @@ export const CommentInputFooter = styled.div`
   border-bottom-left-radius: 0.1875rem;
   border-bottom-right-radius: 0.1875rem;
   padding-left: 1.25rem;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #888;
   align-items: center;
 ` 
@@ -266,20 +268,20 @@ export const CommentSubmitButton = styled.button`
 `
 
 export const CommentProfileIcon = styled.img`
-  width: 42px;
-  height: 42px;
+  width: 2.625rem;
+  height: 2.625rem;
 `
 
 export const CommentInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.3125rem;
 `
 
 export const CommentWriterWithStarWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
 `
 
 export const CommentWriter = styled.div`
@@ -290,6 +292,44 @@ export const CommentContent = styled.div`
 `
 
 export const CommentCreatedAt = styled.div`
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #BDBDBDBD;
+`
+
+export const CommentInputHeaderWrapper = styled.div`
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+`
+
+export const CommentInputWriter = styled.input`
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  width: 7.5rem;
+  height: 2.5rem;
+  border: 0.0625rem solid #bdbdbd;
+  border-radius: 0.1875rem;
+`
+
+export const CommentInputPassword = styled.input`
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  width: 7.5rem;
+  height: 2.5rem;
+  border: 0.0625rem solid #bdbdbd;
+  border-radius: 0.1875rem;
+`
+
+export const MdClearIcon = styled(MdClear)`
+  cursor: pointer;
+  width: 1.3rem;
+  height: 1.3rem;
+  color: #bdbdbd;
+`
+
+export const MdModeEditIcon = styled(MdModeEdit)`
+  cursor: pointer;
+  width: 1.3rem;
+  height: 1.3rem;
+  color: #bdbdbd;
 `
