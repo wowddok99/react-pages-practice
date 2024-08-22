@@ -40,7 +40,9 @@ import {
     CommentSubmitButton,
     CommentProfileIcon,
     CommentInfoWrapper,
-    CommentWriterWithStarWrapper,
+    CommentHeaderWrapper,
+    WriterStarWrapper,
+    IconWrapper,
     CommentWriter,
     CommentContent,
     CommentCreatedAt,
@@ -48,7 +50,10 @@ import {
     CommentInputWriter,
     CommentInputPassword,
     MdClearIcon,
-    MdModeEditIcon
+    MdModeEditIcon,
+    PasswordModal,
+    PasswordModalContent,
+    PasswordModalInput
 } from "./BoardDetail.styles"
 
 import { BoardDetailUIProps, FetchBoardComment } from "./BoardDetail.types";
@@ -93,9 +98,15 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                 <CrudButtonGroupWrapper>
                     <ListButton onClick={props.onClickMoveToListPage}>목록</ListButton>
                     <EditButton onClick={props.onClickMoveToEditPage}>수정</EditButton>
-                    <DeleteButton onClick={props.onClickDelete}>삭제</DeleteButton>
+                    <DeleteButton onClick={props.onClickDeleteBoard}>삭제</DeleteButton>
                 </CrudButtonGroupWrapper>
                 <CommentFormWrapper>
+                    {props.isModalOpen && (
+                        <PasswordModal title={"댓글 삭제"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
+                            <PasswordModalContent>작성자만 댓글을 삭제할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 삭제를 진행해 주세요.</PasswordModalContent>
+                            <PasswordModalInput type="password" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentDeletePassword}/>
+                        </PasswordModal>
+                    )}
                     <CommentSectionTitleWrapper>
                         <FaRegCommentDotsIcon></FaRegCommentDotsIcon>
                         <CommentLabel>댓글</CommentLabel>
@@ -123,23 +134,27 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         <CommentDetailWrapper key={el._id}>
                             <CommentProfileIcon src="/images/profile.png" />
                             <CommentInfoWrapper>
-                                <CommentWriterWithStarWrapper>
-                                    <CommentWriter>{el.writer}</CommentWriter>
-                                    <StarWrapper>
-                                        {[...Array(el.rating)].map((_, index) => (
-                                            <IoMdStarIconActive key={index}></IoMdStarIconActive>
-                                        ))}
-                                        {[...Array(5-el.rating)].map((_, index) => (
-                                            <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
-                                        ))}
-                                    </StarWrapper>
-                                    <MdClearIcon/>
-                                    <MdModeEditIcon/>
-                                </CommentWriterWithStarWrapper>
+                                <CommentHeaderWrapper>
+                                    <WriterStarWrapper>
+                                        <CommentWriter>{el.writer}</CommentWriter>
+                                        <StarWrapper>
+                                            {[...Array(el.rating)].map((_, index) => (
+                                                <IoMdStarIconActive key={index}></IoMdStarIconActive>
+                                            ))}
+                                            {[...Array(5-el.rating)].map((_, index) => (
+                                                <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
+                                            ))}
+                                        </StarWrapper>
+                                    </WriterStarWrapper>
+                                    <IconWrapper>
+                                        <MdModeEditIcon/>
+                                        <MdClearIcon onClick={() => props.onClickOpenDeleteModal(el._id)}/>
+                                    </IconWrapper>
+                                </CommentHeaderWrapper>
                                 <CommentContent>{el.contents}</CommentContent>
                                 <CommentCreatedAt>{el.createdAt}</CommentCreatedAt>
                             </CommentInfoWrapper>
-                        </CommentDetailWrapper>             
+                        </CommentDetailWrapper>  
                     ))}
                 </CommentFormWrapper>
             </MainWrapper>

@@ -15,7 +15,7 @@ export interface FetchBoardData {
 }
 
 export interface FetchBoardComment{
-    _id: number;
+    _id: string;
     writer: string;
     contents: string;
     rating: number;
@@ -42,17 +42,22 @@ export interface BoardDetailUIProps {
     starRating: number;
     likeCount: number;
     dislikeCount: number;
+    isModalOpen: boolean;
 
     onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
-    onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickDeleteBoard: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickSubmitComment: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickLike: (event: MouseEvent<HTMLImageElement>) => void;
     onClickDislike: (event: MouseEvent<HTMLImageElement>) => void;
     onClickStarRatingIncrease: (event: MouseEvent<SVGElement>) => void;
     onClickStarRatingDecrease: (event: MouseEvent<SVGElement>) => void;
+    onClickDeleteComment: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickOpenDeleteModal: (_id: string) => void;
     onInputCommentWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputCommentDeletePassword: (event: ChangeEvent<HTMLInputElement>) => void;
     setStarRating: React.Dispatch<React.SetStateAction<number>>;
+    onToggleModal: () => void;
 }

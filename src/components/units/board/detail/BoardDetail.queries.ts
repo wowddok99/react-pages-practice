@@ -55,3 +55,9 @@ export const DISLIKE_BOARD = gql`
         dislikeBoard(boardId:$boardId)
     }
 `
+
+export const DELETE_BOARD_COMMENT = gql`
+    mutation deleteBoardComment($boardCommentId: ID!, $password: String){
+        deleteBoardComment(boardCommentId:$boardCommentId, password:$password)
+    }
+`

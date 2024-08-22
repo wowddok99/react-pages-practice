@@ -1,7 +1,7 @@
 import BoardDetailUI from "./BoardDetail.presenter"
 import { useRouter } from "next/router"
 import { useQuery, useMutation, ApolloError } from "@apollo/client"
-import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
+import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS, LIKE_BOARD, DISLIKE_BOARD, DELETE_BOARD_COMMENT } from "./BoardDetail.queries";
 import { useState, ChangeEvent, MouseEvent } from "react";
 import { CreateBoardCommentInput, FetchBoardCommentsData, FetchBoardData } from "./BoardDetail.types";
 
@@ -12,6 +12,7 @@ export default function BoardDetail(){
     const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
     const [likeBoard] = useMutation(LIKE_BOARD);
     const [dislikeBoard] = useMutation(DISLIKE_BOARD);
+    const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
     const [commentWriter, setCommentWriter] = useState<string>("");
     const [commentPassword, setCommentPassword] = useState<string>("");
@@ -23,6 +24,9 @@ export default function BoardDetail(){
     const [likeCount, setLikeCount] = useState<number>(0);
     const [dislikeCount, setDislikeCount] = useState<number>(0);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [commentDeletePassword, setCommentDeletePassword] = useState<string>("");
+    const [boardCommentId, setBoardCommentId] = useState<string>("");
 
     const {data: fetchBoardData} = useQuery<FetchBoardData>(FETCH_BOARD, {
         variables: {
@@ -49,7 +53,7 @@ export default function BoardDetail(){
         router.push(`/boards/edit/${router.query.boardId}`);    
     }
 
-    const onClickDelete = async(): Promise<void> => {
+    const onClickDeleteBoard = async(): Promise<void> => {
         try {
             await deleteBoard({
                 variables: {
@@ -84,7 +88,6 @@ export default function BoardDetail(){
             password: commentPassword,
             contents: commentContent,
             rating: starRating
-
         };
 
         try {
@@ -93,7 +96,7 @@ export default function BoardDetail(){
                     boardId: router.query.boardId,
                     createBoardCommentInput
                 }
-            })
+            });
             router.reload();
         } catch(error){
             if (error instanceof ApolloError) {
@@ -141,6 +144,38 @@ export default function BoardDetail(){
         setStarRating((starRating ?? 0)-1)
     }
 
+    const onClickDeleteComment = async(event: MouseEvent<HTMLButtonElement>): Promise<void> => {
+        try {
+            await deleteBoardComment({
+                variables: {
+                    boardCommentId: boardCommentId,
+                    password: commentDeletePassword
+                }
+            });
+            onToggleModal();
+            router.reload();
+            alert("댓글이 삭제되었습니다.")
+        } catch(error){
+            if (error instanceof ApolloError) {
+                alert(error.message);
+            } 
+        }
+    }
+
+    const onToggleModal = (): void => {
+        setIsModalOpen((prev) => !prev);
+    }
+
+    const onClickOpenDeleteModal = (_id: string): void => {
+        setCommentDeletePassword("")
+        setBoardCommentId(_id);
+        onToggleModal();
+    }
+
+    const onInputCommentDeletePassword = (event: ChangeEvent<HTMLInputElement>): void => {
+        setCommentDeletePassword(event.target.value);
+    }
+
     return (
         <div>
             <BoardDetailUI
@@ -150,18 +185,23 @@ export default function BoardDetail(){
             starRating={starRating}
             onClickMoveToListPage={onClickMoveToListPage}
             onClickMoveToEditPage={onClickMoveToEditPage}
-            onClickDelete={onClickDelete}
+            onClickDeleteBoard={onClickDeleteBoard}
             onClickSubmitComment={onClickSubmitComment}
             onClickLike={onClickLike}
             onClickDislike={onClickDislike}
             onClickStarRatingIncrease={onClickStarRatingIncrease}
             onClickStarRatingDecrease={onClickStarRatingDecrease}
+            onClickDeleteComment={onClickDeleteComment}
+            onClickOpenDeleteModal={onClickOpenDeleteModal}
             onInputCommentWriter={onInputCommentWriter}
             onInputCommentPassword={onInputCommentPassword}
             onInputCommentContent={onInputCommentContent}
+            onInputCommentDeletePassword={onInputCommentDeletePassword}
             setStarRating={setStarRating}
+            onToggleModal={onToggleModal}
             likeCount={likeCount}
             dislikeCount={dislikeCount}
+            isModalOpen={isModalOpen}
             />
         </div>
         )

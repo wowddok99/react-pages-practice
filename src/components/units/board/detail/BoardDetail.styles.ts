@@ -3,6 +3,7 @@ import { FaRegCommentDots } from "@react-icons/all-files/fa/FaRegCommentDots";
 import { IoMdStar } from "@react-icons/all-files/io/IoMdStar";
 import { MdClear } from "@react-icons/all-files/md/MdClear";
 import { MdModeEdit } from "@react-icons/all-files/md/MdModeEdit";
+import { Modal } from 'antd'
 
 export const PageLayout = styled.div`
     word-break: break-all;
@@ -273,15 +274,27 @@ export const CommentProfileIcon = styled.img`
 `
 
 export const CommentInfoWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.3125rem;
 `
 
-export const CommentWriterWithStarWrapper = styled.div`
+export const CommentHeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const WriterStarWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.625rem;
+`
+
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
 `
 
 export const CommentWriter = styled.div`
@@ -303,19 +316,19 @@ export const CommentInputHeaderWrapper = styled.div`
 `
 
 export const CommentInputWriter = styled.input`
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
   width: 7.5rem;
   height: 2.5rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
   border: 0.0625rem solid #bdbdbd;
   border-radius: 0.1875rem;
 `
 
 export const CommentInputPassword = styled.input`
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
   width: 7.5rem;
   height: 2.5rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
   border: 0.0625rem solid #bdbdbd;
   border-radius: 0.1875rem;
 `
@@ -333,3 +346,17 @@ export const MdModeEditIcon = styled(MdModeEdit)`
   height: 1.3rem;
   color: #bdbdbd;
 `
+
+export const PasswordModal = styled(Modal)`
+`;
+
+export const PasswordModalContent = styled.div`
+`
+
+export const PasswordModalInput = styled.input`
+  width: 100%;
+  height: 2rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  margin-top: 0.5rem;
+`;

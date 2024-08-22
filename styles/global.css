@@ -25,4 +25,8 @@
  
 body {
     font-family: 'NotoSansKR-Regular', sans-serif;
-} 
+}
+
+.ant-modal-mask {
+    background-color: rgba(0, 0, 0, 0); /* 마스크 배경색 변경 */
+  }
