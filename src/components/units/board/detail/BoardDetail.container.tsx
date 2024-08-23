@@ -14,6 +14,7 @@ export default function BoardDetail(){
     const [dislikeBoard] = useMutation(DISLIKE_BOARD);
     const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
+    const [isCommentInputOpen, setIsCommentInputOpen] = useState<boolean>(true)
     const [commentWriter, setCommentWriter] = useState<string>("");
     const [commentPassword, setCommentPassword] = useState<string>("");
     const [commentContent, setCommentContent] = useState<string>("");
@@ -24,7 +25,7 @@ export default function BoardDetail(){
     const [likeCount, setLikeCount] = useState<number>(0);
     const [dislikeCount, setDislikeCount] = useState<number>(0);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [commentDeletePassword, setCommentDeletePassword] = useState<string>("");
     const [boardCommentId, setBoardCommentId] = useState<string>("");
 
@@ -82,6 +83,16 @@ export default function BoardDetail(){
         setCommentContentLength(event.target.value.length)
     }
 
+    const resetCommentInput = (): void => {
+        setCommentWriter("");
+        setCommentPassword("");
+        setStarRating(0);
+        setCommentContent("");
+        setCommentContentLength(0);
+        setIsCommentInputOpen(false);
+        setIsCommentInputOpen(true);
+    }
+
     const onClickSubmitComment = async(): Promise<void> => {
         const createBoardCommentInput: CreateBoardCommentInput = {
             writer: commentWriter,
@@ -90,20 +101,37 @@ export default function BoardDetail(){
             rating: starRating
         };
 
-        try {
-            const result = await createBoardComment({
-                variables: {
-                    boardId: router.query.boardId,
-                    createBoardCommentInput
+        // 댓글을 등록하려면 작성자, 비밀번호, 내용이 모두 필수로 입력
+        if (commentWriter && commentPassword && commentContent) {
+            try {
+                const result = await createBoardComment({
+                    variables: {
+                        boardId: router.query.boardId,
+                        createBoardCommentInput
+                    },
+                    refetchQueries: [
+                      {
+                        query: FETCH_BOARD_COMMENTS,
+                        variables: { 
+                            page: 1,
+                            boardId: router.query.boardId
+                        }
+                      }
+                    ]
+                });
+                resetCommentInput();
+            } catch(error){
+                if (error instanceof ApolloError) {
+                    console.log(error.message);
                 }
-            });
-            router.reload();
-        } catch(error){
-            if (error instanceof ApolloError) {
-                console.log(error.message);
             }
+        } else if (!commentWriter) {
+            alert("작성자를 입력해주세요.")
+        } else if (!commentPassword) {
+            alert("비밀번호를 입력해주세요.")
+        } else if(!commentContent) {
+            alert("내용을 입력해주세요.")
         }
-
     }
 
     const onClickLike = async(): Promise<void> => {
@@ -150,10 +178,19 @@ export default function BoardDetail(){
                 variables: {
                     boardCommentId: boardCommentId,
                     password: commentDeletePassword
-                }
+                },
+                refetchQueries: [
+                  {
+                    query: FETCH_BOARD_COMMENTS,
+                    variables: { 
+                        page: 1,
+                        boardId: router.query.boardId
+                    }
+                  }
+                ]
             });
             onToggleModal();
-            router.reload();
+            // router.reload();
             alert("댓글이 삭제되었습니다.")
         } catch(error){
             if (error instanceof ApolloError) {
@@ -202,6 +239,7 @@ export default function BoardDetail(){
             likeCount={likeCount}
             dislikeCount={dislikeCount}
             isModalOpen={isModalOpen}
+            isCommentInputOpen={isCommentInputOpen}
             />
         </div>
         )

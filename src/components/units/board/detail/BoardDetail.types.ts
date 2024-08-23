@@ -43,6 +43,7 @@ export interface BoardDetailUIProps {
     likeCount: number;
     dislikeCount: number;
     isModalOpen: boolean;
+    isCommentInputOpen:boolean;
 
     onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
