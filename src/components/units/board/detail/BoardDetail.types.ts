@@ -56,7 +56,7 @@ export interface BoardDetailUIProps {
     onClickStarRatingDecrease: (event: MouseEvent<SVGElement>) => void;
     onClickDeleteComment: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickOpenDeleteModal: (_id: string) => void;
-    onClickOpenEditModal: (_id: string) => void;
+    onClickOpenEditModal: (_id: string, rating: number) => void;
 
     onInputCommentWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentPassword: (event: ChangeEvent<HTMLInputElement>) => void;

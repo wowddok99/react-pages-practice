@@ -1,3 +1,4 @@
+import Modal from "antd/es/modal/Modal";
 import {
     PageLayout,
     MainWrapper,
@@ -53,10 +54,12 @@ import {
     MdModeEditIcon,
     DeleteModal,
     EditModal,
+    ModalFieldLabel,
     DeleteModalContent,
     DeleteModalInput,
     EditModalContent,
-    EditModalInput
+    EditModalInput,
+    EditModalStarWrapper
 } from "./BoardDetail.styles"
 
 import { BoardDetailUIProps, FetchBoardComment } from "./BoardDetail.types";
@@ -104,6 +107,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                     <DeleteButton onClick={props.onClickDeleteBoard}>삭제</DeleteButton>
                 </CrudButtonGroupWrapper>
                 <CommentFormWrapper>
+                    {/* isModalOpen이 활성화되면, modalMode(DELETE 또는 EDIT)에 따라 모달 활성화*/}
                     {props.isModalOpen && (
                         props.modalMode === "DELETE" ? (
                             <DeleteModal title={"댓글 삭제"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
@@ -112,9 +116,24 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                             </DeleteModal>
                         ) : props.modalMode === "EDIT" ? (
                             <EditModal title={"댓글 수정"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
-                                <EditModalContent>작성자만 댓글을 수정할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 수정을 진행해 주세요.</EditModalContent>
-                                <div>댓글내용:<EditModalInput type="text" placeholder="댓글 내용을 입력해주세요."/></div>
-                                <div>비밀번호:<EditModalInput type="text" placeholder="비밀번호를 입력해주세요."/></div>
+                                    <EditModalContent>작성자만 댓글을 수정할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 수정을 진행해 주세요.</EditModalContent>
+                                    <div>
+                                        <ModalFieldLabel>댓글내용:</ModalFieldLabel>
+                                        <EditModalInput type="text" placeholder="댓글 내용을 입력해주세요."/>
+                                    </div>
+                                    <div>
+                                        <ModalFieldLabel>비밀번호:</ModalFieldLabel>
+                                        <EditModalInput type="text" placeholder="비밀번호를 입력해주세요."/>
+                                    </div>
+                                    <EditModalStarWrapper>
+                                        <ModalFieldLabel>별점:</ModalFieldLabel>
+                                        {[...Array(props.starRating)].map((_, index) => (
+                                                <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
+                                            ))}
+                                        {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
+                                            <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
+                                        ))}
+                                    </EditModalStarWrapper>
                             </EditModal>
                         ) : null
                     )}
@@ -128,12 +147,23 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                                 <CommentInputWriter type="text" onInput={props.onInputCommentWriter} placeholder="작성자"></CommentInputWriter>
                                 <CommentInputPassword type="password" onInput={props.onInputCommentPassword} placeholder="비밀번호"></CommentInputPassword>
                                 <StarWrapper>
-                                    {[...Array(props.starRating)].map((_, index) => (
-                                        <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
-                                    ))}
-                                    {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
-                                        <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
-                                    ))}
+                                    {/* isModalOpen이 활성화시, 댓글 등록창의 별점 비활성화 */}
+                                    {props.isModalOpen ? (
+                                        <div>
+                                            {[...Array(5)].map((_, index) => (
+                                            <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            {[...Array(props.starRating)].map((_, index) => (
+                                            <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
+                                            ))}
+                                            {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
+                                                <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
+                                            ))}
+                                        </div>
+                                    )}
                                 </StarWrapper>
                             </CommentInputHeaderWrapper>
                             <CommentInputWrapper>
@@ -160,7 +190,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                                         </StarWrapper>
                                     </WriterStarWrapper>
                                     <IconWrapper>
-                                        <MdModeEditIcon onClick={() => props.onClickOpenEditModal(el._id)}/>
+                                        <MdModeEditIcon onClick={() => props.onClickOpenEditModal(el._id, el.rating)}/>
                                         <MdClearIcon onClick={() => props.onClickOpenDeleteModal(el._id)}/>
                                     </IconWrapper>
                                 </CommentHeaderWrapper>

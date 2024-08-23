@@ -206,13 +206,13 @@ export default function BoardDetail(){
 
     const onToggleModal = (): void => {
         setIsModalOpen((prev) => !prev);
+        setStarRating(0);
     }
     
     const onClickOpenDeleteModal = (_id: string): void => {
         setModalMode("DELETE");
         setCommentDeletePassword("");
         setBoardCommentId(_id);
-        console.log(modalMode)
         onToggleModal();
     }
 
@@ -220,12 +220,12 @@ export default function BoardDetail(){
         setCommentDeletePassword(event.target.value);
     }
 
-    const onClickOpenEditModal = (_id: string): void => {
+    const onClickOpenEditModal = (_id: string, rating: number): void => {
         setModalMode("EDIT");
         setCommentDeletePassword("")
         setBoardCommentId(_id);
-        console.log(modalMode)
-        onToggleModal();
+        onToggleModal(); // onToggleModal()에 starRating이 0으로 설정하는 코드 포함
+        setStarRating(rating);
     }
     
     return (

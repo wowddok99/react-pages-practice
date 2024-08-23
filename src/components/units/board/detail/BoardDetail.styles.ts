@@ -1,9 +1,11 @@
+import { Content } from './../write/BoardWrite.styles';
 import styled from "@emotion/styled";
 import { FaRegCommentDots } from "@react-icons/all-files/fa/FaRegCommentDots";
 import { IoMdStar } from "@react-icons/all-files/io/IoMdStar";
 import { MdClear } from "@react-icons/all-files/md/MdClear";
 import { MdModeEdit } from "@react-icons/all-files/md/MdModeEdit";
 import { Modal } from 'antd'
+import exp from "constants";
 
 export const PageLayout = styled.div`
     word-break: break-all;
@@ -353,6 +355,10 @@ export const DeleteModal = styled(Modal)`
 export const EditModal = styled(Modal)`
 `;
 
+export const ModalFieldLabel = styled.div`
+  display: inline;
+  margin-right: 0.4rem;
+`
 
 export const DeleteModalContent = styled.div`
 `
@@ -374,4 +380,9 @@ export const EditModalInput = styled.input`
   padding-left: 0.1rem;
   padding-right: 0.1rem;
   margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
+
+export const EditModalStarWrapper = styled.div`
+  display: flex;
+`
