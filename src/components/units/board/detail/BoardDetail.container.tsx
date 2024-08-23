@@ -25,9 +25,14 @@ export default function BoardDetail(){
     const [likeCount, setLikeCount] = useState<number>(0);
     const [dislikeCount, setDislikeCount] = useState<number>(0);
 
+    const [modalMode , setModalMode] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [commentDeletePassword, setCommentDeletePassword] = useState<string>("");
     const [boardCommentId, setBoardCommentId] = useState<string>("");
+
+    // commentEditingId === null: 현재 수정 중인 댓글이 없음
+    // commentEditingId !== null: 현재 수정 중인 댓글이 있음 -> 댓글 수정 창 활성화
+    const [commentEditingId, setCommentEditingId] = useState<string | null>(null);
 
     const {data: fetchBoardData} = useQuery<FetchBoardData>(FETCH_BOARD, {
         variables: {
@@ -190,7 +195,7 @@ export default function BoardDetail(){
                 ]
             });
             onToggleModal();
-            // router.reload();
+            setModalMode("")
             alert("댓글이 삭제되었습니다.")
         } catch(error){
             if (error instanceof ApolloError) {
@@ -202,10 +207,12 @@ export default function BoardDetail(){
     const onToggleModal = (): void => {
         setIsModalOpen((prev) => !prev);
     }
-
+    
     const onClickOpenDeleteModal = (_id: string): void => {
-        setCommentDeletePassword("")
+        setModalMode("DELETE");
+        setCommentDeletePassword("");
         setBoardCommentId(_id);
+        console.log(modalMode)
         onToggleModal();
     }
 
@@ -213,6 +220,14 @@ export default function BoardDetail(){
         setCommentDeletePassword(event.target.value);
     }
 
+    const onClickOpenEditModal = (_id: string): void => {
+        setModalMode("EDIT");
+        setCommentDeletePassword("")
+        setBoardCommentId(_id);
+        console.log(modalMode)
+        onToggleModal();
+    }
+    
     return (
         <div>
             <BoardDetailUI
@@ -230,6 +245,7 @@ export default function BoardDetail(){
             onClickStarRatingDecrease={onClickStarRatingDecrease}
             onClickDeleteComment={onClickDeleteComment}
             onClickOpenDeleteModal={onClickOpenDeleteModal}
+            onClickOpenEditModal={onClickOpenEditModal}
             onInputCommentWriter={onInputCommentWriter}
             onInputCommentPassword={onInputCommentPassword}
             onInputCommentContent={onInputCommentContent}
@@ -240,6 +256,7 @@ export default function BoardDetail(){
             dislikeCount={dislikeCount}
             isModalOpen={isModalOpen}
             isCommentInputOpen={isCommentInputOpen}
+            modalMode={modalMode}
             />
         </div>
         )

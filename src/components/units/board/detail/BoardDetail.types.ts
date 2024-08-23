@@ -44,6 +44,7 @@ export interface BoardDetailUIProps {
     dislikeCount: number;
     isModalOpen: boolean;
     isCommentInputOpen:boolean;
+    modalMode: string;
 
     onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -55,10 +56,13 @@ export interface BoardDetailUIProps {
     onClickStarRatingDecrease: (event: MouseEvent<SVGElement>) => void;
     onClickDeleteComment: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickOpenDeleteModal: (_id: string) => void;
+    onClickOpenEditModal: (_id: string) => void;
+
     onInputCommentWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentDeletePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+
     setStarRating: React.Dispatch<React.SetStateAction<number>>;
     onToggleModal: () => void;
 }

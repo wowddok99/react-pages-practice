@@ -51,9 +51,12 @@ import {
     CommentInputPassword,
     MdClearIcon,
     MdModeEditIcon,
-    PasswordModal,
-    PasswordModalContent,
-    PasswordModalInput
+    DeleteModal,
+    EditModal,
+    DeleteModalContent,
+    DeleteModalInput,
+    EditModalContent,
+    EditModalInput
 } from "./BoardDetail.styles"
 
 import { BoardDetailUIProps, FetchBoardComment } from "./BoardDetail.types";
@@ -102,10 +105,18 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                 </CrudButtonGroupWrapper>
                 <CommentFormWrapper>
                     {props.isModalOpen && (
-                        <PasswordModal title={"댓글 삭제"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
-                            <PasswordModalContent>작성자만 댓글을 삭제할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 삭제를 진행해 주세요.</PasswordModalContent>
-                            <PasswordModalInput type="password" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentDeletePassword}/>
-                        </PasswordModal>
+                        props.modalMode === "DELETE" ? (
+                            <DeleteModal title={"댓글 삭제"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
+                                <DeleteModalContent>작성자만 댓글을 삭제할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 삭제를 진행해 주세요.</DeleteModalContent>
+                                <DeleteModalInput type="password" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentDeletePassword}/>
+                            </DeleteModal>
+                        ) : props.modalMode === "EDIT" ? (
+                            <EditModal title={"댓글 수정"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
+                                <EditModalContent>작성자만 댓글을 수정할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 수정을 진행해 주세요.</EditModalContent>
+                                <div>댓글내용:<EditModalInput type="text" placeholder="댓글 내용을 입력해주세요."/></div>
+                                <div>비밀번호:<EditModalInput type="text" placeholder="비밀번호를 입력해주세요."/></div>
+                            </EditModal>
+                        ) : null
                     )}
                     <CommentSectionTitleWrapper>
                         <FaRegCommentDotsIcon></FaRegCommentDotsIcon>
@@ -149,7 +160,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                                         </StarWrapper>
                                     </WriterStarWrapper>
                                     <IconWrapper>
-                                        <MdModeEditIcon/>
+                                        <MdModeEditIcon onClick={() => props.onClickOpenEditModal(el._id)}/>
                                         <MdClearIcon onClick={() => props.onClickOpenDeleteModal(el._id)}/>
                                     </IconWrapper>
                                 </CommentHeaderWrapper>

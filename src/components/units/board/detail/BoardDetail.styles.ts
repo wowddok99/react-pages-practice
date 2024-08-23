@@ -347,14 +347,29 @@ export const MdModeEditIcon = styled(MdModeEdit)`
   color: #bdbdbd;
 `
 
-export const PasswordModal = styled(Modal)`
+export const DeleteModal = styled(Modal)`
 `;
 
-export const PasswordModalContent = styled.div`
+export const EditModal = styled(Modal)`
+`;
+
+
+export const DeleteModalContent = styled.div`
 `
 
-export const PasswordModalInput = styled.input`
+export const DeleteModalInput = styled.input`
   width: 100%;
+  height: 2rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  margin-top: 0.5rem;
+`;
+
+export const EditModalContent = styled.div`
+`
+
+export const EditModalInput = styled.input`
+  width: 80%;
   height: 2rem;
   padding-left: 0.1rem;
   padding-right: 0.1rem;
