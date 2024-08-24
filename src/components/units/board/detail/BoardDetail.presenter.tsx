@@ -115,15 +115,15 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                                 <DeleteModalInput type="password" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentDeletePassword}/>
                             </DeleteModal>
                         ) : props.modalMode === "EDIT" ? (
-                            <EditModal title={"댓글 수정"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
+                            <EditModal title={"댓글 수정"} open={true} onOk={props.onClickUpdateComment} onCancel={props.onToggleModal} mask={true}>
                                     <EditModalContent>작성자만 댓글을 수정할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 수정을 진행해 주세요.</EditModalContent>
                                     <div>
                                         <ModalFieldLabel>댓글내용:</ModalFieldLabel>
-                                        <EditModalInput type="text" placeholder="댓글 내용을 입력해주세요."/>
+                                        <EditModalInput type="text" maxLength={100} placeholder="댓글 내용을 입력해주세요." onInput={props.onInputCommentContent}/>
                                     </div>
                                     <div>
                                         <ModalFieldLabel>비밀번호:</ModalFieldLabel>
-                                        <EditModalInput type="text" placeholder="비밀번호를 입력해주세요."/>
+                                        <EditModalInput type="text" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentUpdatePassword}/>
                                     </div>
                                     <EditModalStarWrapper>
                                         <ModalFieldLabel>별점:</ModalFieldLabel>

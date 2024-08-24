@@ -33,6 +33,11 @@ export interface CreateBoardCommentInput {
     rating: number;
 }
 
+export interface UpdateBoardCommentInput {
+    contents: string;
+    rating: number;
+}
+
 // types - BoardDetail.presenter
 export interface BoardDetailUIProps {
     fetchBoardData?: FetchBoardData;
@@ -57,12 +62,13 @@ export interface BoardDetailUIProps {
     onClickDeleteComment: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickOpenDeleteModal: (_id: string) => void;
     onClickOpenEditModal: (_id: string, rating: number) => void;
+    onClickUpdateComment: (event: MouseEvent<HTMLButtonElement>) => void;
 
     onInputCommentWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentDeletePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputCommentUpdatePassword: (event: ChangeEvent<HTMLInputElement>) => void; 
 
-    setStarRating: React.Dispatch<React.SetStateAction<number>>;
     onToggleModal: () => void;
 }

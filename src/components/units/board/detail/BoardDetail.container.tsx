@@ -1,9 +1,9 @@
 import BoardDetailUI from "./BoardDetail.presenter"
 import { useRouter } from "next/router"
 import { useQuery, useMutation, ApolloError } from "@apollo/client"
-import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS, LIKE_BOARD, DISLIKE_BOARD, DELETE_BOARD_COMMENT } from "./BoardDetail.queries";
+import { FETCH_BOARD, DELETE_BOARD, CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS, LIKE_BOARD, DISLIKE_BOARD, DELETE_BOARD_COMMENT, UPDATE_BOARD_COMMENT } from "./BoardDetail.queries";
 import { useState, ChangeEvent, MouseEvent } from "react";
-import { CreateBoardCommentInput, FetchBoardCommentsData, FetchBoardData } from "./BoardDetail.types";
+import { CreateBoardCommentInput, UpdateBoardCommentInput, FetchBoardCommentsData, FetchBoardData } from "./BoardDetail.types";
 
 export default function BoardDetail(){
     const router = useRouter();
@@ -13,6 +13,7 @@ export default function BoardDetail(){
     const [likeBoard] = useMutation(LIKE_BOARD);
     const [dislikeBoard] = useMutation(DISLIKE_BOARD);
     const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
+    const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
 
     const [isCommentInputOpen, setIsCommentInputOpen] = useState<boolean>(true)
     const [commentWriter, setCommentWriter] = useState<string>("");
@@ -27,8 +28,9 @@ export default function BoardDetail(){
 
     const [modalMode , setModalMode] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [commentDeletePassword, setCommentDeletePassword] = useState<string>("");
     const [boardCommentId, setBoardCommentId] = useState<string>("");
+    const [commentDeletePassword, setCommentDeletePassword] = useState<string>("");
+    const [commentUpdatePassword, setCommentUpdatePassword] = useState<string>("");
 
     // commentEditingId === null: 현재 수정 중인 댓글이 없음
     // commentEditingId !== null: 현재 수정 중인 댓글이 있음 -> 댓글 수정 창 활성화
@@ -177,6 +179,10 @@ export default function BoardDetail(){
         setStarRating((starRating ?? 0)-1)
     }
 
+    const onInputCommentDeletePassword = (event: ChangeEvent<HTMLInputElement>): void => {
+        setCommentDeletePassword(event.target.value);
+    }
+
     const onClickDeleteComment = async(event: MouseEvent<HTMLButtonElement>): Promise<void> => {
         try {
             await deleteBoardComment({
@@ -204,37 +210,79 @@ export default function BoardDetail(){
         }
     }
 
+    // onToggleModal() -> deletePassword, updatePassword, commentContent, starRating 초기화
     const onToggleModal = (): void => {
         setIsModalOpen((prev) => !prev);
+        setCommentDeletePassword("")
+        setCommentUpdatePassword("")
+        setCommentContent("");
         setStarRating(0);
     }
     
     const onClickOpenDeleteModal = (_id: string): void => {
         setModalMode("DELETE");
-        setCommentDeletePassword("");
         setBoardCommentId(_id);
-        onToggleModal();
-    }
-
-    const onInputCommentDeletePassword = (event: ChangeEvent<HTMLInputElement>): void => {
-        setCommentDeletePassword(event.target.value);
+        onToggleModal(); 
     }
 
     const onClickOpenEditModal = (_id: string, rating: number): void => {
         setModalMode("EDIT");
-        setCommentDeletePassword("")
         setBoardCommentId(_id);
-        onToggleModal(); // onToggleModal()에 starRating이 0으로 설정하는 코드 포함
-        setStarRating(rating);
+        onToggleModal();
+        setStarRating(rating); // modal 활성화 이후, rating값 업데이트
     }
     
+    const onInputCommentUpdatePassword = (event: ChangeEvent<HTMLInputElement>): void => {
+        setCommentUpdatePassword(event.target.value);
+    }
+
+    const onClickUpdateComment = async(event: MouseEvent<HTMLButtonElement>): Promise<void> => {
+        const updateBoardCommentInput: UpdateBoardCommentInput = {
+            contents: commentContent,
+            rating: starRating
+        };
+
+        try {
+            await updateBoardComment({
+                variables: {
+                    updateBoardCommentInput: updateBoardCommentInput,
+                    boardCommentId: boardCommentId,
+                    password: commentUpdatePassword
+                },
+                refetchQueries: [
+                  {
+                    query: FETCH_BOARD_COMMENTS,
+                    variables: { 
+                        page: 1,
+                        boardId: router.query.boardId
+                    }
+                  }
+                ]
+            });
+            onToggleModal();
+            setModalMode("")
+            alert("댓글이 수정되었습니다.")
+        } catch(error) {
+            if (error instanceof ApolloError) {
+                alert(error.message);
+            } 
+        }
+    }
+
     return (
         <div>
             <BoardDetailUI
             fetchBoardData={fetchBoardData}
             fetchBoardCommentsData={fetchBoardCommentsData}
+
             commentContentLength={commentContentLength}
             starRating={starRating}
+            likeCount={likeCount}
+            dislikeCount={dislikeCount}
+            isModalOpen={isModalOpen}
+            isCommentInputOpen={isCommentInputOpen}
+            modalMode={modalMode}
+
             onClickMoveToListPage={onClickMoveToListPage}
             onClickMoveToEditPage={onClickMoveToEditPage}
             onClickDeleteBoard={onClickDeleteBoard}
@@ -246,17 +294,15 @@ export default function BoardDetail(){
             onClickDeleteComment={onClickDeleteComment}
             onClickOpenDeleteModal={onClickOpenDeleteModal}
             onClickOpenEditModal={onClickOpenEditModal}
+            onClickUpdateComment={onClickUpdateComment}
+
             onInputCommentWriter={onInputCommentWriter}
             onInputCommentPassword={onInputCommentPassword}
             onInputCommentContent={onInputCommentContent}
             onInputCommentDeletePassword={onInputCommentDeletePassword}
-            setStarRating={setStarRating}
+            onInputCommentUpdatePassword={onInputCommentUpdatePassword}
+
             onToggleModal={onToggleModal}
-            likeCount={likeCount}
-            dislikeCount={dislikeCount}
-            isModalOpen={isModalOpen}
-            isCommentInputOpen={isCommentInputOpen}
-            modalMode={modalMode}
             />
         </div>
         )
