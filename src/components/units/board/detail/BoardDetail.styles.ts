@@ -350,14 +350,63 @@ export const MdModeEditIcon = styled(MdModeEdit)`
 `
 
 export const DeleteModal = styled(Modal)`
+  font-family: 'NotoSansKR-Regular', sans-serif;
+
+  .ant-modal-content {
+    padding: 0px;
+  }
+  
+  .ant-modal-header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid #bdbdbd;
+  }
+
+  .ant-modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .ant-modal-footer {
+    padding: 10px;
+    border-top: 1px solid #bdbdbd;
+  }
 `;
 
 export const EditModal = styled(Modal)`
+  font-family: 'NotoSansKR-Regular', sans-serif;
+
+  .ant-modal-content {
+    padding: 0px;
+  }
+  
+  .ant-modal-header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid #bdbdbd;
+  }
+
+  .ant-modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .ant-modal-footer {
+    padding: 10px;
+    border-top: 1px solid #bdbdbd;
+  }
 `;
 
-export const ModalFieldLabel = styled.div`
-  display: inline;
-  margin-right: 0.4rem;
+export const EditModalInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const ModalInputLabel = styled.div`
 `
 
 export const DeleteModalContent = styled.div`
@@ -371,11 +420,8 @@ export const DeleteModalInput = styled.input`
   margin-top: 0.5rem;
 `;
 
-export const EditModalContent = styled.div`
-`
-
 export const EditModalInput = styled.input`
-  width: 80%;
+  width: 100%;
   height: 2rem;
   padding-left: 0.1rem;
   padding-right: 0.1rem;
@@ -385,4 +431,5 @@ export const EditModalInput = styled.input`
 
 export const EditModalStarWrapper = styled.div`
   display: flex;
+  margin-bottom: 7px;
 `

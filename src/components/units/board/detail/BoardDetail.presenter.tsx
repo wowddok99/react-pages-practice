@@ -54,10 +54,10 @@ import {
     MdModeEditIcon,
     DeleteModal,
     EditModal,
-    ModalFieldLabel,
+    EditModalInputWrapper,
+    ModalInputLabel,
     DeleteModalContent,
     DeleteModalInput,
-    EditModalContent,
     EditModalInput,
     EditModalStarWrapper
 } from "./BoardDetail.styles"
@@ -110,30 +110,31 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                     {/* isModalOpen이 활성화되면, modalMode(DELETE 또는 EDIT)에 따라 모달 활성화*/}
                     {props.isModalOpen && (
                         props.modalMode === "DELETE" ? (
-                            <DeleteModal title={"댓글 삭제"} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
+                            <DeleteModal title={<span style={{ fontSize: '18px' }}>댓글 삭제</span>} open={true} onOk={props.onClickDeleteComment} onCancel={props.onToggleModal} mask={true}>
                                 <DeleteModalContent>작성자만 댓글을 삭제할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 삭제를 진행해 주세요.</DeleteModalContent>
                                 <DeleteModalInput type="password" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentDeletePassword}/>
                             </DeleteModal>
                         ) : props.modalMode === "EDIT" ? (
-                            <EditModal title={"댓글 수정"} open={true} onOk={props.onClickUpdateComment} onCancel={props.onToggleModal} mask={true}>
-                                    <EditModalContent>작성자만 댓글을 수정할 수 있습니다.<br/>댓글 작성 시 입력하신 비밀번호를 입력하여 수정을 진행해 주세요.</EditModalContent>
-                                    <div>
-                                        <ModalFieldLabel>댓글내용:</ModalFieldLabel>
-                                        <EditModalInput type="text" maxLength={100} placeholder="댓글 내용을 입력해주세요." onInput={props.onInputCommentContent}/>
-                                    </div>
-                                    <div>
-                                        <ModalFieldLabel>비밀번호:</ModalFieldLabel>
-                                        <EditModalInput type="text" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentUpdatePassword}/>
-                                    </div>
+                            <EditModal title={<span style={{ fontSize: '18px' }}>댓글 수정</span>} open={true} onOk={props.onClickUpdateComment} onCancel={props.onToggleModal} mask={true}>
+                                <EditModalInputWrapper>
+                                    <ModalInputLabel>댓글내용</ModalInputLabel>
+                                    <EditModalInput type="text" maxLength={100} placeholder="댓글 내용을 입력해주세요." onInput={props.onInputCommentContent}/>
+                                </EditModalInputWrapper>
+                                <EditModalInputWrapper>
+                                    <ModalInputLabel>별점</ModalInputLabel>
                                     <EditModalStarWrapper>
-                                        <ModalFieldLabel>별점:</ModalFieldLabel>
-                                        {[...Array(props.starRating)].map((_, index) => (
-                                                <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
-                                            ))}
-                                        {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
-                                            <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
+                                    {[...Array(props.starRating)].map((_, index) => (
+                                            <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
                                         ))}
+                                    {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
+                                        <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
+                                    ))}
                                     </EditModalStarWrapper>
+                                </EditModalInputWrapper>
+                                <EditModalInputWrapper>
+                                    <ModalInputLabel>비밀번호</ModalInputLabel>
+                                    <EditModalInput type="text" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentUpdatePassword}/>
+                                </EditModalInputWrapper>
                             </EditModal>
                         ) : null
                     )}
