@@ -118,7 +118,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                             <EditModal title={<span style={{ fontSize: '18px' }}>댓글 수정</span>} open={true} onOk={props.onClickUpdateComment} onCancel={props.onToggleModal} mask={true}>
                                 <EditModalInputWrapper>
                                     <ModalInputLabel>댓글내용</ModalInputLabel>
-                                    <EditModalInput type="text" maxLength={100} placeholder="댓글 내용을 입력해주세요." onInput={props.onInputCommentContent}/>
+                                    <EditModalInput type="text" maxLength={100} placeholder="댓글 내용을 입력해주세요." onInput={props.onInputCommentContentUpdate}/>
                                 </EditModalInputWrapper>
                                 <EditModalInputWrapper>
                                     <ModalInputLabel>별점</ModalInputLabel>
@@ -133,7 +133,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                                 </EditModalInputWrapper>
                                 <EditModalInputWrapper>
                                     <ModalInputLabel>비밀번호</ModalInputLabel>
-                                    <EditModalInput type="text" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentUpdatePassword}/>
+                                    <EditModalInput type="password" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentUpdatePassword}/>
                                 </EditModalInputWrapper>
                             </EditModal>
                         ) : null
@@ -142,38 +142,36 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         <FaRegCommentDotsIcon></FaRegCommentDotsIcon>
                         <CommentLabel>댓글</CommentLabel>
                     </CommentSectionTitleWrapper>
-                    {props.isCommentInputOpen && (
-                        <CommentInsertWrapper>
-                            <CommentInputHeaderWrapper>
-                                <CommentInputWriter type="text" onInput={props.onInputCommentWriter} placeholder="작성자"></CommentInputWriter>
-                                <CommentInputPassword type="password" onInput={props.onInputCommentPassword} placeholder="비밀번호"></CommentInputPassword>
-                                <StarWrapper>
-                                    {/* isModalOpen이 활성화시, 댓글 등록창의 별점 비활성화 */}
-                                    {props.isModalOpen ? (
-                                        <div>
-                                            {[...Array(5)].map((_, index) => (
-                                            <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            {[...Array(props.starRating)].map((_, index) => (
-                                            <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
-                                            ))}
-                                            {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
-                                                <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
-                                            ))}
-                                        </div>
-                                    )}
-                                </StarWrapper>
-                            </CommentInputHeaderWrapper>
-                            <CommentInputWrapper>
-                                <CommentInputContent type="text" maxLength={100} onInput={props.onInputCommentContent} placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentInputContent>
-                                <CommentInputFooter>{props.commentContentLength}/{100}</CommentInputFooter>
-                                <CommentSubmitButton onClick={props.onClickSubmitComment}>등록하기</CommentSubmitButton>
-                            </CommentInputWrapper>
-                        </CommentInsertWrapper>
-                    )}
+                    <CommentInsertWrapper>
+                        <CommentInputHeaderWrapper>
+                            <CommentInputWriter type="text" value={props.commentWriter} onInput={props.onInputCommentWriter} placeholder="작성자"></CommentInputWriter>
+                            <CommentInputPassword type="password" value={props.commentPassword} onInput={props.onInputCommentPassword} placeholder="비밀번호"></CommentInputPassword>
+                            <StarWrapper>
+                                {/* isModalOpen이 활성화시, 댓글 등록창의 별점 비활성화 */}
+                                {props.isModalOpen ? (
+                                    <div>
+                                        {[...Array(5)].map((_, index) => (
+                                        <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div>
+                                        {[...Array(props.starRating)].map((_, index) => (
+                                        <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
+                                        ))}
+                                        {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
+                                            <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
+                                        ))}
+                                    </div>
+                                )}
+                            </StarWrapper>
+                        </CommentInputHeaderWrapper>
+                        <CommentInputWrapper>
+                            <CommentInputContent type="text" value={props.commentContent} maxLength={100} onInput={props.onInputCommentContent} placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentInputContent>
+                            <CommentInputFooter>{props.commentContentLength}/{100}</CommentInputFooter>
+                            <CommentSubmitButton onClick={props.onClickSubmitComment}>등록하기</CommentSubmitButton>
+                        </CommentInputWrapper>
+                    </CommentInsertWrapper>
                     {props.fetchBoardCommentsData?.fetchBoardComments.map((el: FetchBoardComment) => (
                         <CommentDetailWrapper key={el._id}>
                             <CommentProfileIcon src="/images/profile.png" />

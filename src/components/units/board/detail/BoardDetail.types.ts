@@ -41,8 +41,11 @@ export interface UpdateBoardCommentInput {
 // types - BoardDetail.presenter
 export interface BoardDetailUIProps {
     fetchBoardData?: FetchBoardData;
-    fetchBoardCommentsData?: FetchBoardCommentsData
+    fetchBoardCommentsData?: FetchBoardCommentsData;
 
+    commentWriter: string;
+    commentPassword: string;
+    commentContent: string
     commentContentLength: number;
     starRating: number;
     likeCount: number;
@@ -69,6 +72,7 @@ export interface BoardDetailUIProps {
     onInputCommentContent: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentDeletePassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentUpdatePassword: (event: ChangeEvent<HTMLInputElement>) => void; 
+    onInputCommentContentUpdate: (event: ChangeEvent<HTMLInputElement>) => void; 
 
     onToggleModal: () => void;
 }

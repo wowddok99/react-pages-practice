@@ -31,6 +31,7 @@ export default function BoardDetail(){
     const [boardCommentId, setBoardCommentId] = useState<string>("");
     const [commentDeletePassword, setCommentDeletePassword] = useState<string>("");
     const [commentUpdatePassword, setCommentUpdatePassword] = useState<string>("");
+    const [commentUpdateContent, setCommentUpdateContent] = useState<string>("");
 
     // commentEditingId === null: 현재 수정 중인 댓글이 없음
     // commentEditingId !== null: 현재 수정 중인 댓글이 있음 -> 댓글 수정 창 활성화
@@ -93,11 +94,9 @@ export default function BoardDetail(){
     const resetCommentInput = (): void => {
         setCommentWriter("");
         setCommentPassword("");
-        setStarRating(0);
         setCommentContent("");
         setCommentContentLength(0);
-        setIsCommentInputOpen(false);
-        setIsCommentInputOpen(true);
+        setStarRating(0);
     }
 
     const onClickSubmitComment = async(): Promise<void> => {
@@ -183,6 +182,12 @@ export default function BoardDetail(){
         setCommentDeletePassword(event.target.value);
     }
 
+    const onCommentActionSuccess = (alertMessage: string): void => {
+        onToggleModal();
+        setModalMode("")
+        alert(alertMessage)
+    }
+
     const onClickDeleteComment = async(event: MouseEvent<HTMLButtonElement>): Promise<void> => {
         try {
             await deleteBoardComment({
@@ -200,9 +205,7 @@ export default function BoardDetail(){
                   }
                 ]
             });
-            onToggleModal();
-            setModalMode("")
-            alert("댓글이 삭제되었습니다.")
+            onCommentActionSuccess("게시물이 삭제되었습니다.");
         } catch(error){
             if (error instanceof ApolloError) {
                 alert(error.message);
@@ -210,13 +213,12 @@ export default function BoardDetail(){
         }
     }
 
-    // onToggleModal() -> deletePassword, updatePassword, commentContent, starRating 초기화
+    // onToggleModal() -> 댓글 등록 정보 및, 모달(Delete, Update) 관련 Password 삭제
     const onToggleModal = (): void => {
         setIsModalOpen((prev) => !prev);
         setCommentDeletePassword("")
         setCommentUpdatePassword("")
-        setCommentContent("");
-        setStarRating(0);
+        resetCommentInput();
     }
     
     const onClickOpenDeleteModal = (_id: string): void => {
@@ -232,13 +234,17 @@ export default function BoardDetail(){
         setStarRating(rating); // modal 활성화 이후, rating값 업데이트
     }
     
+    const onInputCommentContentUpdate = (event: ChangeEvent<HTMLInputElement>): void => {
+        setCommentUpdateContent(event.target.value);
+    }
+
     const onInputCommentUpdatePassword = (event: ChangeEvent<HTMLInputElement>): void => {
         setCommentUpdatePassword(event.target.value);
     }
 
     const onClickUpdateComment = async(event: MouseEvent<HTMLButtonElement>): Promise<void> => {
         const updateBoardCommentInput: UpdateBoardCommentInput = {
-            contents: commentContent,
+            contents: commentUpdateContent,
             rating: starRating
         };
 
@@ -259,9 +265,7 @@ export default function BoardDetail(){
                   }
                 ]
             });
-            onToggleModal();
-            setModalMode("")
-            alert("댓글이 수정되었습니다.")
+            onCommentActionSuccess("댓글이 수정되었습니다.")
         } catch(error) {
             if (error instanceof ApolloError) {
                 alert(error.message);
@@ -275,7 +279,11 @@ export default function BoardDetail(){
             fetchBoardData={fetchBoardData}
             fetchBoardCommentsData={fetchBoardCommentsData}
 
+            commentWriter={commentWriter}
+            commentPassword={commentPassword}
+            commentContent={commentContent}
             commentContentLength={commentContentLength}
+
             starRating={starRating}
             likeCount={likeCount}
             dislikeCount={dislikeCount}
@@ -301,7 +309,8 @@ export default function BoardDetail(){
             onInputCommentContent={onInputCommentContent}
             onInputCommentDeletePassword={onInputCommentDeletePassword}
             onInputCommentUpdatePassword={onInputCommentUpdatePassword}
-
+            onInputCommentContentUpdate={onInputCommentContentUpdate}
+            
             onToggleModal={onToggleModal}
             />
         </div>
