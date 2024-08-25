@@ -29,7 +29,7 @@ import {
     CommentFormWrapper,
     CommentSectionTitleWrapper,
     CommentInsertWrapper,
-    CommentDetailWrapper,
+    CommentListWrapper,
     FaRegCommentDotsIcon,
     CommentLabel,
     StarWrapper,
@@ -173,7 +173,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         </CommentInputWrapper>
                     </CommentInsertWrapper>
                     {props.fetchBoardCommentsData?.fetchBoardComments.map((el: FetchBoardComment) => (
-                        <CommentDetailWrapper key={el._id}>
+                        <CommentListWrapper key={el._id}>
                             <CommentProfileIcon src="/images/profile.png" />
                             <CommentInfoWrapper>
                                 <CommentHeaderWrapper>
@@ -196,7 +196,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                                 <CommentContent>{el.contents}</CommentContent>
                                 <CommentCreatedAt>{el.createdAt}</CommentCreatedAt>
                             </CommentInfoWrapper>
-                        </CommentDetailWrapper>  
+                        </CommentListWrapper>  
                     ))}
                 </CommentFormWrapper>
             </MainWrapper>

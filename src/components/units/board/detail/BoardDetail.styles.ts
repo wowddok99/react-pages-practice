@@ -189,7 +189,7 @@ export const CommentInsertWrapper = styled.div`
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 `
-export const CommentDetailWrapper = styled.div`
+export const CommentListWrapper = styled.div`
   display: flex;
   border-bottom: 0.0625rem solid #BDBDBD;
   padding-bottom: 0.9375rem;
