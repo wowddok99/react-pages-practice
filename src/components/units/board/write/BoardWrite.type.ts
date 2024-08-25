@@ -34,10 +34,11 @@ export interface BoardWriterUIProps{
     isActive: boolean;
     isEdit: boolean;
     
+    onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
+
     onInputWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputPassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputSubject: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputContents: (event: ChangeEvent<HTMLInputElement>) => void;
-    onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
-    onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
 }

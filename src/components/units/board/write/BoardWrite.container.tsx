@@ -6,82 +6,24 @@ import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import { BoardWriterProps, UpdateBoardInput } from './BoardWrite.type'
 
 export default function BoardWriter(props:BoardWriterProps){
+    const router = useRouter();
     
+    // 1. State Variables
     const [isActive, setIsActive] = useState(false);
-
     const [writer, setWriter] = useState<undefined|string>();
     const [password, setPassword] = useState<undefined|string>();
     const [title, setTitle] = useState<undefined|string>();
     const [contents, setContents] = useState<undefined|string>();
-
     const [writerError, setWriterError] = useState<string>("");
     const [passwordError, setPasswordError] = useState<string>("");
     const [subjectError, setSubjectError] = useState<string>("");
     const [contentsError, setContentsError] = useState<string>("");
 
-    const router = useRouter();
+    // 2. GraphQL Mutations
     const [createBoard] = useMutation(CREATE_BOARD);
     const [updateBoard] = useMutation(UPDATE_BOARD);
 
-
-    // writer input의 입력 감지 -> state에 저장
-    const onInputWriter = (event: ChangeEvent<HTMLInputElement>) => {
-        setWriter(event.target.value);
-        // console.log(writer)
-        // 값 입력시 error창 초기화
-        if(event.target.value !== ""){
-          setWriterError("");
-        }
-
-        if (event.target.value && password && title && contents) {
-            setIsActive(true);
-        } else {
-            setIsActive(false);
-        }
-    }
-  
-    const onInputPassword = (event: ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
-
-        if(event.target.value !== ""){
-        setPasswordError("");
-        }
-
-        if (writer && event.target.value && title && contents) {
-            setIsActive(true);
-        } else {
-            setIsActive(false);
-        }
-    }
-  
-    const onInputSubject = (event: ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value);
-
-        if(event.target.value !== ""){
-            setSubjectError("");
-        }
-
-        if (writer && password && event.target.value && contents) {
-            setIsActive(true);
-        } else {
-            setIsActive(false);
-        }
-    }
-  
-    const onInputContents = (event: ChangeEvent<HTMLInputElement>) => {
-        setContents(event.target.value);
-        
-        if(event.target.value !== ""){
-            setContentsError("");
-        }
-
-        if (writer && password && title && event.target.value) {
-            setIsActive(true);
-        } else {
-            setIsActive(false);
-        }
-    }
-
+    // 3. Event Handlers (Click Handlers)
     const onClickSubmit = async () => {
         // writer에 값이 없으면 WriterError에 에러원인 저장
         if(!writer){
@@ -160,6 +102,63 @@ export default function BoardWriter(props:BoardWriterProps){
             }
         }
     }
+
+    // 4. Event Handlers (Input Handlers)
+    const onInputWriter = (event: ChangeEvent<HTMLInputElement>) => {
+        setWriter(event.target.value);
+        // 값 입력시 error 초기화
+        if(event.target.value !== ""){
+          setWriterError("");
+        }
+
+        if (event.target.value && password && title && contents) {
+            setIsActive(true);
+        } else {
+            setIsActive(false);
+        }
+    }
+  
+    const onInputPassword = (event: ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+
+        if(event.target.value !== ""){
+        setPasswordError("");
+        }
+
+        if (writer && event.target.value && title && contents) {
+            setIsActive(true);
+        } else {
+            setIsActive(false);
+        }
+    }
+  
+    const onInputSubject = (event: ChangeEvent<HTMLInputElement>) => {
+        setTitle(event.target.value);
+
+        if(event.target.value !== ""){
+            setSubjectError("");
+        }
+
+        if (writer && password && event.target.value && contents) {
+            setIsActive(true);
+        } else {
+            setIsActive(false);
+        }
+    }
+  
+    const onInputContents = (event: ChangeEvent<HTMLInputElement>) => {
+        setContents(event.target.value);
+        
+        if(event.target.value !== ""){
+            setContentsError("");
+        }
+
+        if (writer && password && title && event.target.value) {
+            setIsActive(true);
+        } else {
+            setIsActive(false);
+        }
+    }
     
     return (
         <div>
@@ -171,12 +170,12 @@ export default function BoardWriter(props:BoardWriterProps){
             contentsError={contentsError}
             isActive={isActive}
             isEdit={props.isEdit}
+            onClickSubmit={onClickSubmit}
+            onClickUpdate={onClickUpdate}
             onInputWriter={onInputWriter}
             onInputPassword={onInputPassword}
             onInputSubject={onInputSubject}
             onInputContents={onInputContents}
-            onClickSubmit={onClickSubmit}
-            onClickUpdate={onClickUpdate}
             />
         </div>
     )
