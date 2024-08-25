@@ -23,8 +23,6 @@ export default function BoardsEditPage() {
         }
     });
 
-    console.log(fetchBoardData);
-
     return (
         <div>
             <BoardWriter 
