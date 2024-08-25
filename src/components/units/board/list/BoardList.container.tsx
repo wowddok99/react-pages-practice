@@ -8,18 +8,20 @@ import { ChangeEvent, useState } from "react";
 export default function BoardList(){
     const router = useRouter();
     
+    // 1. State Variables
     const [searchTitle, setSearchTitle] = useState("");
     const [startDate, setStartDate] = useState<undefined | string>(undefined);
     const [endDate, setEndDate] = useState<undefined | string>(undefined);
     
 
-    let pageNumber = router.query.pageNumber;
+    // 2. Page Number Management
+    let pageNumber = router.query.pageNumber; 
 
-    // pageNumber가 비어있는 경우 1페이지로 고정
-    if (pageNumber === undefined) {
+    if (pageNumber === undefined) { // pageNumber가 비어있는 경우 1페이지로 고정
         pageNumber = "1";
     }
 
+    // 3. GraphQL Queries and Mutations
     const {data: fetchBoardsData} = useQuery<FetchBoardsData>(FETCH_BOARDS, {
         variables: {
             page: Number(pageNumber),
@@ -31,26 +33,7 @@ export default function BoardList(){
         }
     });
 
-    const onInputSearchTitle = (event: ChangeEvent<HTMLInputElement>): void => {
-        setSearchTitle(event.target.value);
-    }
-
-    const onInputStartDate = (event: ChangeEvent<HTMLInputElement>): void => {
-        setStartDate(event.target.value);
-    }
-
-    const onInputEndDate = (event: ChangeEvent<HTMLInputElement>): void => {
-        setEndDate(event.target.value);
-    }
-
-    const onClickMoveToDetailPage = (el: FetchBoard): void => {
-        router.push(`/boards/detail/${el._id}`);
-    }
-
-    const onClickMoveToWritePage = (): void => {
-        router.push(`/boards/write`);    
-    }
-    
+    // 4. Event Handlers (Click Handlers)
     const onClickSearchByTitleAndDate = (): void => {
         router.push({
             pathname: `/boards/list/1`,
@@ -86,6 +69,27 @@ export default function BoardList(){
                 endDate: endDate
             }
         });
+    }
+    
+    const onClickMoveToDetailPage = (el: FetchBoard): void => {
+        router.push(`/boards/detail/${el._id}`);
+    }
+
+    const onClickMoveToWritePage = (): void => {
+        router.push(`/boards/write`);    
+    }
+
+    // 5. Event Handlers (Input Handlers)
+    const onInputSearchTitle = (event: ChangeEvent<HTMLInputElement>): void => {
+        setSearchTitle(event.target.value);
+    }
+
+    const onInputStartDate = (event: ChangeEvent<HTMLInputElement>): void => {
+        setStartDate(event.target.value);
+    }
+
+    const onInputEndDate = (event: ChangeEvent<HTMLInputElement>): void => {
+        setEndDate(event.target.value);
     }
 
     return (

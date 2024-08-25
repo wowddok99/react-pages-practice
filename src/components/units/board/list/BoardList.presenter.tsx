@@ -1,7 +1,6 @@
 import { 
     PageLayout,
     MainWrapper,
-    BestBoardWrapper,
     SearchWrapper,
     SearchInputWrapper,
     SearchIcon,

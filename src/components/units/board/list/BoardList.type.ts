@@ -22,8 +22,9 @@ export interface BoardListUIProps {
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToPreviousPage: (event: MouseEvent<SVGElement>) => void;
     onClickMoveToNextPage: (event: MouseEvent<SVGElement>) => void;
-    onInputSearchTitle: (event: ChangeEvent<HTMLInputElement>) => void;
     onClickSearchByTitleAndDate: (event: MouseEvent<HTMLButtonElement>) => void;
+
+    onInputSearchTitle: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputStartDate:(event: ChangeEvent<HTMLInputElement>) => void;
     onInputEndDate: (event: ChangeEvent<HTMLInputElement>) => void;
 }

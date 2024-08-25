@@ -21,9 +21,6 @@ export const MainWrapper = styled.div`
     gap: 2.5rem;
 `
 
-export const BestBoardWrapper = styled.div`
-`
-
 export const SearchWrapper = styled.div`
     display: flex;
     align-items: center;
