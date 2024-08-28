@@ -13,7 +13,8 @@ export default function BoardDetail(){
     const [commentPassword, setCommentPassword] = useState<string>("");
     const [commentContent, setCommentContent] = useState<string>("");
     const [commentContentLength, setCommentContentLength] = useState<number>(0);
-    const [starRating , setStarRating ] = useState<number>(0);
+    const [starRating , setStarRating] = useState<number>(0);
+    const [editStarRating, setEditStarRating] = useState<number>(0);
     const [likeCount, setLikeCount] = useState<number>(0);
     const [dislikeCount, setDislikeCount] = useState<number>(0);
     const [modalMode , setModalMode] = useState<string>("");
@@ -169,7 +170,7 @@ export default function BoardDetail(){
     const onClickUpdateComment = async(event: MouseEvent<HTMLButtonElement>): Promise<void> => {
         const updateBoardCommentInput: UpdateBoardCommentInput = {
             contents: commentUpdateContent,
-            rating: starRating
+            rating: editStarRating
         };
 
         try {
@@ -213,6 +214,14 @@ export default function BoardDetail(){
         setStarRating((starRating ?? 0)-1)
     }
     
+    const onClickEditStarRatingIncrease = (event: MouseEvent<SVGElement>): void  => {
+        setEditStarRating((editStarRating ?? 0)+1)
+    }
+    
+    const onClickEditStarRatingDecrease = (event: MouseEvent<SVGElement>): void  => {
+        setEditStarRating((editStarRating ?? 0)-1)
+    }
+
     const onClickOpenDeleteModal = (_id: string): void => {
         setModalMode("DELETE");
         setBoardCommentId(_id);
@@ -223,7 +232,8 @@ export default function BoardDetail(){
         setModalMode("EDIT");
         setBoardCommentId(_id);
         onToggleModal();
-        setStarRating(rating); // modal 활성화 이후, rating값 업데이트
+        setEditStarRating(rating); // modal 활성화 이후, rating값 업데이트
+        
     }
 
     // 4. Event Handlers (Input Handlers)
@@ -285,6 +295,7 @@ export default function BoardDetail(){
             commentContent={commentContent}
             commentContentLength={commentContentLength}
             starRating={starRating}
+            editStarRating={editStarRating}
             likeCount={likeCount}
             dislikeCount={dislikeCount}
             isModalOpen={isModalOpen}
@@ -297,6 +308,8 @@ export default function BoardDetail(){
             onClickDislike={onClickDislike}
             onClickStarRatingIncrease={onClickStarRatingIncrease}
             onClickStarRatingDecrease={onClickStarRatingDecrease}
+            onClickEditStarRatingIncrease={onClickEditStarRatingIncrease}
+            onClickEditStarRatingDecrease={onClickEditStarRatingDecrease}
             onClickDeleteComment={onClickDeleteComment}
             onClickOpenDeleteModal={onClickOpenDeleteModal}
             onClickOpenEditModal={onClickOpenEditModal}

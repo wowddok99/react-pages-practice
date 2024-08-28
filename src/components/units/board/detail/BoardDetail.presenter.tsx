@@ -123,11 +123,11 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                                 <EditModalInputWrapper>
                                     <ModalInputLabel>별점</ModalInputLabel>
                                     <EditModalStarWrapper>
-                                    {[...Array(props.starRating)].map((_, index) => (
-                                            <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
-                                        ))}
-                                    {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
-                                        <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
+                                    {[...Array(props.editStarRating)].map((_, index) => (
+                                        <IoMdStarIconActive key={index} onClick={props.onClickEditStarRatingDecrease}></IoMdStarIconActive>
+                                    ))}
+                                    {[...Array(5-(props.editStarRating ?? 0))].map((_, index) => (
+                                        <IoMdStarIconDisabled key={index} onClick={props.onClickEditStarRatingIncrease}></IoMdStarIconDisabled>
                                     ))}
                                     </EditModalStarWrapper>
                                 </EditModalInputWrapper>
@@ -147,23 +147,12 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                             <CommentInputWriter type="text" value={props.commentWriter} onInput={props.onInputCommentWriter} placeholder="작성자"></CommentInputWriter>
                             <CommentInputPassword type="password" value={props.commentPassword} onInput={props.onInputCommentPassword} placeholder="비밀번호"></CommentInputPassword>
                             <StarWrapper>
-                                {/* isModalOpen이 활성화시, 댓글 등록창의 별점 비활성화 */}
-                                {props.isModalOpen ? (
-                                    <div>
-                                        {[...Array(5)].map((_, index) => (
-                                        <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div>
-                                        {[...Array(props.starRating)].map((_, index) => (
-                                        <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
-                                        ))}
-                                        {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
-                                            <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
-                                        ))}
-                                    </div>
-                                )}
+                            {[...Array(props.starRating)].map((_, index) => (
+                                <IoMdStarIconActive key={index} onClick={props.onClickStarRatingDecrease}></IoMdStarIconActive>
+                            ))}
+                            {[...Array(5-(props.starRating ?? 0))].map((_, index) => (
+                                <IoMdStarIconDisabled key={index} onClick={props.onClickStarRatingIncrease}></IoMdStarIconDisabled>
+                            ))}
                             </StarWrapper>
                         </CommentInputHeaderWrapper>
                         <CommentInputWrapper>

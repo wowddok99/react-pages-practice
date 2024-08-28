@@ -48,6 +48,7 @@ export interface BoardDetailUIProps {
     commentContent: string
     commentContentLength: number;
     starRating: number;
+    editStarRating: number;
     likeCount: number;
     dislikeCount: number;
     isModalOpen: boolean;
@@ -61,10 +62,13 @@ export interface BoardDetailUIProps {
     onClickDislike: (event: MouseEvent<HTMLImageElement>) => void;
     onClickStarRatingIncrease: (event: MouseEvent<SVGElement>) => void;
     onClickStarRatingDecrease: (event: MouseEvent<SVGElement>) => void;
+    onClickEditStarRatingIncrease: (event: MouseEvent<SVGElement>) => void;
+    onClickEditStarRatingDecrease: (event: MouseEvent<SVGElement>) => void;
     onClickDeleteComment: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickOpenDeleteModal: (_id: string) => void;
     onClickOpenEditModal: (_id: string, rating: number) => void;
     onClickUpdateComment: (event: MouseEvent<HTMLButtonElement>) => void;
+
 
     onInputCommentWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputCommentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
