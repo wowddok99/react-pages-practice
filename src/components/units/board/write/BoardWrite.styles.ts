@@ -114,7 +114,6 @@ export const ZipCode = styled.input`
 `
 
 export const SearchButton = styled.button`
-    font-family: "NotoSansKR-Regular";
     background-color: black;
     border: 0.0625rem solid #bdbdbd;
     width: 7.75rem;

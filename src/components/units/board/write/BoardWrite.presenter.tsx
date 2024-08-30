@@ -76,17 +76,17 @@ export default function BoardWriterUI(props: BoardWriterUIProps) {
                         </AddressWrapper>
                         <YoutubeWrapper>
                             <Label>유튜브</Label>
-                            <Youtube></Youtube>
+                            <Youtube type="text" placeholder="유튜브 영상 URL을 입력해주세요." onInput={props.onInputYoutubeUrl} defaultValue={props.fetchBoardData?.fetchBoard?.youtubeUrl}></Youtube>
                         </YoutubeWrapper>
-                        <ImageUploadWrapper>
+                        {/* <ImageUploadWrapper>
                             <Label>사진 첨부</Label>
                             <ImageUploadButtonWrapper>
                                 <ImageUploadButton>+<br/>upload</ImageUploadButton>
                                 <ImageUploadButton>+<br/>upload</ImageUploadButton>
                                 <ImageUploadButton>+<br/>upload</ImageUploadButton>
                             </ImageUploadButtonWrapper>
-                        </ImageUploadWrapper>
-                        <MainOptionWrapper>
+                        </ImageUploadWrapper> */}
+                        {/* <MainOptionWrapper>
                             <MainOptionRadioWrapper>
                                 <MainOptionRadioButton type="radio" name="MainOption" id="youtube"></MainOptionRadioButton>
                                 <label>유튜브</label>
@@ -95,7 +95,7 @@ export default function BoardWriterUI(props: BoardWriterUIProps) {
                                 <MainOptionRadioButton type="radio" name="MainOption" id="image"></MainOptionRadioButton>
                                 <label>사진</label>
                             </MainOptionRadioWrapper>
-                        </MainOptionWrapper>
+                        </MainOptionWrapper> */}
                         <SubmitButtonWrapper>
                             <SubmitButton
                             onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit} 

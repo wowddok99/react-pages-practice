@@ -55,7 +55,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         <Image></Image>
                         <Contents>{props.fetchBoardData?.fetchBoard?.contents}</Contents>
                         <YoutubeWrapper>
-                            <Youtube></Youtube>
+                            <Youtube>{props.fetchBoardData?.fetchBoard?.youtubeUrl}</Youtube>
                         </YoutubeWrapper>
                         <LikeHateButtonWrapper>
                             <LikeButtonWrapper>

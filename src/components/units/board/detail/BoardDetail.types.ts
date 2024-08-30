@@ -8,6 +8,7 @@ export interface FetchBoard {
     createdAt: string
     likeCount: number;
     dislikeCount: number;
+    youtubeUrl: string;
 }
 
 export interface FetchBoardData {

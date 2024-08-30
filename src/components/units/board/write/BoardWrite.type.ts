@@ -1,3 +1,4 @@
+import { Youtube } from './BoardWrite.styles';
 import { ChangeEvent, MouseEvent } from "react";
 
 // types - BoardWrite.container
@@ -6,6 +7,7 @@ export interface FetchBoard{
     title: string
     contents: string;
     createdAt: string;
+    youtubeUrl: string;
 }
 
 export interface FetchBoardData{
@@ -16,7 +18,8 @@ export interface UpdateBoardInput{
     writer?: string;
     password?: string;
     title?: string;
-    contents? : string;
+    contents?: string;
+    youtubeUrl?: string
 }
 
 // types - BoardWrite.presenter
@@ -41,4 +44,5 @@ export interface BoardWriterUIProps{
     onInputPassword: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputTitle: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputContents: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
 }

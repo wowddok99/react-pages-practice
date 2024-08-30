@@ -14,6 +14,7 @@ export default function BoardWriter(props:BoardWriterProps){
     const [password, setPassword] = useState<undefined|string>();
     const [title, setTitle] = useState<undefined|string>();
     const [contents, setContents] = useState<undefined|string>();
+    const [youtubeUrl, setYoutubeUrl] = useState<undefined|string>();
     const [writerError, setWriterError] = useState<string>("");
     const [passwordError, setPasswordError] = useState<string>("");
     const [titleError, setTitleError] = useState<string>("");
@@ -48,7 +49,8 @@ export default function BoardWriter(props:BoardWriterProps){
                             writer: writer,
                             password: password,
                             title: title,
-                            contents : contents
+                            contents: contents,
+                            youtubeUrl: youtubeUrl 
                         }
                     }
                 });
@@ -87,6 +89,14 @@ export default function BoardWriter(props:BoardWriterProps){
             updateBoardInput.contents = contents;
         }
         
+        if (youtubeUrl === undefined){
+            updateBoardInput.youtubeUrl = props.fetchBoardData?.fetchBoard.youtubeUrl;
+        } else if (youtubeUrl === "") {
+            updateBoardInput.youtubeUrl = "";
+        } else if (youtubeUrl) {
+            updateBoardInput.youtubeUrl = youtubeUrl;
+        }
+
         try {
             const result = await updateBoard({
                 variables: {
@@ -159,6 +169,10 @@ export default function BoardWriter(props:BoardWriterProps){
             setIsActive(false);
         }
     }
+
+    const onInputYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+        setYoutubeUrl(event.target.value);
+    }
     
     return (
         <div>
@@ -176,6 +190,7 @@ export default function BoardWriter(props:BoardWriterProps){
             onInputPassword={onInputPassword}
             onInputTitle={onInputTitle}
             onInputContents={onInputContents}
+            onInputYoutubeUrl={onInputYoutubeUrl}
             />
         </div>
     )
