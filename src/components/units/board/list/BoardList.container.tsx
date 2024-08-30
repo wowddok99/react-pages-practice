@@ -53,9 +53,9 @@ export default function BoardList(){
         router.push({
             pathname: `/boards/list/${Number(pageNumber)-1}`,
             query: {
-                search: searchTitle,
-                startDate: startDate,
-                endDate: endDate
+                search: router.query.search,
+                startDate: router.query.startDate,
+                endDate: router.query.endDate
             }
         });
     }
@@ -64,9 +64,9 @@ export default function BoardList(){
         router.push({
             pathname: `/boards/list/${Number(pageNumber)+1}`,
             query: {
-                search: searchTitle,
-                startDate: startDate,
-                endDate: endDate
+                search: router.query.search,
+                startDate: router.query.startDate,
+                endDate: router.query.endDate
             }
         });
     }
