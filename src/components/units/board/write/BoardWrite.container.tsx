@@ -16,7 +16,7 @@ export default function BoardWriter(props:BoardWriterProps){
     const [contents, setContents] = useState<undefined|string>();
     const [writerError, setWriterError] = useState<string>("");
     const [passwordError, setPasswordError] = useState<string>("");
-    const [subjectError, setSubjectError] = useState<string>("");
+    const [titleError, setTitleError] = useState<string>("");
     const [contentsError, setContentsError] = useState<string>("");
 
     // 2. GraphQL Mutations
@@ -33,7 +33,7 @@ export default function BoardWriter(props:BoardWriterProps){
             setPasswordError("비밀번호를 입력해주세요.");
         }
         if (!title) {
-            setSubjectError("제목을 입력해주세요.");
+            setTitleError("제목을 입력해주세요.");
         }
         if (!contents) {
             setContentsError("내용을 입력해주세요.");
@@ -132,11 +132,11 @@ export default function BoardWriter(props:BoardWriterProps){
         }
     }
   
-    const onInputSubject = (event: ChangeEvent<HTMLInputElement>) => {
+    const onInputTitle = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
 
         if(event.target.value !== ""){
-            setSubjectError("");
+            setTitleError("");
         }
 
         if (writer && password && event.target.value && contents) {
@@ -166,7 +166,7 @@ export default function BoardWriter(props:BoardWriterProps){
             fetchBoardData={props.fetchBoardData}
             writerError={writerError}
             passwordError={passwordError}
-            titleError={subjectError}
+            titleError={titleError}
             contentsError={contentsError}
             isActive={isActive}
             isEdit={props.isEdit}
@@ -174,7 +174,7 @@ export default function BoardWriter(props:BoardWriterProps){
             onClickUpdate={onClickUpdate}
             onInputWriter={onInputWriter}
             onInputPassword={onInputPassword}
-            onInputSubject={onInputSubject}
+            onInputTitle={onInputTitle}
             onInputContents={onInputContents}
             />
         </div>

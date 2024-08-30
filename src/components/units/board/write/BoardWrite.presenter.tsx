@@ -58,7 +58,7 @@ export default function BoardWriterUI(props: BoardWriterUIProps) {
                         </WriterPasswordWrapper>
                         <SubjectWrapper>
                             <Label>제목</Label>
-                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputSubject} defaultValue={props.fetchBoardData?.fetchBoard?.title}></Subject>
+                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputTitle} defaultValue={props.fetchBoardData?.fetchBoard?.title}></Subject>
                             <Error>{props.titleError}</Error>
                         </SubjectWrapper>
                         <ContentWrapper>

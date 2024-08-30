@@ -39,6 +39,6 @@ export interface BoardWriterUIProps{
 
     onInputWriter: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputPassword: (event: ChangeEvent<HTMLInputElement>) => void;
-    onInputSubject: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputTitle: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputContents: (event: ChangeEvent<HTMLInputElement>) => void;
 }
