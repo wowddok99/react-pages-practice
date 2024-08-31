@@ -88,11 +88,15 @@ export default function BoardDetail(){
         router.push(`/boards/edit/${router.query.boardId}`);    
     }
 
+    const onClickCopyCurrentURL = (): void => {
+        navigator.clipboard.writeText(window.location.href);
+        alert("주소가 클립보드에 복사되었습니다.")
+    }
+
     // 4. Helper Functions
     const onErrorYoutubePlayer = (): void => {
         setIsYoutubePlayerError(true);
     }
-
     return (
         <div>
             <BoardDetailUI
@@ -100,13 +104,14 @@ export default function BoardDetail(){
             likeCount={likeCount}
             dislikeCount={dislikeCount}
             isYoutubePlayerError={isYoutubePlayerError}
+            fullAddress={fullAddress}
             onClickMoveToListPage={onClickMoveToListPage}
             onClickMoveToEditPage={onClickMoveToEditPage}
             onClickDeleteBoard={onClickDeleteBoard}
             onClickLike={onClickLike}
             onClickDislike={onClickDislike}
             onErrorYoutubePlayer={onErrorYoutubePlayer}
-            fullAddress={fullAddress}
+            onClickCopyCurrentURL={onClickCopyCurrentURL}
             />
         </div>
         )

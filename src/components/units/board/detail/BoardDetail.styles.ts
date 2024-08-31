@@ -69,7 +69,7 @@ export const ProfileIcon = styled.img`
   height: 2.9169rem;
   cursor: pointer;
 `
-export const InfoIcon = styled.img`
+export const LinkIcon = styled.img`
   width: 2rem;
   height: 2rem;
   cursor: pointer;
@@ -78,6 +78,7 @@ export const InfoIcon = styled.img`
 export const Subject = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
+  margin-bottom: -1.5rem;
 `
 
 export const Image = styled.div`

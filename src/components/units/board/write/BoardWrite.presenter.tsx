@@ -70,7 +70,7 @@ export default function BoardWriterUI(props: BoardWriteUIProps) {
                         </ContentWrapper>
                         <AddressWrapper>
                             {props.isModalOpen && (
-                                <Modal title="주소 검색" open={true} onOk={props.onToggleModal} onCancel={props.onToggleModal}>
+                                <Modal title="주소 검색" open={true} onOk={props.onToggleModal} onCancel={props.onToggleModal} cancelText={"취소"} okText={"확인"}>
                                     <DaumPostcodeEmbed onComplete={props.onCompleteDaumPostcode}/>
                                 </Modal>
                             )}                            

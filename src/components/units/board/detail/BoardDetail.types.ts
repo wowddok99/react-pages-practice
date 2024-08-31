@@ -35,6 +35,7 @@ export interface BoardDetailUIProps {
     onClickDeleteBoard: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickLike: (event: MouseEvent<HTMLImageElement>) => void;
     onClickDislike: (event: MouseEvent<HTMLImageElement>) => void;
+    onClickCopyCurrentURL: () => void;
 
     onErrorYoutubePlayer: () => void;
 }

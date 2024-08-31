@@ -13,7 +13,7 @@ import {
     CreateAt,
     CardHeaderLogoWrapper,
     ProfileIcon,
-    InfoIcon,
+    LinkIcon,
     Subject,
     Image,
     Contents,
@@ -47,9 +47,9 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                             </WriterCreatedAtWrapper>
                         </InfoWrapper>
                         <CardHeaderLogoWrapper>
-                            <InfoIcon src="/images/ic_link.png" />
+                            <LinkIcon src="/images/ic_link.png" onClick={props.onClickCopyCurrentURL} />
                             <Tooltip placement="top" title={props.fullAddress}>
-                                <InfoIcon src="/images/ic_location.png" />
+                                <LinkIcon src="/images/ic_location.png" />
                             </Tooltip>
                         </CardHeaderLogoWrapper>
                     </CardHeaderWrapper>
