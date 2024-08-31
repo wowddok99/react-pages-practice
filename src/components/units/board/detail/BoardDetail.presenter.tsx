@@ -52,10 +52,13 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                     </CardHeaderWrapper>
                     <CardMainWrapper>
                         <Subject>{props.fetchBoardData?.fetchBoard?.title}</Subject>
-                        <Image></Image>
+                        {/* <Image></Image> */}
                         <Contents>{props.fetchBoardData?.fetchBoard?.contents}</Contents>
                         <YoutubeWrapper>
-                            <Youtube>{props.fetchBoardData?.fetchBoard?.youtubeUrl}</Youtube>
+                            <Youtube 
+                            url={props.fetchBoardData?.fetchBoard?.youtubeUrl}
+                            style={{ display: props.fetchBoardData?.fetchBoard?.youtubeUrl ? 'block' : 'none' }}
+                            />
                         </YoutubeWrapper>
                         <LikeHateButtonWrapper>
                             <LikeButtonWrapper>

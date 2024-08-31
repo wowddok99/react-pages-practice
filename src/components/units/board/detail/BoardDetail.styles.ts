@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactPlayer from 'react-player'
 
 export const PageLayout = styled.div`
     word-break: break-all;
@@ -94,10 +95,8 @@ export const YoutubeWrapper = styled.div`
   gap: 1rem;
 `
 
-export const Youtube = styled.div`
-  width: 40%;
-  height: 20rem;
-  background-color: whitesmoke;
+export const Youtube = styled(ReactPlayer)`
+  margin: auto;
 `
 
 export const LikeHateButtonWrapper = styled.div`
