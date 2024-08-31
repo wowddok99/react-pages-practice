@@ -59,6 +59,7 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                             <YoutubePlayer 
                             url={props.fetchBoardData?.fetchBoard?.youtubeUrl}
                             style={{display: props.fetchBoardData?.fetchBoard?.youtubeUrl ? 'block' : 'none'}}
+                            controls={true}
                             onError={props.onErrorYoutubePlayer}
                             />
                             </YoutubePlayerWrapper>
