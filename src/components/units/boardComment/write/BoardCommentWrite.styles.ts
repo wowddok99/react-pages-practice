@@ -82,7 +82,7 @@ export const CommentInputWrapper = styled.div`
 export const CommentInputContent = styled.input`
   width: 100%;
   height: 6.8125rem;
-  border: 0.0625rem solid #000;
+  border: 0.0625rem solid #bdbdbd;
   border-top-left-radius: 0.1875rem;
   border-top-right-radius: 0.1875rem;
   padding-left: 1.25rem;
@@ -92,9 +92,9 @@ export const CommentInputFooter = styled.div`
   display: flex;
   width: 100%;
   height: 2.5rem;
-  border-bottom: 0.0625rem solid #000;
-  border-left: 0.0625rem solid #000;
-  border-right: 0.0625rem solid #000;
+  border-bottom: 0.0625rem solid #bdbdbd;
+  border-left: 0.0625rem solid #bdbdbd;
+  border-right: 0.0625rem solid #bdbdbd;
   border-bottom-left-radius: 0.1875rem;
   border-bottom-right-radius: 0.1875rem;
   padding-left: 1.25rem;
