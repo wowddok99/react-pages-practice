@@ -16,8 +16,8 @@ import {
     Subject,
     Image,
     Contents,
-    YoutubeWrapper,
-    Youtube,
+    YoutubePlayerWrapper,
+    YoutubePlayer,
     LikeHateButtonWrapper,
     LikeButtonWrapper,
     HateButtonWrapper,
@@ -54,12 +54,15 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         <Subject>{props.fetchBoardData?.fetchBoard?.title}</Subject>
                         {/* <Image></Image> */}
                         <Contents>{props.fetchBoardData?.fetchBoard?.contents}</Contents>
-                        <YoutubeWrapper>
-                            <Youtube 
+                        {!props.isYoutubePlayerError && (
+                            <YoutubePlayerWrapper>
+                            <YoutubePlayer 
                             url={props.fetchBoardData?.fetchBoard?.youtubeUrl}
-                            style={{ display: props.fetchBoardData?.fetchBoard?.youtubeUrl ? 'block' : 'none' }}
+                            style={{display: props.fetchBoardData?.fetchBoard?.youtubeUrl ? 'block' : 'none'}}
+                            onError={props.onErrorYoutubePlayer}
                             />
-                        </YoutubeWrapper>
+                            </YoutubePlayerWrapper>
+                        )}
                         <LikeHateButtonWrapper>
                             <LikeButtonWrapper>
                                 <LikeIcon src="/images/ic_thumb_up.png" onClick={props.onClickLike}></LikeIcon>

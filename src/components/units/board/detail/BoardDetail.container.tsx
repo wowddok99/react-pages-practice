@@ -12,6 +12,7 @@ export default function BoardDetail(){
     const [likeCount, setLikeCount] = useState<number>(0);
     const [dislikeCount, setDislikeCount] = useState<number>(0);
     const [boardCommentId, setBoardCommentId] = useState<string>("");
+    const [isYoutubePlayerError, setIsYoutubePlayerError] = useState<boolean>(false);
 
 
     // 2. GraphQL Queries and Mutations
@@ -85,17 +86,24 @@ export default function BoardDetail(){
         router.push(`/boards/edit/${router.query.boardId}`);    
     }
 
+    // 4. Helper Functions
+    const onErrorYoutubePlayer = (): void => {
+        setIsYoutubePlayerError(true);
+    }
+
     return (
         <div>
             <BoardDetailUI
             fetchBoardData={fetchBoardData}
             likeCount={likeCount}
             dislikeCount={dislikeCount}
+            isYoutubePlayerError={isYoutubePlayerError}
             onClickMoveToListPage={onClickMoveToListPage}
             onClickMoveToEditPage={onClickMoveToEditPage}
             onClickDeleteBoard={onClickDeleteBoard}
             onClickLike={onClickLike}
             onClickDislike={onClickDislike}
+            onErrorYoutubePlayer={onErrorYoutubePlayer}
             />
         </div>
         )

@@ -89,13 +89,13 @@ export const Image = styled.div`
 export const Contents = styled.div`
 `
 
-export const YoutubeWrapper = styled.div`
+export const YoutubePlayerWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
 `
 
-export const Youtube = styled(ReactPlayer)`
+export const YoutubePlayer = styled(ReactPlayer)`
   margin: auto;
 `
 

@@ -21,10 +21,13 @@ export interface BoardDetailUIProps {
 
     likeCount: number;
     dislikeCount: number;
+    isYoutubePlayerError: boolean;
 
     onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickDeleteBoard: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickLike: (event: MouseEvent<HTMLImageElement>) => void;
     onClickDislike: (event: MouseEvent<HTMLImageElement>) => void;
+
+    onErrorYoutubePlayer: () => void;
 }
