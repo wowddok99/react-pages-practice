@@ -1,3 +1,4 @@
+import { Tooltip } from "antd";
 import BoardCommentList from "../../boardComment/list/BoardCommentList.container";
 import BoardCommentWrite from "../../boardComment/write/BoardCommentWrite.container";
 import {
@@ -47,7 +48,9 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         </InfoWrapper>
                         <CardHeaderLogoWrapper>
                             <InfoIcon src="/images/ic_link.png" />
-                            <InfoIcon src="/images/ic_location.png" />
+                            <Tooltip placement="top" title={props.fullAddress}>
+                                <InfoIcon src="/images/ic_location.png" />
+                            </Tooltip>
                         </CardHeaderLogoWrapper>
                     </CardHeaderWrapper>
                     <CardMainWrapper>

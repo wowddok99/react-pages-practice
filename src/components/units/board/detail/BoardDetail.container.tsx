@@ -2,7 +2,7 @@ import BoardDetailUI from "./BoardDetail.presenter"
 import { useRouter } from "next/router"
 import { useQuery, useMutation, ApolloError } from "@apollo/client"
 import { FETCH_BOARD, DELETE_BOARD, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
-import { useState, ChangeEvent, MouseEvent } from "react";
+import { useState, ChangeEvent, MouseEvent, useMemo } from "react";
 import { FetchBoardData } from "./BoardDetail.types";
 
 export default function BoardDetail(){
@@ -13,7 +13,7 @@ export default function BoardDetail(){
     const [dislikeCount, setDislikeCount] = useState<number>(0);
     const [boardCommentId, setBoardCommentId] = useState<string>("");
     const [isYoutubePlayerError, setIsYoutubePlayerError] = useState<boolean>(false);
-
+    const [fullAddress, setFullAddress] = useState<string>("");
 
     // 2. GraphQL Queries and Mutations
     const [deleteBoard] = useMutation(DELETE_BOARD);
@@ -27,6 +27,8 @@ export default function BoardDetail(){
         onCompleted: (fetchBoardData) => {
             setLikeCount(fetchBoardData.fetchBoard.likeCount);
             setDislikeCount(fetchBoardData.fetchBoard.dislikeCount);
+            const fullAddress = "(" + fetchBoardData.fetchBoard.boardAddress.zipcode + ") " + fetchBoardData.fetchBoard.boardAddress.address + " " + fetchBoardData.fetchBoard.boardAddress.addressDetail;
+            setFullAddress(fullAddress);
         }
     });
 
@@ -104,6 +106,7 @@ export default function BoardDetail(){
             onClickLike={onClickLike}
             onClickDislike={onClickDislike}
             onErrorYoutubePlayer={onErrorYoutubePlayer}
+            fullAddress={fullAddress}
             />
         </div>
         )

@@ -1,13 +1,14 @@
 import BoardWriterUI from './BoardWrite.presenter'
-import { ChangeEvent, useState } from 'react' 
+import { ChangeEvent, useEffect, useState } from 'react' 
 import { useRouter } from 'next/router'
 import { ApolloError, useMutation } from "@apollo/client"
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
-import { BoardWriterProps, UpdateBoardInput } from './BoardWrite.type'
+import { BoardWriteProps, UpdateBoardInput } from './BoardWrite.type'
+import { Address } from 'react-daum-postcode'
 
-export default function BoardWriter(props:BoardWriterProps){
+export default function BoardWriter(props:BoardWriteProps){
     const router = useRouter();
-    
+
     // 1. State Variables
     const [isActive, setIsActive] = useState(false);
     const [writer, setWriter] = useState<undefined|string>();
@@ -15,10 +16,23 @@ export default function BoardWriter(props:BoardWriterProps){
     const [title, setTitle] = useState<undefined|string>();
     const [contents, setContents] = useState<undefined|string>();
     const [youtubeUrl, setYoutubeUrl] = useState<undefined|string>();
+    const [zipcode, setZipcode] = useState<undefined|string>();
+    const [address, setAddress] = useState<undefined|string>();
+    const [addressDetail, setAddressDetail] = useState<undefined|string>();
     const [writerError, setWriterError] = useState<string>("");
     const [passwordError, setPasswordError] = useState<string>("");
     const [titleError, setTitleError] = useState<string>("");
     const [contentsError, setContentsError] = useState<string>("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // isEdit(true) - Data Setting
+    useEffect(() => {
+        if (props.isEdit) {
+          setZipcode(props.fetchBoardData?.fetchBoard.boardAddress.zipcode);
+          setAddress(props.fetchBoardData?.fetchBoard.boardAddress.address);
+          setAddressDetail(props.fetchBoardData?.fetchBoard.boardAddress.addressDetail);
+        }
+    }, [props.isEdit, props.fetchBoardData]);
 
     // 2. GraphQL Mutations
     const [createBoard] = useMutation(CREATE_BOARD);
@@ -39,7 +53,7 @@ export default function BoardWriter(props:BoardWriterProps){
         if (!contents) {
             setContentsError("내용을 입력해주세요.");
         }
-
+        
         // 전부 값이 들어있으면 게시글 등록 alert 
         if (writer && password && title && contents) {
             try {
@@ -50,14 +64,19 @@ export default function BoardWriter(props:BoardWriterProps){
                             password: password,
                             title: title,
                             contents: contents,
-                            youtubeUrl: youtubeUrl 
+                            youtubeUrl: youtubeUrl,
+                            boardAddress: {
+                                zipcode: zipcode,
+                                address: address,
+                                addressDetail: addressDetail
+                            }
                         }
                     }
                 });
                 router.push(`/boards/detail/${result.data.createBoard._id}`);    
             } catch (error) {
                 if (error instanceof ApolloError) {
-                    console.log(error.message);
+                    alert(error.message);
                 }
             }
         }
@@ -95,6 +114,12 @@ export default function BoardWriter(props:BoardWriterProps){
             updateBoardInput.youtubeUrl = "";
         } else if (youtubeUrl) {
             updateBoardInput.youtubeUrl = youtubeUrl;
+        }
+
+        updateBoardInput.boardAddress = {
+            zipcode: zipcode,
+            address: address,
+            addressDetail: addressDetail
         }
 
         try {
@@ -174,6 +199,20 @@ export default function BoardWriter(props:BoardWriterProps){
         setYoutubeUrl(event.target.value);
     }
     
+    const onInputAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+        setAddressDetail(event.target.value);
+    }
+
+    // 5. Helper Function
+    const onToggleModal = (): void => {
+        setIsModalOpen((prev) => !prev);
+    };
+
+    const onCompleteDaumPostcode = (data: Address): void => {
+        setZipcode(data.zonecode);
+        setAddress(data.address);
+        onToggleModal();
+    }
     return (
         <div>
             <BoardWriterUI
@@ -184,6 +223,10 @@ export default function BoardWriter(props:BoardWriterProps){
             contentsError={contentsError}
             isActive={isActive}
             isEdit={props.isEdit}
+            isModalOpen={isModalOpen}
+            zipcode={zipcode}
+            address={address}
+            addressDetail={addressDetail}
             onClickSubmit={onClickSubmit}
             onClickUpdate={onClickUpdate}
             onInputWriter={onInputWriter}
@@ -191,6 +234,9 @@ export default function BoardWriter(props:BoardWriterProps){
             onInputTitle={onInputTitle}
             onInputContents={onInputContents}
             onInputYoutubeUrl={onInputYoutubeUrl}
+            onInputAddressDetail={onInputAddressDetail}
+            onToggleModal={onToggleModal}
+            onCompleteDaumPostcode={onCompleteDaumPostcode}
             />
         </div>
     )

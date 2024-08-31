@@ -65,12 +65,16 @@ export const Writer = styled.input`
     width: 30rem;
     height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 `
 
 export const Password = styled.input`
     width: 30rem;
     height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 `
 
 export const SubjectWrapper = styled.div`
@@ -83,6 +87,8 @@ export const Subject = styled.input`
     width: 60.5rem;
     height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 `
 
 export const ContentWrapper = styled.div`
@@ -95,6 +101,8 @@ export const Content = styled.input`
     width: 60.5rem;
     height: 32.5rem;
     border: 0.0625rem solid #bdbdbd;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 `
 export const AddressWrapper = styled.div`
     display: flex;
@@ -111,6 +119,8 @@ export const ZipCode = styled.input`
     width: 7rem;
     height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 `
 
 export const SearchButton = styled.button`
@@ -126,6 +136,8 @@ export const Address = styled.input`
     width: 60.5rem;
     height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 `
 
 export const YoutubeWrapper = styled.div`
@@ -138,6 +150,8 @@ export const Youtube = styled.input`
     width: 60.5rem;
     height: 3rem;
     border: 0.0625rem solid #bdbdbd;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 `
 
 export const ImageUploadWrapper = styled.div`

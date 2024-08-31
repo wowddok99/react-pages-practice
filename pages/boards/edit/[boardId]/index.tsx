@@ -6,11 +6,17 @@ import { FetchBoardData } from "../../../../src/components/units/board/write/Boa
 const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
     fetchBoard(boardId: $boardId) {
-      _id
-      writer
-      title
-      contents
-      youtubeUrl
+        _id
+        writer
+        title
+        contents
+        youtubeUrl
+        boardAddress {
+                _id
+                zipcode
+                address
+                addressDetail
+            }
     }
   }
 `

@@ -1,3 +1,4 @@
+import { Address } from 'react-daum-postcode';
 import { Youtube } from './BoardWrite.styles';
 import { ChangeEvent, MouseEvent } from "react";
 
@@ -8,6 +9,12 @@ export interface FetchBoard{
     contents: string;
     createdAt: string;
     youtubeUrl: string;
+    boardAddress: {
+        _id: string;
+        zipcode: string;
+        address: string;
+        addressDetail: string;
+    }
 }
 
 export interface FetchBoardData{
@@ -19,16 +26,21 @@ export interface UpdateBoardInput{
     password?: string;
     title?: string;
     contents?: string;
-    youtubeUrl?: string
+    youtubeUrl?: string;
+    boardAddress?: {
+        zipcode?: string;
+        address?: string;
+        addressDetail?: string;
+    }
 }
 
 // types - BoardWrite.presenter
-export interface BoardWriterProps{
+export interface BoardWriteProps{
   isEdit: boolean;
   fetchBoardData?: FetchBoardData;
 }
 
-export interface BoardWriterUIProps{
+export interface BoardWriteUIProps{
     fetchBoardData?: FetchBoardData;
     writerError: string;
     passwordError: string;
@@ -36,6 +48,10 @@ export interface BoardWriterUIProps{
     contentsError: string;
     isActive: boolean;
     isEdit: boolean;
+    isModalOpen: boolean;
+    zipcode: string | undefined;
+    address: string | undefined;
+    addressDetail: string | undefined;
     
     onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -45,4 +61,8 @@ export interface BoardWriterUIProps{
     onInputTitle: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputContents: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+    onInputAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+
+    onToggleModal: () => void;
+    onCompleteDaumPostcode: (data: Address) => void;
 }

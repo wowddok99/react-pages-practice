@@ -1,4 +1,4 @@
-import { BoardWriterUIProps } from "./BoardWrite.type"
+import { BoardWriteUIProps } from "./BoardWrite.type"
 import {
     PageLayout,
     MainWrapper,
@@ -34,8 +34,10 @@ import {
     Error
     
 } from "./BoardWrite.styles"
+import { Modal } from "antd"
+import DaumPostcodeEmbed from "react-daum-postcode"
 
-export default function BoardWriterUI(props: BoardWriterUIProps) {
+export default function BoardWriterUI(props: BoardWriteUIProps) {
     return (
         <PageLayout>
             <MainWrapper>
@@ -47,7 +49,7 @@ export default function BoardWriterUI(props: BoardWriterUIProps) {
                         <WriterPasswordWrapper>
                             <InputWrapper>
                                 <Label>작성자</Label>
-                                <Writer type ="text" placeholder="이름을 입력해주세요." onInput={props.onInputWriter} defaultValue={props.fetchBoardData?.fetchBoard?.writer} disabled={props.isEdit ? true : false}></Writer>
+                                <Writer type ="text" placeholder="이름을 입력해주세요." onInput={props.onInputWriter} defaultValue={props.fetchBoardData?.fetchBoard.writer} disabled={props.isEdit ? true : false}></Writer>
                                 <Error>{props.writerError}</Error>
                             </InputWrapper>
                             <InputWrapper>
@@ -58,25 +60,30 @@ export default function BoardWriterUI(props: BoardWriterUIProps) {
                         </WriterPasswordWrapper>
                         <SubjectWrapper>
                             <Label>제목</Label>
-                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputTitle} defaultValue={props.fetchBoardData?.fetchBoard?.title}></Subject>
+                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputTitle} defaultValue={props.fetchBoardData?.fetchBoard.title}></Subject>
                             <Error>{props.titleError}</Error>
                         </SubjectWrapper>
                         <ContentWrapper>
                             <Label>내용</Label>
-                            <Content type="text" placeholder="내용을 입력해주세요." onInput={props.onInputContents} defaultValue={props.fetchBoardData?.fetchBoard?.contents}></Content>
+                            <Content type="text" placeholder="내용을 입력해주세요." onInput={props.onInputContents} defaultValue={props.fetchBoardData?.fetchBoard.contents}></Content>
                             <Error>{props.contentsError}</Error>
                         </ContentWrapper>
                         <AddressWrapper>
+                            {props.isModalOpen && (
+                                <Modal title="주소 검색" open={true} onOk={props.onToggleModal} onCancel={props.onToggleModal}>
+                                    <DaumPostcodeEmbed onComplete={props.onCompleteDaumPostcode}/>
+                                </Modal>
+                            )}                            
                             <ZipcodeWrapper>
-                                <ZipCode></ZipCode>
-                                <SearchButton>우편번호 검색</SearchButton>
+                                <ZipCode placeholder={"우편번호"} disabled={true} value={props.zipcode}></ZipCode>
+                                <SearchButton onClick={props.onToggleModal}>우편번호 검색</SearchButton>
                             </ZipcodeWrapper>
-                            <Address></Address>
-                            <Address></Address>
+                            <Address placeholder={"주소를 입력해주세요."} disabled={true} value={props.address}></Address>
+                            <Address placeholder={"상세주소를 입력해주세요."} readOnly={!(props.zipcode && props.address)} onInput={props.onInputAddressDetail} value={props.addressDetail}></Address>
                         </AddressWrapper>
                         <YoutubeWrapper>
                             <Label>유튜브</Label>
-                            <Youtube type="text" placeholder="유튜브 영상 URL을 입력해주세요." onInput={props.onInputYoutubeUrl} defaultValue={props.fetchBoardData?.fetchBoard?.youtubeUrl}></Youtube>
+                            <Youtube type="text" placeholder="유튜브 영상 URL을 입력해주세요." onInput={props.onInputYoutubeUrl} defaultValue={props.fetchBoardData?.fetchBoard.youtubeUrl}></Youtube>
                         </YoutubeWrapper>
                         {/* <ImageUploadWrapper>
                             <Label>사진 첨부</Label>

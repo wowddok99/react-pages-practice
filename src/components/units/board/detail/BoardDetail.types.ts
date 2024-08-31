@@ -9,6 +9,12 @@ export interface FetchBoard {
     likeCount: number;
     dislikeCount: number;
     youtubeUrl: string;
+    boardAddress: {
+        _id: string;
+        zipcode: string;
+        address: string;
+        addressDetail: string;
+    }
 }
 
 export interface FetchBoardData {
@@ -22,7 +28,8 @@ export interface BoardDetailUIProps {
     likeCount: number;
     dislikeCount: number;
     isYoutubePlayerError: boolean;
-
+    fullAddress: string;
+    
     onClickMoveToListPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickMoveToEditPage: (event: MouseEvent<HTMLButtonElement>) => void;
     onClickDeleteBoard: (event: MouseEvent<HTMLButtonElement>) => void;
