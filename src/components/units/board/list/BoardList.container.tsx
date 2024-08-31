@@ -97,11 +97,13 @@ export default function BoardList(){
             <BoardListUI
             fetchBoardsData={fetchBoardsData}
             pageNumber={pageNumber}
+
             onClickMoveToDetailPage={onClickMoveToDetailPage}
             onClickMoveToWritePage={onClickMoveToWritePage}
             onClickMoveToPreviousPage={onClickMoveToPreviousPage}
             onClickMoveToNextPage={onClickMoveToNextPage}
             onClickSearchByTitleAndDate={onClickSearchByTitleAndDate}
+
             onInputSearchTitle={onInputSearchTitle}
             onInputStartDate={onInputStartDate}
             onInputEndDate={onInputEndDate}

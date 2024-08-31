@@ -227,14 +227,17 @@ export default function BoardWriter(props:BoardWriteProps){
             zipcode={zipcode}
             address={address}
             addressDetail={addressDetail}
+
             onClickSubmit={onClickSubmit}
             onClickUpdate={onClickUpdate}
+
             onInputWriter={onInputWriter}
             onInputPassword={onInputPassword}
             onInputTitle={onInputTitle}
             onInputContents={onInputContents}
             onInputYoutubeUrl={onInputYoutubeUrl}
             onInputAddressDetail={onInputAddressDetail}
+
             onToggleModal={onToggleModal}
             onCompleteDaumPostcode={onCompleteDaumPostcode}
             />

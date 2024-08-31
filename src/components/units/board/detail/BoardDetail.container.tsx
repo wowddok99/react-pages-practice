@@ -57,7 +57,7 @@ export default function BoardDetail(){
                     boardId: router.query.boardId
                 }
             })
-            setLikeCount(result.data?.likeBoard);
+            setLikeCount(result.data.likeBoard);
         } catch(error){
             if (error instanceof ApolloError) {
                 console.log(error.message);
@@ -72,7 +72,7 @@ export default function BoardDetail(){
                     boardId: router.query.boardId
                 }
             })
-            setDislikeCount(result.data?.dislikeBoard);
+            setDislikeCount(result.data.dislikeBoard);
         } catch(error){
             if (error instanceof ApolloError) {
                 console.log(error.message);
@@ -105,11 +105,13 @@ export default function BoardDetail(){
             dislikeCount={dislikeCount}
             isYoutubePlayerError={isYoutubePlayerError}
             fullAddress={fullAddress}
+
             onClickMoveToListPage={onClickMoveToListPage}
             onClickMoveToEditPage={onClickMoveToEditPage}
             onClickDeleteBoard={onClickDeleteBoard}
             onClickLike={onClickLike}
             onClickDislike={onClickDislike}
+            
             onErrorYoutubePlayer={onErrorYoutubePlayer}
             onClickCopyCurrentURL={onClickCopyCurrentURL}
             />

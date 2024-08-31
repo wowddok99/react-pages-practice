@@ -42,8 +42,8 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         <InfoWrapper>
                             <ProfileIcon src="/images/profile.png" />
                             <WriterCreatedAtWrapper>
-                                <Writer>{props.fetchBoardData?.fetchBoard?.writer}</Writer>
-                                <CreateAt>{props.fetchBoardData?.fetchBoard?.createdAt}</CreateAt>                                    
+                                <Writer>{props.fetchBoardData?.fetchBoard.writer}</Writer>
+                                <CreateAt>{props.fetchBoardData?.fetchBoard.createdAt}</CreateAt>                                    
                             </WriterCreatedAtWrapper>
                         </InfoWrapper>
                         <CardHeaderLogoWrapper>
@@ -54,14 +54,14 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                         </CardHeaderLogoWrapper>
                     </CardHeaderWrapper>
                     <CardMainWrapper>
-                        <Subject>{props.fetchBoardData?.fetchBoard?.title}</Subject>
+                        <Subject>{props.fetchBoardData?.fetchBoard.title}</Subject>
                         {/* <Image></Image> */}
-                        <Contents>{props.fetchBoardData?.fetchBoard?.contents}</Contents>
+                        <Contents>{props.fetchBoardData?.fetchBoard.contents}</Contents>
                         {!props.isYoutubePlayerError && (
                             <YoutubePlayerWrapper>
                             <YoutubePlayer 
-                            url={props.fetchBoardData?.fetchBoard?.youtubeUrl}
-                            style={{display: props.fetchBoardData?.fetchBoard?.youtubeUrl ? 'block' : 'none'}}
+                            url={props.fetchBoardData?.fetchBoard.youtubeUrl}
+                            style={{display: props.fetchBoardData?.fetchBoard.youtubeUrl ? 'block' : 'none'}}
                             controls={true}
                             onError={props.onErrorYoutubePlayer}
                             />
