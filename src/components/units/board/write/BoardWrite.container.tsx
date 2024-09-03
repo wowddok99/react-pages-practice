@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ApolloError, useMutation } from "@apollo/client"
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
-import { BoardWriteProps, UpdateBoardInput } from './BoardWrite.type'
+import { BoardWriteProps, CreateBoardInput, UpdateBoardInput } from './BoardWrite.type'
 import { Address } from 'react-daum-postcode'
 
 export default function BoardWriter(props:BoardWriteProps){
@@ -28,9 +28,13 @@ export default function BoardWriter(props:BoardWriteProps){
     // isEdit(true) - Data Setting
     useEffect(() => {
         if (props.isEdit) {
-          setZipcode(props.fetchBoardData?.fetchBoard.boardAddress.zipcode);
-          setAddress(props.fetchBoardData?.fetchBoard.boardAddress.address);
-          setAddressDetail(props.fetchBoardData?.fetchBoard.boardAddress.addressDetail);
+            setWriter(props.fetchBoardData?.fetchBoard.writer);
+            setTitle(props.fetchBoardData?.fetchBoard.title);
+            setContents(props.fetchBoardData?.fetchBoard.contents);
+            setYoutubeUrl(props.fetchBoardData?.fetchBoard.youtubeUrl);
+            setZipcode(props.fetchBoardData?.fetchBoard.boardAddress.zipcode);
+            setAddress(props.fetchBoardData?.fetchBoard.boardAddress.address);
+            setAddressDetail(props.fetchBoardData?.fetchBoard.boardAddress.addressDetail);
         }
     }, [props.isEdit, props.fetchBoardData]);
 
@@ -54,23 +58,25 @@ export default function BoardWriter(props:BoardWriteProps){
             setContentsError("내용을 입력해주세요.");
         }
         
+        const createBoardInput: CreateBoardInput = {};
+        
+        createBoardInput.writer = writer;
+        createBoardInput.password = password;
+        createBoardInput.title = title;
+        createBoardInput.contents = contents;
+        createBoardInput.youtubeUrl = youtubeUrl;
+        createBoardInput.boardAddress = {
+            zipcode: zipcode,
+            address: address,
+            addressDetail: addressDetail
+        }
+
         // 전부 값이 들어있으면 게시글 등록 alert 
         if (writer && password && title && contents) {
             try {
                 const result = await createBoard({
                     variables: {
-                        createBoardInput: {
-                            writer: writer,
-                            password: password,
-                            title: title,
-                            contents: contents,
-                            youtubeUrl: youtubeUrl,
-                            boardAddress: {
-                                zipcode: zipcode,
-                                address: address,
-                                addressDetail: addressDetail
-                            }
-                        }
+                        createBoardInput: createBoardInput
                     }
                 });
                 router.push(`/boards/detail/${result.data.createBoard._id}`);    
@@ -89,33 +95,10 @@ export default function BoardWriter(props:BoardWriteProps){
         }
 
         const updateBoardInput: UpdateBoardInput = {};
-
-        // undefined : 사용자가 데이터를 안건드린 경우
-        // "" : 사용자가 데이터를 지운 경우
-        if (title === undefined){
-            updateBoardInput.title = props.fetchBoardData?.fetchBoard.title;
-        } else if (title === "") {
-            updateBoardInput.title = "";
-        } else if (title) {
-            updateBoardInput.title = title;
-        }
-
-        if (contents === undefined){
-            updateBoardInput.contents = props.fetchBoardData?.fetchBoard.contents;
-        } else if (contents === "") {
-            updateBoardInput.contents = "";
-        } else if (contents) {
-            updateBoardInput.contents = contents;
-        }
         
-        if (youtubeUrl === undefined){
-            updateBoardInput.youtubeUrl = props.fetchBoardData?.fetchBoard.youtubeUrl;
-        } else if (youtubeUrl === "") {
-            updateBoardInput.youtubeUrl = "";
-        } else if (youtubeUrl) {
-            updateBoardInput.youtubeUrl = youtubeUrl;
-        }
-
+        updateBoardInput.title = title;
+        updateBoardInput.contents = contents;
+        updateBoardInput.youtubeUrl = youtubeUrl;
         updateBoardInput.boardAddress = {
             zipcode: zipcode,
             address: address,
@@ -221,12 +204,19 @@ export default function BoardWriter(props:BoardWriteProps){
             passwordError={passwordError}
             titleError={titleError}
             contentsError={contentsError}
-            isActive={isActive}
-            isEdit={props.isEdit}
-            isModalOpen={isModalOpen}
+
+            writer={writer}
+            title={title}
+            contents={contents}
+            youtubeUrl={youtubeUrl}
+
             zipcode={zipcode}
             address={address}
             addressDetail={addressDetail}
+
+            isActive={isActive}
+            isEdit={props.isEdit}
+            isModalOpen={isModalOpen}
 
             onClickSubmit={onClickSubmit}
             onClickUpdate={onClickUpdate}

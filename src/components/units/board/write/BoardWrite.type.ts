@@ -22,6 +22,18 @@ export interface FetchBoardData{
 }
 
 export interface UpdateBoardInput{
+    password?: string;
+    title?: string;
+    contents?: string;
+    youtubeUrl?: string;
+    boardAddress?: {
+        zipcode?: string;
+        address?: string;
+        addressDetail?: string;
+    }
+}
+
+export interface CreateBoardInput{
     writer?: string;
     password?: string;
     title?: string;
@@ -49,6 +61,12 @@ export interface BoardWriteUIProps{
     isActive: boolean;
     isEdit: boolean;
     isModalOpen: boolean;
+
+    writer: string | undefined;
+    title: string | undefined;
+    contents: string | undefined;
+    youtubeUrl: string | undefined;
+
     zipcode: string | undefined;
     address: string | undefined;
     addressDetail: string | undefined;

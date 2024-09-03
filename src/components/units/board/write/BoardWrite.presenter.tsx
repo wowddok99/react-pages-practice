@@ -49,7 +49,7 @@ export default function BoardWriterUI(props: BoardWriteUIProps) {
                         <WriterPasswordWrapper>
                             <InputWrapper>
                                 <Label>작성자</Label>
-                                <Writer type ="text" placeholder="이름을 입력해주세요." onInput={props.onInputWriter} defaultValue={props.fetchBoardData?.fetchBoard.writer} disabled={props.isEdit ? true : false}></Writer>
+                                <Writer type ="text" placeholder="이름을 입력해주세요." onInput={props.onInputWriter} value={props.writer} disabled={props.isEdit ? true : false}></Writer>
                                 <Error>{props.writerError}</Error>
                             </InputWrapper>
                             <InputWrapper>
@@ -60,12 +60,12 @@ export default function BoardWriterUI(props: BoardWriteUIProps) {
                         </WriterPasswordWrapper>
                         <SubjectWrapper>
                             <Label>제목</Label>
-                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputTitle} defaultValue={props.fetchBoardData?.fetchBoard.title}></Subject>
+                            <Subject type="text" placeholder="제목을 입력해주세요." onInput={props.onInputTitle} value={props.title}></Subject>
                             <Error>{props.titleError}</Error>
                         </SubjectWrapper>
                         <ContentWrapper>
                             <Label>내용</Label>
-                            <Content type="text" placeholder="내용을 입력해주세요." onInput={props.onInputContents} defaultValue={props.fetchBoardData?.fetchBoard.contents}></Content>
+                            <Content type="text" placeholder="내용을 입력해주세요." onInput={props.onInputContents} value={props.contents}></Content>
                             <Error>{props.contentsError}</Error>
                         </ContentWrapper>
                         <AddressWrapper>
@@ -83,7 +83,7 @@ export default function BoardWriterUI(props: BoardWriteUIProps) {
                         </AddressWrapper>
                         <YoutubeWrapper>
                             <Label>유튜브</Label>
-                            <Youtube type="text" placeholder="유튜브 영상 URL을 입력해주세요." onInput={props.onInputYoutubeUrl} defaultValue={props.fetchBoardData?.fetchBoard.youtubeUrl}></Youtube>
+                            <Youtube type="text" placeholder="유튜브 영상 URL을 입력해주세요." onInput={props.onInputYoutubeUrl} value={props.youtubeUrl}></Youtube>
                         </YoutubeWrapper>
                         {/* <ImageUploadWrapper>
                             <Label>사진 첨부</Label>
