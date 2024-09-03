@@ -40,7 +40,7 @@ export default function BoardCommentListUI(props: BoardCommentListUIProps){
                             <ModalInputLabel>댓글내용</ModalInputLabel>
                             <EditModalInput type="text" maxLength={100} placeholder="댓글 내용을 입력해주세요." onInput={props.onInputCommentEditContent}/>
                         </EditModalInputWrapper>
-                        <EditModalInputWrapper>
+                        {/* <EditModalInputWrapper>
                             <ModalInputLabel>별점</ModalInputLabel>
                             <EditModalStarWrapper>
                             {[...Array(props.editStarRating)].map((_, index) => (
@@ -50,7 +50,7 @@ export default function BoardCommentListUI(props: BoardCommentListUIProps){
                                 <IoMdStarIconDisabled key={index} onClick={props.onClickEditStarRatingIncrease}></IoMdStarIconDisabled>
                             ))}
                             </EditModalStarWrapper>
-                        </EditModalInputWrapper>
+                        </EditModalInputWrapper> */}
                         <EditModalInputWrapper>
                             <ModalInputLabel>비밀번호</ModalInputLabel>
                             <EditModalInput type="password" placeholder="비밀번호를 입력해주세요." onInput={props.onInputCommentEditPassword}/>
