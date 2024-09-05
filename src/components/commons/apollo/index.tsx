@@ -14,6 +14,5 @@ export default function ApolloSetting(props: ApolloSettingProps){
         <ApolloProvider client={client}>
             {props.children}
         </ApolloProvider>
-
     )
 }
