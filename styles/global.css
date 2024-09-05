@@ -1,20 +1,20 @@
 @font-face {
     font-family: "NotoSansKR-Regular";
-    src: url("../public/font/NotoSansKR-Regular.ttf");
+    src: url("/font/NotoSansKR-Regular.ttf");
 }
 
 @font-face {
     font-family: "NotoSansKR-Bold";
-    src: url("../public/font/NotoSansKR-Bold.ttf");
+    src: url("/font/NotoSansKR-Bold.ttf");
 }
 
 @font-face {
     font-family: "NotoSansKR-ExtraLight";
-    src: url("../public/font/NotoSansKR-ExtraLight.ttf");
+    src: url("/font/NotoSansKR-ExtraLight.ttf");
 }
 
 * {
-    font-family: 'NotoSansKR-Regular', sans-serif;
+    font-family: 'NotoSansKR-Bold', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing : border-box;
