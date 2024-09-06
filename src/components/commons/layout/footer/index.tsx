@@ -22,7 +22,7 @@ const FooterContent = styled.div`
 export default function LayOutFooter(){
     return (
         <FooterWrapper>
-            <FooterContent>© 2024 CodeConvo Company. All rights reserved.</FooterContent>
+            <FooterContent>© 2024 CodeConvo Community. All rights reserved.</FooterContent>
         </FooterWrapper>
     )
 }

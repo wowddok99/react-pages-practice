@@ -32,9 +32,9 @@ export default function BoardWriter(props:BoardWriteProps){
             setTitle(props.fetchBoardData?.fetchBoard.title);
             setContents(props.fetchBoardData?.fetchBoard.contents);
             setYoutubeUrl(props.fetchBoardData?.fetchBoard.youtubeUrl);
-            setZipcode(props.fetchBoardData?.fetchBoard.boardAddress.zipcode);
-            setAddress(props.fetchBoardData?.fetchBoard.boardAddress.address);
-            setAddressDetail(props.fetchBoardData?.fetchBoard.boardAddress.addressDetail);
+            setZipcode(props.fetchBoardData?.fetchBoard.boardAddress?.zipcode);
+            setAddress(props.fetchBoardData?.fetchBoard.boardAddress?.address);
+            setAddressDetail(props.fetchBoardData?.fetchBoard.boardAddress?.addressDetail);
         }
     }, [props.isEdit, props.fetchBoardData]);
 
