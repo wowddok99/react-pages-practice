@@ -11,7 +11,7 @@ export interface FetchBoard{
     youtubeUrl: string;
     boardAddress: {
         _id: string;
-        zipcode?: string;
+        zipcode: string;
         address: string;
         addressDetail: string;
     }
