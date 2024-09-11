@@ -160,7 +160,7 @@ export const EditButton = styled.button`
 export const DeleteButton = styled.button`
   width: 11.1875rem;
   height: 3.25rem;
-  border: 1px solid #bdbdbd;
+  border: 0.0625rem solid #bdbdbd;
   background-color: white;
   cursor: pointer;
 `

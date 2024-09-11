@@ -110,7 +110,7 @@ export const CommentSubmitButton = styled.button`
   margin-top: 6.8125rem;
   margin-left: 62.7563rem;
   border: none;
-  border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 0.1875rem;
   font-size: 0.8125rem;
   color: white;
   background-color: black;

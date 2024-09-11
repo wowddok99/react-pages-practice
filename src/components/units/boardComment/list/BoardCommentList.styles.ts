@@ -13,25 +13,25 @@ export const DeleteModal = styled(Modal)`
   font-family: 'NotoSansKR-Regular', sans-serif;
 
   .ant-modal-content {
-    padding: 0px;
+    padding: 0rem;
   }
   
   .ant-modal-header {
     display: flex;
     justify-content: center;
-    padding: 10px;
-    border-bottom: 1px solid #bdbdbd;
+    padding: 0.625rem;
+    border-bottom: 0.0625rem solid #bdbdbd;
   }
 
   .ant-modal-body {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 0.625rem;
   }
 
   .ant-modal-footer {
-    padding: 10px;
-    border-top: 1px solid #bdbdbd;
+    padding: 0.625rem;
+    border-top: 0.0625rem solid #bdbdbd;
   }
 `;
 
@@ -39,25 +39,25 @@ export const EditModal = styled(Modal)`
   font-family: 'NotoSansKR-Regular', sans-serif;
 
   .ant-modal-content {
-    padding: 0px;
+    padding: 0rem;
   }
   
   .ant-modal-header {
     display: flex;
     justify-content: center;
-    padding: 10px;
-    border-bottom: 1px solid #bdbdbd;
+    padding: 0.625rem;
+    border-bottom: 0.0625rem solid #bdbdbd;
   }
 
   .ant-modal-body {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 0.625rem;
   }
 
   .ant-modal-footer {
-    padding: 10px;
-    border-top: 1px solid #bdbdbd;
+    padding: 0.625rem;
+    border-top: 0.0625rem solid #bdbdbd;
   }
 `;
 
@@ -91,7 +91,7 @@ export const EditModalInput = styled.input`
 
 export const EditModalStarWrapper = styled.div`
   display: flex;
-  margin-bottom: 7px;
+  margin-bottom: 0.4375rem;
 `
 
 export const CommentListWrapper = styled.div`

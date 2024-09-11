@@ -32,7 +32,7 @@ export const SearchInputWrapper = styled.div`
 
 export const SearchIcon = styled(IoIosSearch)`
     position: absolute;
-    margin-left: 10px;
+    margin-left: 0.625rem;
 `
 
 export const SearchInput = styled.input`
@@ -79,8 +79,8 @@ export const Row = styled.div`
     display: flex;
     align-items: center;
     height: 3.25rem;
-    border-top: 1px solid #bdbdbd;
-    border-bottom: 1px solid #bdbdbd;
+    border-top: 0.0625rem solid #bdbdbd;
+    border-bottom: 0.0625rem solid #bdbdbd;
 `
 
 export const ColumnHeaderId = styled.div`
@@ -133,7 +133,7 @@ export const FooterWrapper = styled.div`
     align-items: center;
     width: 65rem;
     display: flex;
-    /* gap: 366px; */
+    /* gap: 22.875rem; */
     `
 
 export const DummyWrapper = styled.div`

@@ -3,19 +3,19 @@ import styled from "@emotion/styled"
 const FooterWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 40px;
-    height: 200px;
-    border-top: 2px solid whitesmoke;
+    gap: 0.625rem;
+    padding: 2.5rem;
+    height: 12.5rem;
+    border-top: 0.125rem solid whitesmoke;
 `
 
 const FooterTitle = styled.div`
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: bold;
     color: #999999;
 `
 const FooterContent = styled.div`
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #bfbfbf;
 `
 

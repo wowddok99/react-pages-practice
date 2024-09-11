@@ -7,8 +7,8 @@ const HeaderWrapper = styled.div`
     align-items: center;
     justify-content: space-around;
     padding: 4rem;
-    height: 100px;
-    border: 2px solid whitesmoke;
+    height: 6.25rem;
+    border: 0.125rem solid whitesmoke;
 `
 
 const LogoWrapper = styled.div`
@@ -23,17 +23,17 @@ const HeaderLogo = styled.img`
 
 const MenuWrapper = styled.div`
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem;
 `
 
 const Menu = styled.a`
     cursor: pointer;
-    font-size: 23px;
+    font-size: 1.4375rem;
     font-family: "NotoSansKR-ExtraLight";
     font-weight: bold;
     color: gray;
     text-decoration: none;
-    padding: 3px;
+    padding: 0.1875rem;
 `
 
 
