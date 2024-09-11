@@ -2,7 +2,7 @@ import BoardDetailUI from "./BoardDetail.presenter"
 import { useRouter } from "next/router"
 import { useQuery, useMutation, ApolloError } from "@apollo/client"
 import { FETCH_BOARD, DELETE_BOARD, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
-import { useState, ChangeEvent, MouseEvent, useMemo } from "react";
+import { useState } from "react";
 import { FetchBoardData } from "./BoardDetail.types";
 
 export default function BoardDetail(){

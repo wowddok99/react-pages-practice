@@ -3,10 +3,11 @@ import PaginationUI from "./Pagination.presenter";
 import { PaginationProps } from "./Pagination.types";
 
 export default function Pagination(props: PaginationProps){
+    // 1. Paging Management
     const [startPage, setStartPage] = useState(1);
-
     const lastPage = Math.ceil((props.fetchBoardsCountData?.fetchBoardsCount ?? 10) / 10);
 
+    // 2. Event Handlers (Click Handlers)
     const onClickPage = (event: MouseEvent<HTMLSpanElement>): void => {
         void props.refetch({ page: Number(event.currentTarget.id) });
     }

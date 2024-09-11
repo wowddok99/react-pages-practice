@@ -21,7 +21,6 @@ export default function BoardList(){
         pageNumber = "1";
     }
 
-
     // 3. GraphQL Queries and Mutations
     const {data: fetchBoardsData, refetch} = useQuery<FetchBoardsData>(FETCH_BOARDS, {
         variables: {
