@@ -30,6 +30,7 @@ export default function BoardsEditPage() {
         }
     });
 
+
     return (
         <div>
             <BoardWriter 

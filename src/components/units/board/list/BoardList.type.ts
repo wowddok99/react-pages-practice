@@ -1,5 +1,7 @@
+import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import exp from "constants";
 import { ChangeEvent, MouseEvent } from "react";
+import { FetchBoardsCountData } from "../../commons/pagination/Pagination.types";
 
 // types - BoardList.container
 export interface FetchBoard{
@@ -16,12 +18,12 @@ export interface FetchBoardsData{
 // types - BoardList.presenter
 export interface BoardListUIProps {
     fetchBoardsData?: FetchBoardsData;
+    fetchBoardsCountData?: FetchBoardsCountData;
     pageNumber: string | string[];
-
+    refetch: (variables?: Partial<OperationVariables> | undefined) => Promise<ApolloQueryResult<FetchBoardsData>>;
+    
     onClickMoveToDetailPage: (el: FetchBoard) => void;
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;
-    onClickMoveToPreviousPage: (event: MouseEvent<SVGElement>) => void;
-    onClickMoveToNextPage: (event: MouseEvent<SVGElement>) => void;
     onClickSearchByTitleAndDate: (event: MouseEvent<HTMLButtonElement>) => void;
 
     onInputSearchTitle: (event: ChangeEvent<HTMLInputElement>) => void;

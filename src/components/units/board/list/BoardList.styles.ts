@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 import { IoIosSearch } from "@react-icons/all-files/io/IoIosSearch";
-import { MdNavigateBefore } from "@react-icons/all-files/md/MdNavigateBefore";
-import { MdNavigateNext } from "@react-icons/all-files/md/MdNavigateNext";
 import { RiPencilFill } from "@react-icons/all-files/ri/RiPencilFill";
 
 export const PageLayout = styled.div`
@@ -137,19 +135,6 @@ export const FooterWrapper = styled.div`
     display: flex;
     /* gap: 366px; */
     `
-export const NavigateWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-`
-
-export const NavigateNextIcon = styled(MdNavigateNext)`
-    cursor: pointer;
-`
-
-export const NavigateBeforeIcon = styled(MdNavigateBefore)`
-    cursor: pointer;
-`
 
 export const DummyWrapper = styled.div`
     border: none;

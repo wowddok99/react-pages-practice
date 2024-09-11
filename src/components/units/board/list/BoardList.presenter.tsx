@@ -1,3 +1,4 @@
+import Pagination from "../../commons/pagination/Pagination.container"
 import { 
     PageLayout,
     MainWrapper,
@@ -20,9 +21,6 @@ import {
     ColumnWriter,
     ColumnDate,
     FooterWrapper,
-    NavigateWrapper,
-    NavigateBeforeIcon,
-    NavigateNextIcon,
     SubmitButtonWrapper,
     SubmitButton,
     PencilIcon,
@@ -64,11 +62,7 @@ export default function BoardListUI(props: BoardListUIProps){
                 </TableWrapper>
                 <FooterWrapper>
                     <DummyWrapper/>
-                    <NavigateWrapper>
-                        <NavigateBeforeIcon onClick={props.onClickMoveToPreviousPage} />
-                            <div>{props.pageNumber}</div>
-                        <NavigateNextIcon onClick={props.onClickMoveToNextPage}/>
-                    </NavigateWrapper>
+                    <Pagination fetchBoardsCountData={props.fetchBoardsCountData} refetch={props.refetch} />
                     <SubmitButtonWrapper>
                         <PencilIcon/>
                         <SubmitButton onClick={props.onClickMoveToWritePage}>등록하기</SubmitButton>
