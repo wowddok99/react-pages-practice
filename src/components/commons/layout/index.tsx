@@ -1,6 +1,5 @@
 import LayOutHeader from "./header";
 import LayOutFooter from "./footer";
-import LayOutBanner from "./banner";
 
 interface LayOutProps{
     children: JSX.Element;
