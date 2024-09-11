@@ -80,8 +80,11 @@ export default function BoardList(){
         <div>
             <BoardListUI
             fetchBoardsData={fetchBoardsData}
-            fetchBoardsCountData={fetchBoardsCountData}
+            searchTitle={searchTitle}
+            startDate={startDate}
+            endDate={endDate}
             pageNumber={pageNumber}
+            fetchBoardsCountData={fetchBoardsCountData}
             refetch={refetch}
 
             onClickMoveToDetailPage={onClickMoveToDetailPage}
