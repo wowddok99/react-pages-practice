@@ -10,7 +10,6 @@ const FullScreenLayout = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: rgba(211, 211, 211, 0.2);
-
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -24,13 +23,6 @@ interface LoadingProviderProps{
 export default function LoadingProvider(props: LoadingProviderProps){
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    
-    const contentStyle = {
-        padding: 50,
-        background: 'rgba(211, 211, 211, 0.2)'
-    };
-      
-    const content = <div style={contentStyle} />;
 
     useEffect(() => {
         const start = () => {
@@ -67,9 +59,7 @@ export default function LoadingProvider(props: LoadingProviderProps){
             {props.children}
             {loading && (
                 <FullScreenLayout>
-                    <Spin tip="Loading" size="large">
-                        {content}
-                    </Spin>
+                    <Spin size="large"/>
                 </FullScreenLayout>
             )}
         </div>
