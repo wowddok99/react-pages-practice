@@ -6,7 +6,7 @@ const FooterWrapper = styled.div`
     gap: 10px;
     padding: 40px;
     height: 200px;
-    border: 2px solid whitesmoke;
+    border-top: 2px solid whitesmoke;
 `
 
 const FooterTitle = styled.div`
