@@ -45,14 +45,14 @@ export default function BoardListUI(props: BoardListUIProps){
                 <TableWrapper>
                     <TableTop/>
                     <Row>
-                        <ColumnHeaderId>번호</ColumnHeaderId>
+                        <ColumnHeaderId>ID</ColumnHeaderId>
                         <ColumnHeaderTitle>제목</ColumnHeaderTitle>
                         <ColumnHeaderWriter>작성자</ColumnHeaderWriter>
                         <ColumnHeaderDate>날짜</ColumnHeaderDate>
                     </Row>
                     {props.fetchBoardsData?.fetchBoards.map((el: FetchBoard) => (
                         <Row key={el._id} onClick={(event) => props.onClickMoveToDetailPage(el)}>
-                            <ColumnId>{el._id}</ColumnId>
+                            <ColumnId>{String(el._id).slice(-4).toUpperCase()}</ColumnId>
                             <ColumnTitle>{el.title}</ColumnTitle>
                             <ColumnWriter>{el.writer}</ColumnWriter>
                             <ColumnDate>{(el.createdAt).substring(0,10)}</ColumnDate>
