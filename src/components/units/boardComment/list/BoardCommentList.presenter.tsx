@@ -64,12 +64,12 @@ export default function BoardCommentListUI(props: BoardCommentListUIProps){
                     <CommentInfoWrapper>
                         <CommentHeaderWrapper>
                             <WriterStarWrapper>
-                                <CommentWriter>{el.writer}</CommentWriter>
+                                <CommentWriter>{el.writer ? el.writer : '알수없음'}</CommentWriter>
                                 <StarWrapper>
-                                    {[...Array(el.rating)].map((_, index) => (
+                                    {[...Array(Math.round(el.rating))].map((_, index) => (
                                         <IoMdStarIconActive key={index}></IoMdStarIconActive>
                                     ))}
-                                    {[...Array(5-el.rating)].map((_, index) => (
+                                    {[...Array(5-Math.round(el.rating))].map((_, index) => (
                                         <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
                                     ))}
                                 </StarWrapper>
