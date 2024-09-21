@@ -27,6 +27,7 @@ export interface BoardCommentListUIProps {
     editStarRating: number;
 
     onToggleModal: () => void;
+    onLoadMoreComments: () => void;
 
     onClickOpenEditModal: (_id: string, rating: number) => void;
     onClickOpenDeleteModal: (_id: string) => void;

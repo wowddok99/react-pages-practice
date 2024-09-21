@@ -1,5 +1,7 @@
 import { BoardCommentListUIProps, FetchBoardComment } from "./BoardCommentList.types";
 import { IoMdStarIconActive, IoMdStarIconDisabled, StarWrapper } from "../write/BoardCommentWrite.styles";
+import InfiniteScroll from 'react-infinite-scroller';
+
 import {
     CommentListFormWrapper,
     DeleteModal,
@@ -21,7 +23,6 @@ import {
     CommentWriter,
     CommentContent,
     CommentCreatedAt
-
 } from "./BoardCommentList.styles";
 
 export default function BoardCommentListUI(props: BoardCommentListUIProps){
@@ -58,32 +59,34 @@ export default function BoardCommentListUI(props: BoardCommentListUIProps){
                     </EditModal>
                 ) : null
             )}
-            {props.fetchBoardCommentsData?.fetchBoardComments.map((el: FetchBoardComment) => (
-                <CommentListWrapper key={el._id}>
-                    <CommentProfileIcon src="/images/profile.png" />
-                    <CommentInfoWrapper>
-                        <CommentHeaderWrapper>
-                            <WriterStarWrapper>
-                                <CommentWriter>{el.writer ? el.writer : '알수없음'}</CommentWriter>
-                                <StarWrapper>
-                                    {[...Array(Math.round(el.rating))].map((_, index) => (
-                                        <IoMdStarIconActive key={index}></IoMdStarIconActive>
-                                    ))}
-                                    {[...Array(5-Math.round(el.rating))].map((_, index) => (
-                                        <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
-                                    ))}
-                                </StarWrapper>
-                            </WriterStarWrapper>
-                            <IconWrapper>
-                                <MdModeEditIcon onClick={() => props.onClickOpenEditModal(el._id, el.rating)}/>
-                                <MdClearIcon onClick={() => props.onClickOpenDeleteModal(el._id)}/>
-                            </IconWrapper>
-                        </CommentHeaderWrapper>
-                        <CommentContent>{el.contents}</CommentContent>
-                        <CommentCreatedAt>{el.createdAt}</CommentCreatedAt>
-                    </CommentInfoWrapper>
-                </CommentListWrapper>  
-            ))}            
+            <InfiniteScroll pageStart={0} loadMore={props.onLoadMoreComments} hasMore={true} style={{display:'flex', flexDirection:'column',gap: '1rem'}}>
+                {props.fetchBoardCommentsData?.fetchBoardComments.map((el: FetchBoardComment) => (
+                    <CommentListWrapper key={el._id}>
+                        <CommentProfileIcon src="/images/profile.png" />
+                        <CommentInfoWrapper>
+                            <CommentHeaderWrapper>
+                                <WriterStarWrapper>
+                                    <CommentWriter>{el.writer ? el.writer : '알수없음'}</CommentWriter>
+                                    <StarWrapper>
+                                        {[...Array(Math.round(el.rating))].map((_, index) => (
+                                            <IoMdStarIconActive key={index}></IoMdStarIconActive>
+                                        ))}
+                                        {[...Array(5-Math.round(el.rating))].map((_, index) => (
+                                            <IoMdStarIconDisabled key={index}></IoMdStarIconDisabled>
+                                        ))}
+                                    </StarWrapper>
+                                </WriterStarWrapper>
+                                <IconWrapper>
+                                    <MdModeEditIcon onClick={() => props.onClickOpenEditModal(el._id, el.rating)}/>
+                                    <MdClearIcon onClick={() => props.onClickOpenDeleteModal(el._id)}/>
+                                </IconWrapper>
+                            </CommentHeaderWrapper>
+                            <CommentContent>{el.contents}</CommentContent>
+                            <CommentCreatedAt>{el.createdAt}</CommentCreatedAt>
+                        </CommentInfoWrapper>
+                    </CommentListWrapper>  
+                ))}
+            </InfiniteScroll>
         </CommentListFormWrapper>
     )
 }

@@ -23,7 +23,7 @@ export default function BoardCommentList(){
     const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
 
         
-    const {data: fetchBoardCommentsData} = useQuery<FetchBoardCommentsData>(FETCH_BOARD_COMMENTS, {
+    const {data: fetchBoardCommentsData, fetchMore} = useQuery<FetchBoardCommentsData>(FETCH_BOARD_COMMENTS, {
         variables:{
             page: 1,
             boardId: router.query.boardId
@@ -136,6 +136,32 @@ export default function BoardCommentList(){
         alert(alertMessage)
     }
 
+    const onLoadMoreComments = (): void => {
+        // fetchBoardCommentsData가 undefined면 함수 종료
+        if(fetchBoardCommentsData === undefined) return;
+
+        fetchMore({
+            variables: {
+                // 1페이지에 댓글 10개, 현재 댓글 수에 따라 페이지 계산됨
+                // 예: 댓글 22개면 Math.ceil(22 / 10) = 3, 다음 페이지는 4
+                page: Math.ceil((fetchBoardCommentsData?.fetchBoardComments.length ?? 10) / 10) + 1
+            },
+            updateQuery: (prev, {fetchMoreResult}) => {
+                // fetchMoreResult가 없으면 이전 댓글 목록 반환
+                if(fetchMoreResult.fetchBoardComments === undefined){
+                    return {
+                        fetchBoardComments: [...prev.fetchBoardComments]
+                    }
+                }
+                
+                // fetchMoreResult에 데이터가 있으면 이전 댓글 목록과 병합하여 반환
+                return {
+                    fetchBoardComments: [...prev.fetchBoardComments, ...fetchMoreResult.fetchBoardComments]
+                }
+            }
+        })
+    }
+
     return (
         <div>
             <BoardCommentListUI
@@ -155,6 +181,7 @@ export default function BoardCommentList(){
             onInputCommentEditPassword={onInputCommentEditPassword}
             onInputCommentEditContent={onInputCommentEditContent}
             onToggleModal={onToggleModal}
+            onLoadMoreComments={onLoadMoreComments}
             />
         </div>
     )
