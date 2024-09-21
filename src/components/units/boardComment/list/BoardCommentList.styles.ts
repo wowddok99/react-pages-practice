@@ -78,6 +78,7 @@ export const DeleteModalInput = styled.input`
   padding-left: 0.1rem;
   padding-right: 0.1rem;
   margin-top: 0.5rem;
+  border: 0.0625rem solid #BDBDBD;
 `;
 
 export const EditModalInput = styled.input`
@@ -87,6 +88,7 @@ export const EditModalInput = styled.input`
   padding-right: 0.1rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  border: 0.0625rem solid #BDBDBD;
 `;
 
 export const EditModalStarWrapper = styled.div`
