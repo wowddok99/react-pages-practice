@@ -31,7 +31,9 @@ import {
     MainOptionRadioButton,
     SubmitButtonWrapper,
     SubmitButton,
-    Error
+    Error,
+    RiImageAddLineIcon,
+    ImageFileName
     
 } from "./BoardWrite.styles"
 import { Modal } from "antd"
@@ -85,14 +87,14 @@ export default function BoardWriterUI(props: BoardWriteUIProps) {
                             <Label>유튜브</Label>
                             <Youtube type="text" placeholder="유튜브 영상 URL을 입력해주세요." onInput={props.onInputYoutubeUrl} value={props.youtubeUrl}></Youtube>
                         </YoutubeWrapper>
-                        {/* <ImageUploadWrapper>
+                        <ImageUploadWrapper>
                             <Label>사진 첨부</Label>
                             <ImageUploadButtonWrapper>
-                                <ImageUploadButton>+<br/>upload</ImageUploadButton>
-                                <ImageUploadButton>+<br/>upload</ImageUploadButton>
-                                <ImageUploadButton>+<br/>upload</ImageUploadButton>
+                                <input type ="file" onChange={props.onChangeImageFile} multiple={true} style={{ display: 'none' }} ref={props.imageFileRef} accept="image/jpeg,image/png"/>
+                                <RiImageAddLineIcon onClick={props.onOpenHiddenImageInput}>+<br/>upload</RiImageAddLineIcon>
+                                <ImageFileName>{props.imageFileName}</ImageFileName>
                             </ImageUploadButtonWrapper>
-                        </ImageUploadWrapper> */}
+                        </ImageUploadWrapper>
                         {/* <MainOptionWrapper>
                             <MainOptionRadioWrapper>
                                 <MainOptionRadioButton type="radio" name="MainOption" id="youtube"></MainOptionRadioButton>

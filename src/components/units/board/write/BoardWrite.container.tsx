@@ -1,10 +1,11 @@
 import BoardWriterUI from './BoardWrite.presenter'
-import { ChangeEvent, useEffect, useState } from 'react' 
+import { ChangeEvent, useEffect, useRef, useState } from 'react' 
 import { useRouter } from 'next/router'
 import { ApolloError, useMutation } from "@apollo/client"
-import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
-import { BoardWriteProps, CreateBoardInput, UpdateBoardInput } from './BoardWrite.type'
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from './BoardWrite.queries'
+import { BoardWriteProps, CreateBoardInput, UpdateBoardInput, UploadFile } from './BoardWrite.type'
 import { Address } from 'react-daum-postcode'
+import { checkValidationImageFile } from '../../commons/libraries/validationFile'
 
 export default function BoardWriter(props:BoardWriteProps){
     const router = useRouter();
@@ -24,6 +25,9 @@ export default function BoardWriter(props:BoardWriteProps){
     const [titleError, setTitleError] = useState<string>("");
     const [contentsError, setContentsError] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [imageUrl, setImageUrl] = useState<string|undefined>("");
+    const [imageFileName, setImageFileName] = useState<string|undefined>("")
+    const imageFileRef = useRef<HTMLInputElement>(null);
 
     // isEdit(true) - Data Setting
     useEffect(() => {
@@ -41,6 +45,7 @@ export default function BoardWriter(props:BoardWriteProps){
     // 2. GraphQL Mutations
     const [createBoard] = useMutation(CREATE_BOARD);
     const [updateBoard] = useMutation(UPDATE_BOARD);
+    const [uploadFile] = useMutation<UploadFile>(UPLOAD_FILE)
 
     // 3. Event Handlers (Click Handlers)
     const onClickSubmit = async () => {
@@ -186,6 +191,21 @@ export default function BoardWriter(props:BoardWriteProps){
         setAddressDetail(event.target.value);
     }
 
+    const onChangeImageFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+        const file = event.target.files?.[0] // 배열로 들어오는 이유: <input type="file" multiple /> 일 때, 여러개 드래그 가능
+        console.log(file)
+
+        const isImageFileValid = checkValidationImageFile(file);
+        // isValid가 false이면 return 실행
+        if (!isImageFileValid) return;
+
+        setImageFileName(file?.name)
+
+        const result = await uploadFile({ variables: { file: file } })
+        console.log(result)
+        setImageUrl(result.data?.uploadFile.url)
+    }
+
     // 5. Helper Function
     const onToggleModal = (): void => {
         setIsModalOpen((prev) => !prev);
@@ -196,6 +216,11 @@ export default function BoardWriter(props:BoardWriteProps){
         setAddress(data.address);
         onToggleModal();
     }
+
+    const onOpenHiddenImageInput = () => {
+        imageFileRef.current?.click();
+    }
+    
     return (
         <div>
             <BoardWriterUI
@@ -209,6 +234,9 @@ export default function BoardWriter(props:BoardWriteProps){
             title={title}
             contents={contents}
             youtubeUrl={youtubeUrl}
+            imageUrl={imageUrl}
+            imageFileName={imageFileName}
+            imageFileRef={imageFileRef}
 
             zipcode={zipcode}
             address={address}
@@ -220,6 +248,7 @@ export default function BoardWriter(props:BoardWriteProps){
 
             onClickSubmit={onClickSubmit}
             onClickUpdate={onClickUpdate}
+            onOpenHiddenImageInput={onOpenHiddenImageInput}
 
             onInputWriter={onInputWriter}
             onInputPassword={onInputPassword}
@@ -227,6 +256,7 @@ export default function BoardWriter(props:BoardWriteProps){
             onInputContents={onInputContents}
             onInputYoutubeUrl={onInputYoutubeUrl}
             onInputAddressDetail={onInputAddressDetail}
+            onChangeImageFile={onChangeImageFile}
 
             onToggleModal={onToggleModal}
             onCompleteDaumPostcode={onCompleteDaumPostcode}

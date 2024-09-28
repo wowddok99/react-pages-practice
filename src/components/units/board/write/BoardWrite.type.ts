@@ -1,6 +1,6 @@
 import { Address } from 'react-daum-postcode';
 import { Youtube } from './BoardWrite.styles';
-import { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent, MouseEvent, RefObject } from "react";
 
 // types - BoardWrite.container
 export interface FetchBoard{
@@ -46,6 +46,12 @@ export interface CreateBoardInput{
     }
 }
 
+export interface UploadFile {
+    uploadFile: {
+        url: string
+    }
+}
+
 // types - BoardWrite.presenter
 export interface BoardWriteProps{
   isEdit: boolean;
@@ -66,6 +72,9 @@ export interface BoardWriteUIProps{
     title: string | undefined;
     contents: string | undefined;
     youtubeUrl: string | undefined;
+    imageUrl: string | undefined;
+    imageFileName: string | undefined;
+    imageFileRef: RefObject<HTMLInputElement>
 
     zipcode: string | undefined;
     address: string | undefined;
@@ -80,7 +89,9 @@ export interface BoardWriteUIProps{
     onInputContents: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChangeImageFile: (event: ChangeEvent<HTMLInputElement>) => void;
 
     onToggleModal: () => void;
     onCompleteDaumPostcode: (data: Address) => void;
+    onOpenHiddenImageInput: () => void;
 }

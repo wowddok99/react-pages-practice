@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { RiImageAddLine } from "@react-icons/all-files/ri/RiImageAddLine"
 
 export const PageLayout = styled.div`
     display: flex;
@@ -162,6 +163,7 @@ export const ImageUploadWrapper = styled.div`
 
 export const ImageUploadButtonWrapper = styled.div`
     display: flex;
+    align-items: center;
     gap: 0.4rem;
 `
 
@@ -205,4 +207,14 @@ export const Error = styled.div`
     color: red;
     font-size: 0.875rem;
     margin-top: -0.4rem;
+`
+
+export const RiImageAddLineIcon = styled(RiImageAddLine)`
+    cursor: pointer;
+    width: 1.875rem;
+    height: 1.875rem;
+`
+
+export const ImageFileName = styled.div`
+    font-size: 0.875rem;
 `
