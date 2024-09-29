@@ -32,7 +32,7 @@ export interface UpdateBoardInput{
         address?: string;
         addressDetail?: string;
     }
-    images?: [undefined | string];
+    images?: string[]
 }
 
 export interface CreateBoardInput{
@@ -46,7 +46,7 @@ export interface CreateBoardInput{
         address?: string;
         addressDetail?: string;
     }
-    images?: [undefined | string];
+    images?: string[]
 }
 
 export interface UploadFile {
@@ -75,8 +75,8 @@ export interface BoardWriteUIProps{
     title: string | undefined;
     contents: string | undefined;
     youtubeUrl: string | undefined;
-    imageFileUrl: string | undefined;
-    imageFileName: string | undefined;
+    imageFileUrls: string[]
+    imageFileNames: string[]
     imageFileRef: RefObject<HTMLInputElement>
 
     zipcode: string | undefined;
@@ -97,5 +97,5 @@ export interface BoardWriteUIProps{
     onToggleModal: () => void;
     onCompleteDaumPostcode: (data: Address) => void;
     onOpenHiddenImageFileInput: () => void;
-    onClickDeleteImageFile: () => void;
+    onClickDeleteImageFile: (index: number) => void;
 }

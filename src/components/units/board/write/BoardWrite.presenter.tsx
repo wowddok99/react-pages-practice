@@ -94,10 +94,12 @@ export default function BoardWriterUI(props: BoardWriteUIProps) {
                             <ImageInputWrapper>
                                 <input type ="file" onChange={props.onChangeImageFile} multiple={true} style={{ display: 'none' }} ref={props.imageFileRef} accept="image/jpeg,image/png"/>
                                 <RiImageAddLineIcon onClick={props.onOpenHiddenImageFileInput}>+<br/>upload</RiImageAddLineIcon>
-                                <ImageFileNameWrapper style={{ display: props.imageFileName ? '' : 'none'}}>
-                                  <ImageFileName>{props.imageFileName}</ImageFileName>
-                                  <ImageFileDeleteButton onClick={props.onClickDeleteImageFile}/>
-                                </ImageFileNameWrapper>
+                                {props.imageFileNames?.map((el, index)=>(
+                                    <ImageFileNameWrapper style={{ display: props.imageFileNames ? '' : 'none'}}>
+                                    <ImageFileName onClick={() => window.open(`https://storage.googleapis.com/${props.imageFileUrls?.[index]}`)}>{props.imageFileNames?.[index]}</ImageFileName>
+                                    <ImageFileDeleteButton onClick={() => props.onClickDeleteImageFile(index)}/>
+                                    </ImageFileNameWrapper>
+                                ))}
                             </ImageInputWrapper>
                         </ImageUploadWrapper>
                         {/* <MainOptionWrapper>

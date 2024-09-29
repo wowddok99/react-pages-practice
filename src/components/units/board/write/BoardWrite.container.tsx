@@ -25,8 +25,8 @@ export default function BoardWriter(props:BoardWriteProps){
     const [titleError, setTitleError] = useState<string>("");
     const [contentsError, setContentsError] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [imageFileUrl, setImageFileUrl] = useState<undefined|string>("");
-    const [imageFileName, setImageFileName] = useState<undefined|string>("")
+    const [imageFileUrls, setImageFileUrls] = useState<string[]>([]);
+    const [imageFileNames, setImageFileNames] = useState<string[]>([]);
     const imageFileRef = useRef<HTMLInputElement>(null);
 
     // isEdit(true) - Data Setting
@@ -39,17 +39,21 @@ export default function BoardWriter(props:BoardWriteProps){
             setZipcode(props.fetchBoardData?.fetchBoard.boardAddress?.zipcode);
             setAddress(props.fetchBoardData?.fetchBoard.boardAddress?.address);
             setAddressDetail(props.fetchBoardData?.fetchBoard.boardAddress?.addressDetail);
+            
+            const imageUrls = props.fetchBoardData?.fetchBoard.images as string[];
 
-            const imagePath = props.fetchBoardData?.fetchBoard.images[0];
-            if (imagePath) {
-                const fileName = imagePath.split('/').pop();
-                setImageFileName(fileName);
-                setImageFileUrl(props.fetchBoardData?.fetchBoard.images[0]);
+            if (imageUrls) {
+                const fileNames = [] as string[];
+
+                imageUrls.forEach((el, index) => {
+                    fileNames.push(imageUrls[index].split('/').pop() as string)
+                })
+
+                setImageFileNames(fileNames);
+                setImageFileUrls(imageUrls);
             }
         }
     }, [props.isEdit, props.fetchBoardData]);
-
-    console.log(props.fetchBoardData)
     // 2. GraphQL Mutations
     const [createBoard] = useMutation(CREATE_BOARD);
     const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -83,7 +87,7 @@ export default function BoardWriter(props:BoardWriteProps){
             address: address,
             addressDetail: addressDetail
         }
-        createBoardInput.images = [imageFileUrl]
+        createBoardInput.images = [...imageFileUrls]
 
         // 전부 값이 들어있으면 게시글 등록 alert 
         if (writer && password && title && contents) {
@@ -118,7 +122,7 @@ export default function BoardWriter(props:BoardWriteProps){
             address: address,
             addressDetail: addressDetail
         }
-        updateBoardInput.images = [imageFileUrl]
+        updateBoardInput.images = [...imageFileUrls]
 
         try {
             const result = await updateBoard({
@@ -202,16 +206,34 @@ export default function BoardWriter(props:BoardWriteProps){
     }
 
     const onChangeImageFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
-        const file = event.target.files?.[0] // 배열로 들어오는 이유: <input type="file" multiple /> 일 때, 여러개 드래그 가능
+        // 같은 파일이 선택될 경우 onChange 이벤트가 발생하지 않으므로, 입력값을 초기화
+        event.target.value = "";
 
-        const isImageFileValid = checkValidationImageFile(file);
+        const newImageFileUrls = [...imageFileUrls]
+        const newImageFileNames = [...imageFileNames]
+
+        if (newImageFileUrls.length >= 3) {
+            alert("이미지는 최대 3개까지만 등록할 수 있습니다.");
+            return;
+        }
+
+        const file = event.target.files?.[0]; // 배열로 들어오는 이유: <input type="file" multiple /> 일 때, 여러개 드래그 가능
+        
         // isValid가 false이면 return 실행
+        const isImageFileValid = checkValidationImageFile(file);
         if (!isImageFileValid) return;
 
-        setImageFileName(file?.name)
-
+        // image 파일 storage.googleapis에 업로드
         const result = await uploadFile({ variables: { file: file } })
-        setImageFileUrl(result.data?.uploadFile.url)
+
+        //newImageFileNames(배열)에 file의 name(파일명)을 저장
+        newImageFileNames.push(`${file?.name}`)
+        // newImageFileUrls(배열)에 upLoadFile의 result에서 받아온 url 저장 
+        newImageFileUrls.push(`${result.data?.uploadFile.url}`)
+
+        // 각 state에 배열 형태로 저장
+        setImageFileNames(newImageFileNames)
+        setImageFileUrls(newImageFileUrls)
     }
 
     // 5. Helper Function
@@ -229,9 +251,15 @@ export default function BoardWriter(props:BoardWriteProps){
         imageFileRef.current?.click();
     }
     
-    const onClickDeleteImageFile = () => {
-        setImageFileUrl("")
-        setImageFileName("");
+    const onClickDeleteImageFile = (index: number): void => {
+        const newImageFileUrls = [...imageFileUrls]
+        const newImageFileNames = [...imageFileNames]
+
+        newImageFileUrls.splice(index, 1)
+        newImageFileNames.splice(index, 1)
+
+        setImageFileUrls(newImageFileUrls)
+        setImageFileNames(newImageFileNames);
     }
 
     return (
@@ -247,8 +275,8 @@ export default function BoardWriter(props:BoardWriteProps){
             title={title}
             contents={contents}
             youtubeUrl={youtubeUrl}
-            imageFileUrl={imageFileUrl}
-            imageFileName={imageFileName}
+            imageFileUrls={imageFileUrls}
+            imageFileNames={imageFileNames}
             imageFileRef={imageFileRef}
 
             zipcode={zipcode}
