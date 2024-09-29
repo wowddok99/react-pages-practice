@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { RiImageAddLine } from "@react-icons/all-files/ri/RiImageAddLine"
+import { TiDelete } from "@react-icons/all-files/ti/TiDelete";
 
 export const PageLayout = styled.div`
     display: flex;
@@ -161,10 +162,9 @@ export const ImageUploadWrapper = styled.div`
     gap: 0.4rem;
 `
 
-export const ImageUploadButtonWrapper = styled.div`
+export const ImageInputWrapper = styled.div`
     display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    gap: 0.7rem;
 `
 
 export const ImageUploadButton = styled.button`
@@ -215,6 +215,24 @@ export const RiImageAddLineIcon = styled(RiImageAddLine)`
     height: 1.875rem;
 `
 
+export const ImageFileNameWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    border: 0.0625rem solid #bdbdbd;
+    border-radius: 10px;
+`
+
 export const ImageFileName = styled.div`
+    cursor: pointer;
     font-size: 0.875rem;
+`
+
+export const ImageFileDeleteButton = styled(TiDelete)`
+    cursor: pointer;
+    margin-top: 1.5px;
+    color: gray;
+    width: 22px;
+    height: 22px;
 `

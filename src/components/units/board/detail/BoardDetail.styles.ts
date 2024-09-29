@@ -76,15 +76,13 @@ export const LinkIcon = styled.img`
 `
 
 export const Subject = styled.div`
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
-  margin-bottom: -1.5rem;
 `
 
-export const Image = styled.div`
+export const Image = styled.img`
   width: 100%;
-  height: 40rem;
-  background-color: whitesmoke;
+  height: 100%;
 `
 
 export const Contents = styled.div`

@@ -11,7 +11,6 @@ export default function BoardDetail(){
     // 1. State Variables
     const [likeCount, setLikeCount] = useState<number>(0);
     const [dislikeCount, setDislikeCount] = useState<number>(0);
-    const [boardCommentId, setBoardCommentId] = useState<string>("");
     const [isYoutubePlayerError, setIsYoutubePlayerError] = useState<boolean>(false);
     const [fullAddress, setFullAddress] = useState<string>("");
 
@@ -31,8 +30,6 @@ export default function BoardDetail(){
             setFullAddress(fullAddress);
         }
     });
-
-
     // 3. Event Handlers (Click Handlers)
     const onClickDeleteBoard = async(): Promise<void> => {
         try {

@@ -15,6 +15,7 @@ export interface FetchBoard {
         address: string;
         addressDetail: string;
     }
+    images: [undefined | string]
 }
 
 export interface FetchBoardData {

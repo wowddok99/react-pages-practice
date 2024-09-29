@@ -25,8 +25,8 @@ export default function BoardWriter(props:BoardWriteProps){
     const [titleError, setTitleError] = useState<string>("");
     const [contentsError, setContentsError] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [imageUrl, setImageUrl] = useState<string|undefined>("");
-    const [imageFileName, setImageFileName] = useState<string|undefined>("")
+    const [imageFileUrl, setImageFileUrl] = useState<undefined|string>("");
+    const [imageFileName, setImageFileName] = useState<undefined|string>("")
     const imageFileRef = useRef<HTMLInputElement>(null);
 
     // isEdit(true) - Data Setting
@@ -39,9 +39,17 @@ export default function BoardWriter(props:BoardWriteProps){
             setZipcode(props.fetchBoardData?.fetchBoard.boardAddress?.zipcode);
             setAddress(props.fetchBoardData?.fetchBoard.boardAddress?.address);
             setAddressDetail(props.fetchBoardData?.fetchBoard.boardAddress?.addressDetail);
+
+            const imagePath = props.fetchBoardData?.fetchBoard.images[0];
+            if (imagePath) {
+                const fileName = imagePath.split('/').pop();
+                setImageFileName(fileName);
+                setImageFileUrl(props.fetchBoardData?.fetchBoard.images[0]);
+            }
         }
     }, [props.isEdit, props.fetchBoardData]);
 
+    console.log(props.fetchBoardData)
     // 2. GraphQL Mutations
     const [createBoard] = useMutation(CREATE_BOARD);
     const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -75,6 +83,7 @@ export default function BoardWriter(props:BoardWriteProps){
             address: address,
             addressDetail: addressDetail
         }
+        createBoardInput.images = [imageFileUrl]
 
         // 전부 값이 들어있으면 게시글 등록 alert 
         if (writer && password && title && contents) {
@@ -92,7 +101,7 @@ export default function BoardWriter(props:BoardWriteProps){
             }
         }
     }
-  
+    
     const onClickUpdate = async () => {
         if (!password) {
             alert("비밀번호를 입력해주세요.");
@@ -109,6 +118,7 @@ export default function BoardWriter(props:BoardWriteProps){
             address: address,
             addressDetail: addressDetail
         }
+        updateBoardInput.images = [imageFileUrl]
 
         try {
             const result = await updateBoard({
@@ -193,7 +203,6 @@ export default function BoardWriter(props:BoardWriteProps){
 
     const onChangeImageFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
         const file = event.target.files?.[0] // 배열로 들어오는 이유: <input type="file" multiple /> 일 때, 여러개 드래그 가능
-        console.log(file)
 
         const isImageFileValid = checkValidationImageFile(file);
         // isValid가 false이면 return 실행
@@ -202,8 +211,7 @@ export default function BoardWriter(props:BoardWriteProps){
         setImageFileName(file?.name)
 
         const result = await uploadFile({ variables: { file: file } })
-        console.log(result)
-        setImageUrl(result.data?.uploadFile.url)
+        setImageFileUrl(result.data?.uploadFile.url)
     }
 
     // 5. Helper Function
@@ -216,11 +224,16 @@ export default function BoardWriter(props:BoardWriteProps){
         setAddress(data.address);
         onToggleModal();
     }
-
-    const onOpenHiddenImageInput = () => {
+    
+    const onOpenHiddenImageFileInput = () => {
         imageFileRef.current?.click();
     }
     
+    const onClickDeleteImageFile = () => {
+        setImageFileUrl("")
+        setImageFileName("");
+    }
+
     return (
         <div>
             <BoardWriterUI
@@ -234,7 +247,7 @@ export default function BoardWriter(props:BoardWriteProps){
             title={title}
             contents={contents}
             youtubeUrl={youtubeUrl}
-            imageUrl={imageUrl}
+            imageFileUrl={imageFileUrl}
             imageFileName={imageFileName}
             imageFileRef={imageFileRef}
 
@@ -248,7 +261,6 @@ export default function BoardWriter(props:BoardWriteProps){
 
             onClickSubmit={onClickSubmit}
             onClickUpdate={onClickUpdate}
-            onOpenHiddenImageInput={onOpenHiddenImageInput}
 
             onInputWriter={onInputWriter}
             onInputPassword={onInputPassword}
@@ -260,6 +272,8 @@ export default function BoardWriter(props:BoardWriteProps){
 
             onToggleModal={onToggleModal}
             onCompleteDaumPostcode={onCompleteDaumPostcode}
+            onOpenHiddenImageFileInput={onOpenHiddenImageFileInput}
+            onClickDeleteImageFile={onClickDeleteImageFile}
             />
         </div>
     )
