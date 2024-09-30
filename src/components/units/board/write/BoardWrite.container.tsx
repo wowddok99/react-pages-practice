@@ -206,9 +206,6 @@ export default function BoardWriter(props:BoardWriteProps){
     }
 
     const onChangeImageFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
-        // 같은 파일이 선택될 경우 onChange 이벤트가 발생하지 않으므로, 입력값을 초기화
-        event.target.value = "";
-
         const newImageFileUrls = [...imageFileUrls]
         const newImageFileNames = [...imageFileNames]
 
@@ -218,7 +215,7 @@ export default function BoardWriter(props:BoardWriteProps){
         }
 
         const file = event.target.files?.[0]; // 배열로 들어오는 이유: <input type="file" multiple /> 일 때, 여러개 드래그 가능
-        
+
         // isValid가 false이면 return 실행
         const isImageFileValid = checkValidationImageFile(file);
         if (!isImageFileValid) return;
@@ -234,6 +231,9 @@ export default function BoardWriter(props:BoardWriteProps){
         // 각 state에 배열 형태로 저장
         setImageFileNames(newImageFileNames)
         setImageFileUrls(newImageFileUrls)
+
+        // 같은 파일이 선택될 경우 onChange 이벤트가 발생하지 않으므로, 입력값을 초기화
+        event.target.value = "";
     }
 
     // 5. Helper Function
