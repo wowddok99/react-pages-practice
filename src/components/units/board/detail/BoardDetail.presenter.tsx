@@ -55,7 +55,9 @@ export default function BoardDetailUI(props: BoardDetailUIProps){
                     </CardHeaderWrapper>
                     <CardMainWrapper>
                         <Subject>{props.fetchBoardData?.fetchBoard.title}</Subject>
-                        <Image src={`https://storage.googleapis.com/${props.fetchBoardData?.fetchBoard.images}`} style={{ display: props.fetchBoardData?.fetchBoard.images[0] ? '' : 'none'}}></Image>
+                        {props.fetchBoardData?.fetchBoard.images.map((el)=>(
+                            <Image src={`https://storage.googleapis.com/${el}`} style={{ display: props.fetchBoardData?.fetchBoard.images[0] ? '' : 'none'}}></Image>
+                        ))}
                         <Contents>{props.fetchBoardData?.fetchBoard.contents}</Contents>
                         {!props.isYoutubePlayerError && (
                             <YoutubePlayerWrapper>

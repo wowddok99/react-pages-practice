@@ -30,6 +30,7 @@ export default function BoardDetail(){
             setFullAddress(fullAddress);
         }
     });
+
     // 3. Event Handlers (Click Handlers)
     const onClickDeleteBoard = async(): Promise<void> => {
         try {
