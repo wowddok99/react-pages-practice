@@ -5,7 +5,7 @@ import { ApolloError, useMutation } from "@apollo/client"
 import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from './BoardWrite.queries'
 import { BoardWriteProps, CreateBoardInput, UpdateBoardInput, UploadFile } from './BoardWrite.type'
 import { Address } from 'react-daum-postcode'
-import { checkValidationImageFile } from '../../commons/libraries/validationFile'
+import { checkValidationImageFile, shortenFileName } from '../../commons/libraries/validationFile'
 
 export default function BoardWriter(props:BoardWriteProps){
     const router = useRouter();
@@ -46,7 +46,8 @@ export default function BoardWriter(props:BoardWriteProps){
                 const fileNames = [] as string[];
 
                 imageUrls.forEach((el, index) => {
-                    fileNames.push(imageUrls[index].split('/').pop() as string)
+                    const shortenedFileName = shortenFileName(imageUrls[index].split('/').pop() as string ?? "", 15);
+                    fileNames.push(shortenedFileName)
                 })
 
                 setImageFileNames(fileNames);
@@ -223,14 +224,18 @@ export default function BoardWriter(props:BoardWriteProps){
         // image 파일 storage.googleapis에 업로드
         const result = await uploadFile({ variables: { file: file } })
 
-        //newImageFileNames(배열)에 file의 name(파일명)을 저장
-        newImageFileNames.push(`${file?.name}`)
         // newImageFileUrls(배열)에 upLoadFile의 result에서 받아온 url 저장 
         newImageFileUrls.push(`${result.data?.uploadFile.url}`)
 
+        // fileName 축소 함수를 실행 -> 확장자를 제외한 파일명의 길이가 15가 안넘어가도록 관리
+        const shortenedFileName = shortenFileName(file?.name ?? "", 15);
+
+        //newImageFileNames(배열)에 file의 shortenedFileName(축소된 파일명)을 저장
+        newImageFileNames.push(shortenedFileName ?? "")
+
         // 각 state에 배열 형태로 저장
-        setImageFileNames(newImageFileNames)
         setImageFileUrls(newImageFileUrls)
+        setImageFileNames(newImageFileNames)
 
         // 같은 파일이 선택될 경우 onChange 이벤트가 발생하지 않으므로, 입력값을 초기화
         event.target.value = "";
