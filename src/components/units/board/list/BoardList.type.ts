@@ -17,13 +17,14 @@ export interface FetchBoardsData{
 
 // types - BoardList.presenter
 export interface BoardListUIProps {
+    refetch: (variables?: Partial<OperationVariables> | undefined) => Promise<ApolloQueryResult<FetchBoardsData>>;
+
     fetchBoardsData?: FetchBoardsData;
     searchTitle: string;
     endDate: string | undefined;
     startDate: string | undefined;
-    pageNumber: string | string[];
     fetchBoardsCountData?: FetchBoardsCountData;
-    refetch: (variables?: Partial<OperationVariables> | undefined) => Promise<ApolloQueryResult<FetchBoardsData>>;
+    paginationKey: number;
     
     onClickMoveToDetailPage: (el: FetchBoard) => void;
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;
