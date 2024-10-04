@@ -24,7 +24,6 @@ export interface BoardListUIProps {
     endDate: string | undefined;
     startDate: string | undefined;
     fetchBoardsCountData?: FetchBoardsCountData;
-    paginationKey: number;
     
     onClickMoveToDetailPage: (el: FetchBoard) => void;
     onClickMoveToWritePage: (event: MouseEvent<HTMLButtonElement>) => void;

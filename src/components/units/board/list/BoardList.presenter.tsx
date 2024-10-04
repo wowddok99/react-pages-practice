@@ -62,7 +62,7 @@ export default function BoardListUI(props: BoardListUIProps){
                 </TableWrapper>
                 <FooterWrapper>
                     <DummyWrapper/>
-                    <Pagination key={props.paginationKey} fetchBoardsCountData={props.fetchBoardsCountData} refetch={props.refetch} />
+                    <Pagination fetchBoardsCountData={props.fetchBoardsCountData} refetch={props.refetch} />
                     <SubmitButtonWrapper>
                         <PencilIcon/>
                         <SubmitButton onClick={props.onClickMoveToWritePage}>등록하기</SubmitButton>
