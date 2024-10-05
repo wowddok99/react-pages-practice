@@ -76,6 +76,12 @@ export default function BoardList(){
         setEndDate(event.target.value);
     }
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if(event.key === "Enter"){
+            onClickSearchByTitleAndDate();
+        }
+    }
+
     return (
         <div>
             <BoardListUI
@@ -94,6 +100,7 @@ export default function BoardList(){
             onInputSearchTitle={onInputSearchTitle}
             onInputStartDate={onInputStartDate}
             onInputEndDate={onInputEndDate}
+            handleKeyDown={handleKeyDown}
             />
         </div>
     )

@@ -32,4 +32,5 @@ export interface BoardListUIProps {
     onInputSearchTitle: (event: ChangeEvent<HTMLInputElement>) => void;
     onInputStartDate:(event: ChangeEvent<HTMLInputElement>) => void;
     onInputEndDate: (event: ChangeEvent<HTMLInputElement>) => void;
+    handleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
