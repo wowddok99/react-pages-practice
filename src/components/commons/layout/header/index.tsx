@@ -18,7 +18,7 @@ const LogoWrapper = styled.div`
 const HeaderLogo = styled.img`
     cursor: pointer;
     width: auto;
-    height: 6rem;
+    height: 2.6rem;
 `
 
 const MenuWrapper = styled.div`
@@ -47,7 +47,7 @@ export default function LayOutHeader(){
         <HeaderWrapper>
             <LogoWrapper>
                 <a href="http://localhost:3000/boards/list/1">
-                    <HeaderLogo src="/images/codeconvo_logo.png"></HeaderLogo>
+                    <HeaderLogo src="/images/codeConnect_logo.png"></HeaderLogo>
                 </a>
             </LogoWrapper>
             <MenuWrapper>

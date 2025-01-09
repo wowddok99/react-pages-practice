@@ -50,21 +50,21 @@ export default function LayOutBanner(){
             <BannerWrapper>
                 <BannerImage src="/images/banner1.png"/>
                 <BannerTextWrapper>
-                    <BannerTextTitle>함께 성장하는 개발 커뮤니티, CodeConvo</BannerTextTitle>   
+                    <BannerTextTitle>함께 성장하는 개발 커뮤니티, Code Connect</BannerTextTitle>   
                     <BannerTextDescription>개발자들이 잠시 쉬어갈수 있는 개발 커뮤니티 입니다.</BannerTextDescription>
                 </BannerTextWrapper>
             </BannerWrapper>
             <BannerWrapper>
                 <BannerImage src="/images/banner2.png"/>
                 <BannerTextWrapper>
-                    <BannerTextTitle>함께 성장하는 개발 커뮤니티, CodeConvo</BannerTextTitle>   
+                    <BannerTextTitle>함께 성장하는 개발 커뮤니티, Code Connect</BannerTextTitle>   
                     <BannerTextDescription>개발자들이 잠시 쉬어갈수 있는 개발 커뮤니티 입니다.</BannerTextDescription>
                 </BannerTextWrapper>
             </BannerWrapper>
             <BannerWrapper>
                 <BannerImage src="/images/banner3.png"/>
                 <BannerTextWrapper>
-                    <BannerTextTitle>함께 성장하는 개발 커뮤니티, CodeConvo</BannerTextTitle>   
+                    <BannerTextTitle>함께 성장하는 개발 커뮤니티, Code Connect</BannerTextTitle>   
                     <BannerTextDescription>개발자들이 잠시 쉬어갈수 있는 개발 커뮤니티 입니다.</BannerTextDescription>
                 </BannerTextWrapper>
             </BannerWrapper>
